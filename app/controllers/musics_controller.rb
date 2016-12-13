@@ -19,5 +19,11 @@ class MusicsController < ApplicationController
   	@music = file
   end
 
+  def new
+  end
 
+  def create
+  	file = Rails.root.join 'music', 'song.mp3'
+  	find_by
+  end
 end
