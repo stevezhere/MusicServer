@@ -1,0 +1,11 @@
+<strong> Instructions </strong>
+<ul>
+	<li> Type title exactly as filename </li>
+	<li> Place song file into music folder </li>
+	<li> Currently only supports .mps files </li>
+</ul>
+
+<%= form_for :music, url: musics_path do |f| %>
+	<%= f.text_field :title %>
+	<%= f.submit "Store Music" %>
+<% end %>
