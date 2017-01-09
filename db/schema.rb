@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 20161213001125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "music_storages", force: :cascade do |t|
-    t.string   "title"
-    t.string   "file_location"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "musics", force: :cascade do |t|
     t.string   "title",      null: false
     t.string   "path",       null: false
