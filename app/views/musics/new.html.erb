@@ -5,7 +5,8 @@
 	<li> Currently only supports .mps files </li>
 </ul>
 
-<%= form_for :music, url: musics_path do |f| %>
+<%= form_for @music do |f| %>
+	<%= f.label :music %>
 	<%= f.text_field :title %>
 	<%= f.submit "Store Music" %>
 <% end %>
