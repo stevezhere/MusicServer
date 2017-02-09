@@ -1,6 +1,12 @@
 <h1> Local Music Homepage </h1>
 
-<%= form_for :music, method: :get, url: musics_show_path do |f| %>
+<ul>
+	<% @musics.each do |music| %>
+		<li><%= music.title %></li>
+	<% end %>
+</ul>
+
+<%= form_for :music, method: :get, url: search_path do |f| %>
 	<%= f.text_field :title %>
 	<%= f.submit "Search" %>
 <% end %>
