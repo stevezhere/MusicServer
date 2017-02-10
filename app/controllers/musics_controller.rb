@@ -60,7 +60,6 @@ class MusicsController < ApplicationController
     # root_dir = Rails.root.join 'public', 'music'
     # musics = root_dir.children
     # @music = musics[0]
-    # byebug
     if @music
       redirect_to @music
     else
@@ -69,6 +68,7 @@ class MusicsController < ApplicationController
   end
 
   def scan
+    #scan desktop move song to public music then add into active record
     root_dir = Rails.root.join 'public', 'music'
     @musics = root_dir.children
   end
