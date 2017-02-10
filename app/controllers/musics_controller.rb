@@ -4,14 +4,12 @@ class MusicsController < ApplicationController
 	#skip_before_action :verify_authenticity_token
    
   def index
-    # @musics = Music.all
-    root_dir = Rails.root.join 'public', 'music'
-    @musics = root_dir.children(false)
+    @musics = Music.all
   end
 
   def show
-    # @path = Music.find(params[:id]).path
-    @path = Rails.root.join 'public', 'music', 'song.mp3'
+    @music = Music.find(params[:id])
+    # @music = Rails.root.join 'public', 'music', 'song.mp3'
   end
 
   #  def show
@@ -25,7 +23,7 @@ class MusicsController < ApplicationController
 
   def create
     title = music_params[:title]
-    path = Rails.root.join 'public', 'music', "#{title}.mp3"
+    path = Rails.root.join 'public', 'music', title
     @music = Music.new(title: title, path: path)
     if @music.valid?
       @music.save
@@ -70,7 +68,12 @@ class MusicsController < ApplicationController
     end
   end
 
-private
+  def scan
+    root_dir = Rails.root.join 'public', 'music'
+    @musics = root_dir.children
+  end
+
+  private
   def music_params
     params.require(:music).permit(:title)
   end

@@ -1,0 +1,9 @@
+<h1>RESULTS OF SCAN on STORAGE</h1>
+
+<ul>
+	<% @musics.each do |music| %>
+		<li><%= music.basename %>: <%= link_to	music, musics_path('music' => {:title => music.basename}), method: :post%></li>
+	<% end %>
+</ul>
+
+<%= link_to 'Home', '/' %>

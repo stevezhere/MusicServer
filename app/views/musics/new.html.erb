@@ -1,8 +1,8 @@
 <strong> Instructions </strong>
 <ul>
 	<li> Type title exactly as filename </li>
-	<li> Place song file into music folder </li>
-	<li> Currently only supports .mps files </li>
+	<li> ex. song.mp3 (case sensitive) </li>
+	<li> Place song file into /public/music folder </li>
 </ul>
 
 <%= form_for @music do |f| %>
@@ -11,4 +11,5 @@
 	<%= f.submit "Store Music" %>
 <% end %>
 
+<%= link_to 'Home', '/' %>
 <%= link_to 'Scan Folder', scan_path %>

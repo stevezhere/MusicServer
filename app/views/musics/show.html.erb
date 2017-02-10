@@ -1,5 +1,8 @@
 <h1> Your Song Request ....</h1>
 
 <p>Search result</p>
-<p><% link_to @path, music_path(File.join(@path)) %></p>
+<p><%# link_to @music, music_path(File.join(@path)) %></p>
+<p><%= @music.path %></p>
+
+<%= link_to 'Home', '/' %>
 
