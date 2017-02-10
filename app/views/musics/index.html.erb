@@ -1,8 +1,9 @@
 <h1> Local Music Homepage </h1>
 
+<p>Musics in storage folder</p>
 <ul>
 	<% @musics.each do |music| %>
-		<li><%= music.title %></li>
+		<li><%= music %></li>
 	<% end %>
 </ul>
 
@@ -12,3 +13,4 @@
 <% end %>
 
 <%= link_to "Add Songs", new_music_path %>
+<%# link_to "Open Storage Folder", %>

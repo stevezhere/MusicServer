@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :musics, only: [:index, :create, :new, :show]
   get '/search', to: 'musics#search'
+  get '/scan', to: 'musics#scan'
   
   # resources :musics, only: [:index, :create]
   # post '/musics', to: 'musics#show'
