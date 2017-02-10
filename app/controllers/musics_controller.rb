@@ -4,12 +4,20 @@ class MusicsController < ApplicationController
 	#skip_before_action :verify_authenticity_token
    
   def index
-    @musics = Music.all
+    # @musics = Music.all
+    root_dir = Rails.root.join 'public', 'music'
+    @musics = root_dir.children(false)
   end
 
   def show
-    @path = Music.find(params[:id]).path
+    # @path = Music.find(params[:id]).path
+    @path = Rails.root.join 'public', 'music', 'song.mp3'
   end
+
+  #  def show
+  #   @path = params[:path] || '/some/default'
+  #   @files = Dir.foreach(path)
+  # end
 
   def new
     @music = Music.new()
@@ -17,7 +25,7 @@ class MusicsController < ApplicationController
 
   def create
     title = music_params[:title]
-    path = Rails.root.join 'music', "#{title}.mp3"
+    path = Rails.root.join 'public', 'music', "#{title}.mp3"
     @music = Music.new(title: title, path: path)
     if @music.valid?
       @music.save
@@ -36,16 +44,33 @@ class MusicsController < ApplicationController
       #@@enc   = Base64.encode64(music)
       #render :json => @@enc
 
+
+      # find filename of each in a pathname object
+      # path.each_filename {|music| p music}
+      # path.each_filename(false) {|musir| p music}
+      # path.open <++++++ converts pathname to file name
+
+      # file = "/path/to/xyz.mp4"
+
+      # comp = File.basename file        # => "xyz.mp4"
+      # extn = File.extname  file        # => ".mp4"
+      # name = File.basename file, extn  # => "xyz"
+      # path = File.dirname  file        # => "/path/to"
+
     title = music_params[:title]
     @music = Music.find_by_title(title)
+    # root_dir = Rails.root.join 'public', 'music'
+    # musics = root_dir.children
+    # @music = musics[0]
+    # byebug
     if @music
       redirect_to @music
     else
-      render 'index'
+      redirect_to musics_path
     end
   end
 
-  private
+private
   def music_params
     params.require(:music).permit(:title)
   end
