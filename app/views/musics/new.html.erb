@@ -2,7 +2,7 @@
 <ul>
 	<li> Type title exactly as filename </li>
 	<li> ex. song.mp3 (case sensitive) </li>
-	<li> Place song file into /public/music folder </li>
+	<li> Place song on Desktop </li>
 </ul>
 
 <%= form_for @music do |f| %>
@@ -12,4 +12,4 @@
 <% end %>
 
 <%= link_to 'Home', '/' %>
-<%= link_to 'Scan Folder', scan_path %>
+<%= link_to 'Scan Desktop', scan_path %>

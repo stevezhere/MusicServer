@@ -12,23 +12,17 @@ class MusicsController < ApplicationController
     # @music = Rails.root.join 'public', 'music', 'song.mp3'
   end
 
-  #  def show
-  #   @path = params[:path] || '/some/default'
-  #   @files = Dir.foreach(path)
-  # end
-
   def new
     @music = Music.new()
   end
 
   def create
     title = music_params[:title]
-    origin_path = File.join(Dir.home, "Desktop")
-    destination_path = Rails.root.join 'public', 'music'
-    @music = Music.new(title: title, path: File.join(destination_path, title))
+    path = Rails.root.join('public', 'music', title)
+    @music = Music.new(title: title, path: path)
+
     if @music.valid?
-      Dir.chdir(origin_path)
-      FileUtils.mv title, destination_path
+      @music.move_file(title)
       @music.save
       redirect_to @music
     else
@@ -72,18 +66,9 @@ class MusicsController < ApplicationController
   end
 
   def scan
-    #scan desktop move song to public music then add into active record
-
-
-    # Dir.chdir(Dir.home)
-    # Dir.chdir("Desktop")
-    # desktop = Dir.pwd
-
     desktop = File.join(Dir.home, "Desktop")
     desktop_path = Pathname.new(desktop)
-
-    # root_path = Rails.root.join 'public', 'music'
-      @musics = desktop_path.children
+    @musics = desktop_path.children
     if @musics.length > 0
       render 'scan'
     else
