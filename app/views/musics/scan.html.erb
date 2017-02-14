@@ -2,7 +2,7 @@
 
 <ul>
 	<% @musics.each do |music| %>
-		<li><%= music.basename %>: <%= link_to	music, musics_path('music' => {:title => music.basename}), method: :post%></li>
+		<li><%= music.basename %>: <%= link_to music, musics_path('music' => {:title => music.basename}), method: :post%></li>
 	<% end %>
 </ul>
 
