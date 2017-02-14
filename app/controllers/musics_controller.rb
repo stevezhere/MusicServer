@@ -66,10 +66,8 @@ class MusicsController < ApplicationController
   end
 
   def scan
-    desktop = File.join(Dir.home, "Desktop")
-    desktop_path = Pathname.new(desktop)
-    @musics = desktop_path.children
-    if @musics.length > 0
+    @files = Music.scan_desktop
+    if @files.length > 0
       render 'scan'
     else
       redirect_to new_music_path

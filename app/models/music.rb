@@ -18,4 +18,9 @@ class Music < ActiveRecord::Base
     FileUtils.mv title, destination_path
 	end
 
+	def self.scan_desktop
+		desktop = File.join(Dir.home, "Desktop")
+    desktop_path = Pathname.new(desktop)
+    desktop_path.children
+	end
 end
