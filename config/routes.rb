@@ -2,9 +2,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'musics#index'
 
-  get 'musics/search', to: 'musics#search'
-  get 'musics/scan', to: 'musics#scan'
-  resources :musics, only: [:index, :create, :new, :show]
+  # get 'musics/search', to: 'musics#search'
+  # get 'musics/scan', to: 'musics#scan'
+  resources :musics, only: [:index, :create, :new, :show] do 
+  	collection do
+  		get :search
+  		get :scan
+  	end
+  end
   
   # resources :musics, only: [:index, :create]
   # post '/musics', to: 'musics#show'
