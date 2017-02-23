@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	collection do
   		get :search
   		get :scan
+      get '/stream/:id', to: 'musics#stream', as: 'stream'
   	end
   end
   
