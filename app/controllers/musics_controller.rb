@@ -9,6 +9,11 @@ class MusicsController < ApplicationController
 
   def show
     @music = Music.find(params[:id])
+    if @music
+      render 'show'
+    else
+      redirect_to '/'
+    end
     # @music = Rails.root.join 'public', 'music', 'song.mp3'
   end
 
@@ -22,8 +27,8 @@ class MusicsController < ApplicationController
     @music = Music.new(title: title, path: path)
 
     if @music.valid?
-      @music.move_file(title)
       @music.save
+      @music.move_file(title)
       redirect_to @music
     else
       redirect_to new_music_path
@@ -71,6 +76,13 @@ class MusicsController < ApplicationController
       render 'scan'
     else
       redirect_to new_music_path
+    end
+  end
+
+  def stream
+    music = Music.find(params[:id])
+    if music
+      send_file music.path
     end
   end
 

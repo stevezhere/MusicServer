@@ -3,6 +3,8 @@
 <p>Search result</p>
 <p><%# link_to @music, music_path(File.join(@path)) %></p>
 <p><%= @music.path %></p>
-
+<audio controls>
+  <source src="<%= stream_musics_path(@music.id) %>">
+</audio>
+<br>
 <%= link_to 'Home', '/' %>
-
