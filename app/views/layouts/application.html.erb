@@ -24,12 +24,7 @@
 	  <!-- <p class="notice"><%= notice %></p>
 	  <p class="alert"><%= alert %></p> -->
 
-    <% flash.each do |key, value| %>
-	    <div style='color:red' class="alert alert-<%= key %>">
-	      <%= value %>
-	    </div>
-	  <% end %>
-
+    <%= render 'layouts/flash' %>
     <%= yield %>
   </body>
 </html>

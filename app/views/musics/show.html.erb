@@ -8,4 +8,4 @@
 </audio>
 <br>
 
-<%= link_to 'Remove Song', music_path(@music), method: :delete %>
+<%= link_to 'Remove Song', music_path(@music), method: :delete, data: {confirm: 'Are you sure?'} %>
