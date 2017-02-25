@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # get 'musics/search', to: 'musics#search'
   # get 'musics/scan', to: 'musics#scan'
-  resources :musics, only: [:index, :create, :new, :show] do 
+  resources :musics, only: [:index, :create, :new, :show, :destroy] do 
   	collection do
   		get :search
   		get :scan
