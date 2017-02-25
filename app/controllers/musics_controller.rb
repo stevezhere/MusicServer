@@ -12,9 +12,8 @@ class MusicsController < ApplicationController
     if @music
       render 'show'
     else
-      redirect_to '/'
+      redirect_to '/', :flash => { :notice => "Song Cannot be found"}
     end
-    # @music = Rails.root.join 'public', 'music', 'song.mp3'
   end
 
   def new
@@ -27,11 +26,10 @@ class MusicsController < ApplicationController
     @music = Music.new(title: title, path: path)
 
     if @music.valid?
-      @music.save
-      @music.move_file_storage(title)
-      redirect_to @music
+      @music.move_file_storage(title) if @music.save
+      redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
     else
-      redirect_to new_music_path
+      redirect_to new_music_path, :flash => { :alert => "#{@music.title} cannot be found on Desktop"}
     end
   end
 
@@ -40,8 +38,10 @@ class MusicsController < ApplicationController
     if music
       music.move_file_desktop(music.title)
       music.destroy
+      redirect_to '/', :flash => { :notice => "#{music.title} Successfully Removed"}
+    else
+      redirect_to '/', :flash => { :alert => "Unknown error occured"}
     end
-    redirect_to '/'
   end
 
   def search
@@ -72,10 +72,9 @@ class MusicsController < ApplicationController
     # musics = root_path.children
     # @music = musics[0]
     if @music
-      redirect_to @music
+      redirect_to @music, :flash => { :notice => "Song Found"}
     else
-      redirect_to musics_path
-
+      redirect_to '/', :flash => { :alert => "Cannot find song, check spelling and include file type is correct"}
     end
   end
 
@@ -84,14 +83,14 @@ class MusicsController < ApplicationController
     if @files.length > 0
       render 'scan'
     else
-      redirect_to new_music_path
+      redirect_to new_music_path, :flash => { :alert => "There are no Files on Desktop"}
     end
   end
 
   def stream
     music = Music.find(params[:id])
     if music
-      send_file music.path
+      send_file music.path, :flash => { :notice => "Song Successfully Loaded"}
     end
   end
 
