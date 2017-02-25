@@ -11,11 +11,18 @@ class Music < ActiveRecord::Base
 		end
 	end
 
-	def move_file(title)
+	def move_file_storage(title)
 		origin_path = File.join(Dir.home, "Desktop")
     destination_path = Rails.root.join 'public', 'music'
     Dir.chdir(origin_path)
     FileUtils.mv title, destination_path
+	end
+
+	def move_file_desktop(title)
+		origin_path = File.join(Dir.home, "Desktop")
+    destination_path = Rails.root.join 'public', 'music'
+    Dir.chdir(destination_path)
+    FileUtils.mv title, origin_path
 	end
 
 	def self.scan_desktop

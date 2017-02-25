@@ -28,11 +28,20 @@ class MusicsController < ApplicationController
 
     if @music.valid?
       @music.save
-      @music.move_file(title)
+      @music.move_file_storage(title)
       redirect_to @music
     else
       redirect_to new_music_path
     end
+  end
+
+  def destroy
+    music = Music.find(params[:id])
+    if music
+      music.move_file_desktop(music.title)
+      music.destroy
+    end
+    redirect_to '/'
   end
 
   def search

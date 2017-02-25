@@ -7,3 +7,5 @@
   <source src="<%= stream_musics_path(@music.id) %>">
 </audio>
 <br>
+
+<%= link_to 'Remove Song', music_path(@music), method: :delete %>
