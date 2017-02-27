@@ -2,8 +2,8 @@ class Music < ActiveRecord::Base
 	validates :title, presence: true, uniqueness: true
 	validates :path, presence: true, uniqueness: true
 	validate :title_exist_on_desktop
-	has_many :music_playlists
-	has_many :playlists, :through => :music_playlists
+	has_many :song_entries
+	has_many :playlists, :through => :song_entries
 
 	def title_exist_on_desktop
 		origin_path = File.join(Dir.home, "Desktop")
