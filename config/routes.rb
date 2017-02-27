@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: :show do
-    resources :playlists
+    collection do 
+      resources :playlists
+    end      
   end
 
   resources :musics, except: [:edit, :update] do 
