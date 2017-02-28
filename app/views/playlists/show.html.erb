@@ -1,7 +1,6 @@
-<h1> <%= @playlist.name %> </h1>
+<h1><%= link_to @playlist.name, edit_playlist_path(@playlist) %></h1>
 <p>
-	<%= link_to 'Edit Description', edit_playlist_path(@playlist) %><br/>
-	<%= @playlist.description %>
+	<%= render 'edit_description' %>
 </p>
 
 <br/>

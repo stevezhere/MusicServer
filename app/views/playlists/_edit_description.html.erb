@@ -1,0 +1,5 @@
+<%= form_for @playlist, method: :put do |f| %>
+	<%= f.text_area :description, placeholder: @playlist.description %><br/>
+
+	<%= f.submit 'Save Changes' %>
+<% end %>
