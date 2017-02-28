@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     collection do 
-      resources :playlists
+      resources :playlists, except: [:index, :new]
     end      
   end
 
