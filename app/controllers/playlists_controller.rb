@@ -15,13 +15,13 @@ class PlaylistsController < ApplicationController
 		if @playlist
 			render 'edit'
 		else
-			redirect user_path(current_user), flash: {notice: 'Unauthorized Access'}
+			redirect user_path(current_user), flash: {alert: 'Unauthorized Access'}
 		end
 	end
 
 	def create
 		name = playlist_params[:name]
-		@playlist = Playlist.new(name: name, user_id: current_user.id)
+		@playlist = Playlist.new(name: name, description: 'Optional description', user_id: current_user.id)
 
 		if @playlist.valid?
 			@playlist.save
@@ -32,6 +32,15 @@ class PlaylistsController < ApplicationController
 	end
 
 	def update
+		@playlist = Playlist.find(params[:id])
+		if @playlist.update(playlist_params)
+			redirect_to @playlist, flash: {notice: "Changes Saved"}
+		else
+			redirect user_path(current_user), flash: {alert: 'Unauthorized Access'}
+		end
+	end
+
+	def destroy
 	end
 
 	private
