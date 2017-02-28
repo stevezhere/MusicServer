@@ -6,7 +6,7 @@ class PlaylistsController < ApplicationController
 		if @playlist
 			render 'show'
 		else
-			redirect user_path(current_user), flash: {notice: 'Playlist Undefined'}
+			redirect_to user_path(current_user), flash: {notice: 'Playlist Undefined'}
 		end
 	end
 
@@ -15,7 +15,7 @@ class PlaylistsController < ApplicationController
 		if @playlist
 			render 'edit'
 		else
-			redirect user_path(current_user), flash: {alert: 'Unauthorized Access'}
+			redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
 		end
 	end
 
@@ -36,11 +36,18 @@ class PlaylistsController < ApplicationController
 		if @playlist.update(playlist_params)
 			redirect_to @playlist, flash: {notice: "Changes Saved"}
 		else
-			redirect user_path(current_user), flash: {alert: 'Unauthorized Access'}
+			redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
 		end
 	end
 
 	def destroy
+		playlist = Playlist.find(params[:id])
+		if playlist
+			playlist.destroy
+			redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
+		else
+			redirect_to user_path(current_user), :flash => { :alert => "Unknown error occured"}
+		end
 	end
 
 	private
