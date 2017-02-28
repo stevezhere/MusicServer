@@ -1,6 +1,5 @@
 require 'byebug'
 class PlaylistsController < ApplicationController
-
 	
 	def show 
 		@playlist = Playlist.find(params[:id])
@@ -8,6 +7,15 @@ class PlaylistsController < ApplicationController
 			render 'show'
 		else
 			redirect user_path(current_user), flash: {notice: 'Playlist Undefined'}
+		end
+	end
+
+	def edit
+		@playlist = Playlist.find(params[:id])
+		if @playlist
+			render 'edit'
+		else
+			redirect user_path(current_user), flash: {notice: 'Unauthorized Access'}
 		end
 	end
 
@@ -21,6 +29,9 @@ class PlaylistsController < ApplicationController
 		else
 			redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages}
 		end
+	end
+
+	def update
 	end
 
 	private

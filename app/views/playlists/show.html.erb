@@ -1,0 +1,14 @@
+<h1> <%= @playlist.name %> </h1>
+<p>
+	<%= link_to 'Edit Description', edit_playlist_path(@playlist) %><br/>
+	<%= @playlist.description %>
+</p>
+
+<br/>
+<br/>
+
+<ul>
+	<% @playlist.musics.each do |song| %>
+		<li><%= song.name %></li>
+	<% end %>
+</ul>
