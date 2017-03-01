@@ -1,7 +1,8 @@
 <h1> Your Song Request ....</h1>
+<p>Search result:</p>
 
-<p>Search result</p>
-<p><%# link_to @music, music_path(File.join(@path)) %></p>
+<br/>
+<h2><%= @music.title %></h2>
 <p><%= @music.path %></p>
 <audio controls>
   <source src="<%= stream_musics_path(@music.id) %>">

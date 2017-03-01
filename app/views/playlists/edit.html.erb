@@ -6,4 +6,4 @@
 	<%= f.submit 'Save Changes' %>
 <% end %>
 
-<%= link_to 'Delete Playlist', @playlist, method: :delete %>
+<%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
