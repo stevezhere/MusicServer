@@ -90,7 +90,7 @@ class MusicsController < ApplicationController
   def stream
     music = Music.find(params[:id])
     if music
-      send_file music.path, :flash => { :notice => "Song Successfully Loaded"}
+      send_file music.path
     end
   end
 
