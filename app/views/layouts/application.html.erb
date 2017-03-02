@@ -11,14 +11,8 @@
   <body>
     <nav>
       <%= link_to 'Home', '/' %> / 
-
-      <% if user_signed_in? %>
-        <%= link_to current_user.email, user_path(current_user) %> / 
-      <% end %>
-
       <%= render 'devise/menu/registration_items' %> / 
       <%= render 'devise/menu/login_items' %>
-
     </nav>
 
 	  <!-- <p class="notice"><%= notice %></p>
