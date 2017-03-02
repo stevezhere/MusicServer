@@ -5,8 +5,8 @@
 <h2><%= @music.title %></h2>
 <p><%= @music.path %></p>
 <audio controls>
-  <source src="<%= stream_musics_path(@music.id) %>">
+  <source src="<%= stream_musics_path(@music) %>">
 </audio>
-<br>
 
 <%= link_to 'Remove Song', music_path(@music), method: :delete, data: {confirm: 'Are you sure?'} %>
+
