@@ -3,29 +3,22 @@ Rails.application.routes.draw do
   root 'musics#index'
 
   devise_for :users
+  resources :users, only: :show
 
-  resources :users, only: :show do
+  resources :playlists, except: [:index, :new] do
     collection do 
-      resources :playlists, except: [:index, :new] do
-        collection do 
-          get '/stream/:id', to: 'playlists#stream', as: 'stream'
-          get '/stream/:id/next', to: 'playlists#next', as: 'next'
-          get '/stream/:id/previous', to: 'playlists#previous', as: 'previous'
-        end
-      end
-    end      
+      get '/:id/stream', to: 'playlists#stream', as: 'stream'
+      get '/:id/stream/next', to: 'playlists#next', as: 'next'
+      get '/:id/stream/previous', to: 'playlists#previous', as: 'previous'
+    end
   end
 
   resources :musics, except: [:edit, :update] do 
   	collection do
   		get :search
   		get :scan
-      get '/stream/:id', to: 'musics#stream', as: 'stream'
+      get '/:id/stream', to: 'musics#stream', as: 'stream'
   	end
   end
   
-  # resources :musics, only: [:index, :create]
-  # post '/musics', to: 'musics#show'
-
-  # get '/patients/:id', to: 'patients#show'
 end
