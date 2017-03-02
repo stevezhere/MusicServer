@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
 	
 	def show 
 		@playlist = Playlist.find(params[:id])
-		@stream = params[:stream] ||= 0 
+		@stream = params[:stream].to_i ||= 0 
 		if @playlist
 			render 'show'
 		else
