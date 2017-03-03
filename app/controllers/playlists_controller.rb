@@ -14,7 +14,7 @@ class PlaylistsController < ApplicationController
 	def edit
 		@playlist = Playlist.find(params[:id])
 		@musics = @playlist.musics
-		@new_musics = Music.all_except(@musics)
+		@new_musics = Music.all_except(@musics).order(:title)
 		if @playlist
 			render 'edit'
 		else

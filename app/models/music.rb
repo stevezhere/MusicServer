@@ -1,6 +1,7 @@
 class Music < ActiveRecord::Base
 	has_many :song_entries
 	has_many :playlists, :through => :song_entries
+	scope :ordered, -> { includes(:song_entries).order('song_entries.created_at') }
 	validates :title, presence: true, uniqueness: true
 	validates :path, presence: true, uniqueness: true
 	validate :title_exist_on_desktop
