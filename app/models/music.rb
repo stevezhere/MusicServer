@@ -13,6 +13,11 @@ class Music < ActiveRecord::Base
 		end
 	end
 
+	def self.all_except(playlist)
+		song_id = playlist.map{|song| song.id}
+		where.not(id: song_id)
+	end
+
 	def move_file_storage(title)
 		origin_path = File.join(Dir.home, "Desktop")
     destination_path = Rails.root.join 'public', 'music'

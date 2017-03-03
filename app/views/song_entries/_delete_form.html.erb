@@ -1,6 +1,7 @@
-<form action="/playlists/<%= @playlist.id %>/song_entries/destroy" method= "DELETE">
+<form action="/playlists/<%= @playlist.id %>/song_entries/destroy" method="POST">
+	<input type="hidden" name="_method" value="DELETE">
 	<% @musics.each do |song| %>
 		<input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %><br/>
 	<% end %>
-	<input type="submit" value="delete">
+	<input type="submit" value="Remove from Playlist">
 </form>
