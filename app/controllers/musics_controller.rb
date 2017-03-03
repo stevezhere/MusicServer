@@ -2,7 +2,7 @@ class MusicsController < ApplicationController
 	# require "base64"
    
   def index
-    @musics = Music.all
+    @musics = Music.all.order(:title)
   end
 
   def show
