@@ -1,9 +1,12 @@
 <h1> Edit: <%= @playlist.name %> </h1>
-<%= form_for @playlist, method: :put do |f| %>
-	<%= f.label :name %><br/>
-	<%= f.text_field :name %><br/><br/>
 
-	<%= f.submit 'Save Changes' %>
+<%= form_for @playlist, method: :put do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit 'Change Name' %>
 <% end %>
 
 <%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
+
+<h2> Current Songs </h2>
+<%= "Playlist is Empty" if @playlist.musics.empty? %>
+<%= render '/song_entries/delete_form' unless @playlist.musics.empty?%>
