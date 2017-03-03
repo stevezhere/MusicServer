@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   resources :playlists, except: [:index, :new] do
+    resources :song_entries, only: [:new, :create] do
+      collection do 
+        get'/destroy', to: 'song_entries#destroy', as: 'destroy'
+      end
+    end
+
     collection do 
       get '/:id/stream', to: 'playlists#stream', as: 'stream'
       get '/:id/stream/next', to: 'playlists#next', as: 'next'

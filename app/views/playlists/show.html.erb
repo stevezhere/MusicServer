@@ -1,18 +1,17 @@
 <h1><%= link_to @playlist.name, edit_playlist_path(@playlist) %></h1>
 <p>
 	<%= render 'edit_description' %>
-</p>
+</p><br/>
 
-<br/>
-
-<h2><%= @stream %>: <%= @playlist.musics[@stream].title %></h2>
+<h2><%= @stream %>: <%= @playlist.musics[@stream].title unless @playlist.musics.empty? %></h2>
 <%= render 'stream' %>
 <%= link_to 'Previous', previous_playlists_path(@playlist, stream: @stream) %>
 <%= link_to 'Next', next_playlists_path(@playlist, stream: @stream) %>
-
 
 <ul>
 	<% @playlist.musics.each_with_index do |song, idx| %>
 		<li>(<%= idx %>) <%= link_to song.title, playlist_path(@playlist, stream: idx) %></li>
 	<% end %>
 </ul>
+
+
