@@ -2,7 +2,8 @@ class PlaylistsController < ApplicationController
 	
 	def show 
 		@playlist = Playlist.find(params[:id])
-		@stream = params[:stream].to_i ||= 0 
+		@stream = params[:stream].to_i
+		@stream = 0 if @stream < 0
 		if @playlist
 			render 'show'
 		else
@@ -62,8 +63,8 @@ class PlaylistsController < ApplicationController
 
   def next
   	@playlist = Playlist.find(params[:id])
-  	@stream = params[:stream].to_i + 1 
   	if @playlist
+  		@stream = params[:stream].to_i + 1 
   		if @stream < @playlist.musics.count
   			redirect_to playlist_path(@playlist, stream: @stream)
   		else
@@ -76,8 +77,8 @@ class PlaylistsController < ApplicationController
 
   def previous
   	@playlist = Playlist.find(params[:id])
-  	@stream = params[:stream].to_i - 1 
   	if @playlist
+  		@stream = params[:stream].to_i - 1 
   		if @stream > -1
   			redirect_to playlist_path(@playlist, stream: @stream)
   		else
