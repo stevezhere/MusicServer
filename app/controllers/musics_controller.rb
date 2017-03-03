@@ -1,7 +1,5 @@
-require 'byebug'
 class MusicsController < ApplicationController
-	require "base64"
-	#skip_before_action :verify_authenticity_token
+	# require "base64"
    
   def index
     @musics = Music.all

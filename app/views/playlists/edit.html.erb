@@ -8,5 +8,12 @@
 <%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
 
 <h2> Current Songs </h2>
-<%= "Playlist is Empty" if @playlist.musics.empty? %>
-<%= render '/song_entries/delete_form' unless @playlist.musics.empty?%>
+<%= "Playlist is Empty" if @musics.empty? %>
+<%= render '/song_entries/delete_form' unless @musics.empty?%>
+
+<br/>
+<br/>
+
+<h2> Available Songs </h2>
+<%= "No song available" if @new_musics.empty? %>
+<%= render '/song_entries/new_form' unless @new_musics.empty?%>

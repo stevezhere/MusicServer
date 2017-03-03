@@ -1,4 +1,3 @@
-require 'byebug'
 class PlaylistsController < ApplicationController
 	
 	def show 
@@ -14,7 +13,7 @@ class PlaylistsController < ApplicationController
 	def edit
 		@playlist = Playlist.find(params[:id])
 		@musics = @playlist.musics
-		@new_musics = Music.all_except(@playlist.musics)
+		@new_musics = Music.all_except(@musics)
 		if @playlist
 			render 'edit'
 		else
@@ -88,7 +87,7 @@ class PlaylistsController < ApplicationController
   		redirect_to user_path(current_user)
   	end
   end
-  
+
 	private
 	def playlist_params
 		params.require(:playlist).permit(:name, :description)
