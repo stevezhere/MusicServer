@@ -4,18 +4,23 @@
 </p><br/>
 
 <h2>
-	<%= @stream %>: <%= "EMPTY PLAYLIST" if @playlist.musics.empty? %>
-	<%= @playlist.musics[@stream].title unless @playlist.musics.empty? %>
+	<%# "0: EMPTY PLAYLIST" if @playlist.musics.empty? %>
+	<%# @playlist.musics[@stream].title unless @playlist.musics.empty? %>
 </h2>
 
-<%= render 'stream' %>
-<%= link_to 'Previous', previous_playlists_path(@playlist, stream: @stream) %>
-<%= link_to 'Next', next_playlists_path(@playlist, stream: @stream) %>
+<%= render '/musics/stream', music: @playlist.musics[0] %>
+
+<!-- <audio id='audioPlayer' controls>
+	<%# render 'song', music: @musics.first %>
+</audio><br> -->
+
+
+
+<%# link_to 'Previous', previous_playlists_path(@playlist, stream: @stream) %>
+<%# link_to 'Next', next_playlists_path(@playlist, stream: @stream) %>
 
 <ul>
 	<% @playlist.musics.each_with_index do |song, idx| %>
-		<li>(<%= idx %>) <%= link_to song.title, playlist_path(@playlist, stream: idx) %></li>
+		<li class="musicSource">(<%= idx %>) <%= link_to song.title, stream_musics_path(song) %></li>
 	<% end %>
 </ul>
-
-
