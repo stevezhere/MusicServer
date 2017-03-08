@@ -24,11 +24,13 @@ function main(){
 			aTags => 
 				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
 		);
-	var currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
-	var index = srcArr.indexOf(currentSong);
+	var currentSong;
+	var index = 0;
 	var title;
 
 	$audio.on('ended', function(){
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
 			audio.pause();
@@ -39,6 +41,8 @@ function main(){
 	})
 
 	$('#next').on('click', function(){
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
 			audio.pause();
@@ -49,6 +53,8 @@ function main(){
 	})	
 
 	$('#previous').on('click', function(){
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
 		index = (index - 1) % srcArr.length
 		if (index < 0){ index = 2 }
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
@@ -61,6 +67,8 @@ function main(){
 
 	$('.musicSource').on('click', function(){
 		event.preventDefault();
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
 		var $this = $(this)
 		index = parseInt($this.html().match(/^\d+/)[0]) - 1
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
