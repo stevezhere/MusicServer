@@ -2,9 +2,7 @@ class PlaylistsController < ApplicationController
 	
 	def show 
 		@playlist = Playlist.find(params[:id])
-		# @stream = params[:stream].to_i
 		@musics = @playlist.musics
-		# @stream = 0 if @stream < 0
 		if @playlist
 			render 'show'
 		else
@@ -53,38 +51,6 @@ class PlaylistsController < ApplicationController
 			redirect_to user_path(current_user), :flash => { :alert => "Unknown error occured"}
 		end
 	end
-
-  def next
-  	# @playlist = Playlist.find(params[:id])
-  	# if @playlist
-  	# 	@stream = params[:stream].to_i + 1 
-  	# 	if @stream < @playlist.musics.count
-  	# 		redirect_to playlist_path(@playlist, stream: @stream)
-  	# 	else
-  	# 		redirect_to playlist_path(@playlist)
-  	# 	end
-  	# else
-  	# 	redirect_to user_path(current_user)
-  	# end
-
-  	# respond_to do |format|
-  	# 	if format.xhr?
-  	# end
-  end
-
-  def previous
-  	# @playlist = Playlist.find(params[:id])
-  	# if @playlist
-  	# 	@stream = params[:stream].to_i - 1 
-  	# 	if @stream > -1
-  	# 		redirect_to playlist_path(@playlist, stream: @stream)
-  	# 	else
-  	# 		redirect_to playlist_path(@playlist, stream: (@playlist.musics.count - 1))
-  	# 	end
-  	# else
-  	# 	redirect_to user_path(current_user)
-  	# end
-  end
 
 	private
 	def playlist_params
