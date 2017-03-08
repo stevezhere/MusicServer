@@ -54,14 +54,6 @@ class PlaylistsController < ApplicationController
 		end
 	end
 
-	def stream
-		# playlist = Playlist.find(params[:id])
-  #   music = playlist.musics[params[:stream].to_i]
-  #   if music
-  #     send_file music.path
-  #   end
-  end
-
   def next
   	# @playlist = Playlist.find(params[:id])
   	# if @playlist

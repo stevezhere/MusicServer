@@ -4,7 +4,10 @@
 <br/>
 <h2><%= @music.title %></h2>
 <p><%= @music.path %></p>
-<%= render 'stream', music: @music %>
+
+<audio controls>
+	<%= render 'stream', music: @music %>
+</audio>
 
 <%= link_to 'Remove Song', music_path(@music), method: :delete, data: {confirm: 'Are you sure?'} %>
 

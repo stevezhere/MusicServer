@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     post '/song_entries/create', to: 'song_entries#create'
     delete '/song_entries/destroy', to: 'song_entries#destroy'
 
-
     collection do 
-      get '/:id/stream', to: 'playlists#stream', as: 'stream'
       get '/:id/stream/next', to: 'playlists#next', as: 'next'
       get '/:id/stream/previous', to: 'playlists#previous', as: 'previous'
     end
@@ -25,5 +23,4 @@ Rails.application.routes.draw do
       get '/:id/stream', to: 'musics#stream', as: 'stream'
   	end
   end
-  
 end
