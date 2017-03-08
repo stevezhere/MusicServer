@@ -48,7 +48,7 @@ function main(){
 		$('h2').text((index+1) + ') ' + title);
 	})	
 
-		$('#previous').on('click', function(){
+	$('#previous').on('click', function(){
 		index = (index - 1) % srcArr.length
 		if (index < 0){ index = 2 }
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
@@ -58,7 +58,18 @@ function main(){
 		title = $('li a')[index].text;
 		$('h2').text((index+1) + ') ' + title);
 	})	
-}
 
+	$('.musicSource').on('click', function(){
+		event.preventDefault();
+		var $this = $(this)
+		index = parseInt($this.html().match(/^\d+/)[0]) - 1
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $this.find('a').html();
+		$('h2').text((index+1) + ') ' + title);
+	})
+}
 
 $(document).ready(main);
