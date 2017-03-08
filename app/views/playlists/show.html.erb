@@ -12,9 +12,8 @@
 	<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
 </audio><br>
 
-
-<%# link_to 'Previous', previous_playlists_path(@playlist, stream: @stream) %>
-<%# link_to 'Next', next_playlists_path(@playlist, stream: @stream) %>
+<button id='previous'>Previous</button>
+<button id='next'>Next</button><br/><br/>
 
 <ul>
 	<% @playlist.musics.each_with_index do |song, idx| %>

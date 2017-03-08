@@ -9,11 +9,6 @@ Rails.application.routes.draw do
 
     post '/song_entries/create', to: 'song_entries#create'
     delete '/song_entries/destroy', to: 'song_entries#destroy'
-
-    collection do 
-      get '/:id/stream/next', to: 'playlists#next', as: 'next'
-      get '/:id/stream/previous', to: 'playlists#previous', as: 'previous'
-    end
   end
 
   resources :musics, except: [:edit, :update] do 

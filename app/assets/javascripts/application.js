@@ -18,25 +18,46 @@
 
 function main(){
 	var $audio = $('#audioPlayer');
-
-	$audio.on('ended', function(){
-		var srcArr = [];
+	var audio = $audio.get(0);
+	var srcArr = [];
 		document.querySelectorAll('ul li.musicSource a').forEach(
 			aTags => 
 				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
 		);
-		var currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1]
-		var index = srcArr.indexOf(currentSong)
-			index = (index + 1) % srcArr.length;
-		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream')
-		var audio = $audio.get(0);
+	var currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+	var index = srcArr.indexOf(currentSong);
+	var title;
+
+	$audio.on('ended', function(){
+		index = (index + 1) % srcArr.length;
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
 			audio.pause();
 			audio.load();
 			audio.play();
-		var title = document.querySelectorAll('ul li.musicSource a')[index].text;
+		title = $('li a')[index].text;
 		$('h2').text((index+1) + ') ' + title);
-
 	})
+
+	$('#next').on('click', function(){
+		index = (index + 1) % srcArr.length;
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $('li a')[index].text;
+		$('h2').text((index+1) + ') ' + title);
+	})	
+
+		$('#previous').on('click', function(){
+		index = (index - 1) % srcArr.length
+		if (index < 0){ index = 2 }
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $('li a')[index].text;
+		$('h2').text((index+1) + ') ' + title);
+	})	
 }
 
 
