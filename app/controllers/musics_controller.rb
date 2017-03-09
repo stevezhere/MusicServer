@@ -35,7 +35,6 @@ class MusicsController < ApplicationController
   def destroy
     music = Music.find(params[:id])
     if music
-      music.move_file_desktop(music.title)
       music.destroy
       redirect_to '/', :flash => { :notice => "#{music.title} Successfully Removed"}
     else
@@ -44,7 +43,33 @@ class MusicsController < ApplicationController
   end
 
   def search
-    	# File.read("~/Music")
+    title = music_params[:title]
+    @music = Music.find_by_title(title)
+
+    if @music
+      redirect_to @music, :flash => { :notice => "Song Found"}
+    else
+      redirect_to '/', :flash => { :alert => "Cannot find song, check spelling and include file type is correct"}
+    end
+  end
+
+  def stream
+    music = Music.find(params[:id])
+    if music
+      send_file music.path
+    end
+  end
+
+  # def scan
+  #   @files = Music.scan_desktop
+  #   if @files.length > 0
+  #     render 'scan'
+  #   else
+  #     redirect_to new_music_path, :flash => { :alert => "There are no Files on Desktop"}
+  #   end
+  # end
+  
+      # File.read("~/Music")
       # file = Rails.root.join 'music', 'song.mp3'
       # p file.class
       # p file
@@ -64,34 +89,6 @@ class MusicsController < ApplicationController
       # extn = File.extname  file        # => ".mp4"
       # name = File.basename file, extn  # => "xyz"
       # path = File.dirname  file        # => "/path/to"
-
-    title = music_params[:title]
-    @music = Music.find_by_title(title)
-    # root_path = Rails.root.join 'public', 'music'
-    # musics = root_path.children
-    # @music = musics[0]
-    if @music
-      redirect_to @music, :flash => { :notice => "Song Found"}
-    else
-      redirect_to '/', :flash => { :alert => "Cannot find song, check spelling and include file type is correct"}
-    end
-  end
-
-  def scan
-    @files = Music.scan_desktop
-    if @files.length > 0
-      render 'scan'
-    else
-      redirect_to new_music_path, :flash => { :alert => "There are no Files on Desktop"}
-    end
-  end
-
-  def stream
-    music = Music.find(params[:id])
-    if music
-      send_file music.path
-    end
-  end
 
   private
   def music_params
