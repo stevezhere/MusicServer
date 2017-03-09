@@ -3,14 +3,30 @@ class Music < ActiveRecord::Base
 	has_many :playlists, :through => :song_entries
 	scope :ordered, -> { includes(:song_entries).order('song_entries.created_at') }
 	validates :title, presence: true, uniqueness: true
-	validates :path, presence: true, uniqueness: true
-	validate :title_exist_on_desktop
+	# validate :title_exist_on_desktop
+	has_attached_file :audio
+	validates_attachment_presence :audio
+	validates_attachment_content_type :audio, :content_type => [ 'audio/mp3','audio/mpeg']
 
-	def title_exist_on_desktop
-		origin_path = File.join(Dir.home, "Desktop")
-		Dir.chdir(origin_path)
-		unless File.exist?(self.title)
-			errors.add(self.title, 'cannot be found on Desktop')
+	# def title_exist_on_desktop
+	# 	origin_path = File.join(Dir.home, "Desktop")
+	# 	Dir.chdir(origin_path)
+	# 	unless File.exist?(self.title)
+	# 		errors.add(self.title, 'cannot be found on Desktop')
+	# 	end
+	# end
+
+	def find_path_validation
+		root_storage_path = Rails.root.join 'public', 'system', 'musics', 'audios', '000', '000'
+		latest_path = root_storage_path.children.sort.last.join 'original'
+
+		if Dir.entries(latest_path).last == self.audio_file_name
+			self.path = latest_path.join self.audio_file_name
+			self.save
+			return true
+		else
+			self.destroy
+			return false
 		end
 	end
 

@@ -19,15 +19,16 @@ class MusicsController < ApplicationController
   end
 
   def create
-    title = music_params[:title]
-    path = Rails.root.join('public', 'music', title)
-    @music = Music.new(title: title, path: path)
-
+    @music = Music.new(music_params)
     if @music.valid?
-      @music.move_file_storage(title) if @music.save
-      redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
+      @music.save
+      if @music.find_path_validation
+        redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
+      else
+        redirect_to new_music_path, :flash => { :alert => "#{@music.title} was not found"}
+      end      
     else
-      redirect_to new_music_path, :flash => { :alert => "#{@music.title} cannot be found on Desktop"}
+      redirect_to new_music_path, :flash => { :alert => @music.errors.full_messages}
     end
   end
 
@@ -94,6 +95,6 @@ class MusicsController < ApplicationController
 
   private
   def music_params
-    params.require(:music).permit(:title)
+    params.require(:music).permit(:title, :audio)
   end
 end
