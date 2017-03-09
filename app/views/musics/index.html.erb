@@ -1,16 +1,15 @@
 <h1> Local Music Server Homepage </h1>
 
 <p>Musics in storage folder</p>
-<ul>
+<ul id='available-song'>
 	<% @musics.each do |music| %>
 		<li><%= link_to music.title, music_path(music)  %></li>
 	<% end %>
 </ul>
 
-<%= form_for :music, method: :get, url: search_musics_path do |f| %>
+<%= form_for :music, method: :get, url: search_musics_path, :html => {:id => "search"} do |f| %>
 	<%= f.text_field :title %>
 	<%= f.submit "Search" %>
 <% end %>
 
 <%= link_to "Add Songs", new_music_path %>
-<%# link_to "Open Storage Folder", %>

@@ -78,6 +78,24 @@ function main(){
 		title = $this.find('a').html();
 		$('h2').text((index+1) + ') ' + title);
 	})
+
+	$('#search').on('submit', function(){
+		event.preventDefault();
+		var $form = $(this);
+		var search = $form.find("input[name='music[title]']").val().toLowerCase();
+		$('#available-song').find('.highlight').removeClass('highlight')
+		$form.find('input:submit').removeAttr('data-disable-with');
+		$form[0].reset();
+		var availableSong = {};
+		document.querySelectorAll('ul li a').forEach(
+			aTag => 
+				availableSong[aTag.innerHTML.toLowerCase()] = $(aTag)
+		);
+		
+		if (availableSong[search]){
+			availableSong[search].addClass('highlight');
+		}
+	})
 }
 
 $(document).ready(main);
