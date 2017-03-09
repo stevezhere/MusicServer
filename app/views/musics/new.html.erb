@@ -1,15 +1,7 @@
-<h1> Choose Song to ADD </h1>
-<strong> Instructions </strong>
-<ul>
-	<li> Type title exactly as filename </li>
-	<li> ex. song.mp3 (case sensitive) </li>
-	<li> Place song on Desktop </li>
-</ul>
+<h1> Add New Songs </h1>
 
 <%= form_for @music do |f| %>
 	<%= f.text_field :title, placeholder: 'Song Title' %><br/>
 	<%= f.file_field :audio %><br/><br/>
 	<%= f.submit "Store Music" %>
 <% end %>
-
-<%= link_to 'Scan Desktop', scan_musics_path %>

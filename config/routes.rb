@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :musics, except: [:edit, :update] do 
   	collection do
   		get :search
-  		get :scan
       get '/:id/stream', to: 'musics#stream', as: 'stream'
   	end
   end
