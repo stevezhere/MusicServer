@@ -1,5 +1,5 @@
 class Music < ActiveRecord::Base
-	has_many :song_entries
+	has_many :song_entries#, :dependent => :delete
 	has_many :playlists, :through => :song_entries
 	scope :ordered, -> { includes(:song_entries).order('song_entries.created_at') }
 	validates :title, presence: true, uniqueness: true
