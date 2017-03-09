@@ -7,8 +7,8 @@
 </ul>
 
 <%= form_for @music do |f| %>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
+	<%= f.text_field :title, placeholder: 'Song Title' %><br/>
+	<%= f.file_field :audio %><br/><br/>
 	<%= f.submit "Store Music" %>
 <% end %>
 
