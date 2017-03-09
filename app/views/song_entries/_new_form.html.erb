@@ -1,6 +1,10 @@
-<form action="/playlists/<%= @playlist.id %>/song_entries/create" method= "POST">
-	<% @new_musics.each do |song| %>
-		<input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %><br/>
-	<% end %>
-	<input type="submit" value="Add to Playlist">
-</form>
+<% if @new_musics.empty? %>
+	"No song available" 
+<% else %>
+	<form action="/playlists/<%= @playlist.id %>/song_entries/create" method= "POST">
+		<% @new_musics.each do |song| %>
+			<input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %><br/>
+		<% end %>
+		<input type="submit" value="Add to Playlist">
+	</form>
+<% end %>
