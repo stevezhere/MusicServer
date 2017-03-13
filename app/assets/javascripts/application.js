@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
 
 
@@ -83,7 +84,7 @@ function main(){
 		var $form = $(this);
 		var search = $form.find("input[name='music[title]']").val().toLowerCase();
 		$('#available-song').find('.highlight').removeClass('highlight');
-		document.querySelectorAll('ul li a').forEach((aTag) => {
+		document.querySelectorAll('#available-song li a').forEach((aTag) => {
 			if (aTag.innerHTML.toLowerCase().includes(search)){
 				aTag.classList.add('highlight');
 			}
@@ -92,7 +93,6 @@ function main(){
 
 	$('#search').on('focusout', function(){
 		$('#available-song').find('.highlight').removeClass('highlight');
-		$(this)[0].reset();
 	})
 }
 

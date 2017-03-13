@@ -49,7 +49,7 @@ class MusicsController < ApplicationController
     if @music
       redirect_to @music, :flash => { :notice => "Song Found for convience make sure javascript is enabled"}
     else
-      redirect_to '/', :flash => { :alert => "Cannot find song, check spelling and include file type is correct"}
+      redirect_to '/', :flash => { :alert => "Cannot find song, Check spelling"}
     end
   end
 

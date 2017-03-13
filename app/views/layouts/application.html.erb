@@ -4,14 +4,19 @@
     <title>MusicServer</title>
     <%= csrf_meta_tags %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav>
-      <%= link_to 'Home', '/' %> / 
-      <%= render 'devise/menu/registration_items' %> / 
-      <%= render 'devise/menu/login_items' %>
-    </nav>
+<!--   <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><%# link_to 'Home', '/' %></li>
+        <li><%# render 'devise/menu/registration_items' %></li>
+        <li class="active"><%# render 'devise/menu/login_items' %></li>
+      </ol>
+    </div>
+  </nav> -->
+    <%= render 'layouts/nav' %>
     <%= render 'layouts/flash' %>
     <%= yield %>
   </body>
