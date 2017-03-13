@@ -7,9 +7,11 @@
 	<% end %>
 </ul>
 
-<%= form_for :music, method: :get, url: search_musics_path, :html => {:id => "search"} do |f| %>
-	<%= f.label	'Music Search' %><br/>
-	<%= f.text_field :title, placeholder: "Enter Exact Song Title" %>
-<% end %>
-
-<%= link_to "Add Songs", new_music_path %>
+<footer class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+  	<ul class="nav nav-pills">
+			 <li role="presentation"><%= link_to "Add Songs", new_music_path %></li>
+			 <li role="presentation"><%= link_to "Back", :back %></li>
+		</ul>    
+  </div>
+</footer>

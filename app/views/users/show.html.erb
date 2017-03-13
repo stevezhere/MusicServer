@@ -8,3 +8,13 @@
 <br/>
 
 <%= render '/playlists/new' %>
+
+<footer class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+		 <ul class="nav nav-pills">
+			 <li role="presentation"><%= link_to "All Songs", musics_path %></li>
+			 <li role="presentation"><%= link_to "Public Playlist", playlists_path %></li>
+			 <li role="presentation"><%= link_to "Back", :back %></li>
+		</ul> 
+  </div>
+</footer>
