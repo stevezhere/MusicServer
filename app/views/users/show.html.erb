@@ -1,9 +1,3 @@
-<nav>
-	<% if user_signed_in? %>
-		/ <%= link_to('Edit registration', edit_user_registration_path) %>
-	<% end %>
-</nav>
-
 <h1>WELCOME TO <%= @user.email %>'s Profile</h1>
 <h2>Playlist:</h2>
 <ul>
