@@ -83,16 +83,16 @@ function main(){
 	$('#search').on('keyup', function(){
 		var $form = $(this);
 		var search = $form.find("input[name='music[title]']").val().toLowerCase();
-		$('#available-song').find('.highlight').removeClass('highlight');
-		document.querySelectorAll('#available-song li a').forEach((aTag) => {
-			if (aTag.innerHTML.toLowerCase().includes(search)){
-				aTag.classList.add('highlight');
+		$('.songList').find('.highlight').removeClass('highlight');
+		document.querySelectorAll('.songList li').forEach((liTag) => {
+			if ($(liTag).text().toLowerCase().includes(search)){
+				liTag.classList.add('highlight');
 			}
 		});
 	})
 
 	$('#search').on('focusout', function(){
-		$('#available-song').find('.highlight').removeClass('highlight');
+		$('.songList').find('.highlight').removeClass('highlight');
 	})
 }
 
