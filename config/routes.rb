@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: :show
 
-  resources :playlists, except: [:index, :new] do
+  resources :playlists, except: [:new] do
 
     post '/song_entries/create', to: 'song_entries#create'
     delete '/song_entries/destroy', to: 'song_entries#destroy'
