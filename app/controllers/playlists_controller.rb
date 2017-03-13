@@ -1,7 +1,7 @@
 class PlaylistsController < ApplicationController
-
+	skip_before_action :verify_authenticity_token
 	def index
-		@playlists = Playlist.all
+		@playlists = Playlist.all.where(share: true)
 	end
 	
 	def show 
@@ -27,7 +27,7 @@ class PlaylistsController < ApplicationController
 
 	def create
 		name = playlist_params[:name]
-		@playlist = Playlist.new(name: name, description: 'Optional description', user_id: current_user.id)
+		@playlist = Playlist.new(name: name, description: 'Optional description', user_id: current_user.id, share: false)
 
 		if @playlist.valid?
 			@playlist.save
@@ -40,7 +40,7 @@ class PlaylistsController < ApplicationController
 	def update
 		@playlist = Playlist.find(params[:id])
 		if @playlist.update(playlist_params)
-			redirect_to @playlist, flash: {notice: "Changes Saved"}
+			redirect_to edit_playlist_path(@playlist), flash: {notice: "Changes Saved"}
 		else
 			redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
 		end
@@ -58,6 +58,6 @@ class PlaylistsController < ApplicationController
 
 	private
 	def playlist_params
-		params.require(:playlist).permit(:name, :description)
+		params.require(:playlist).permit(:name, :description, :share)
 	end
 end
