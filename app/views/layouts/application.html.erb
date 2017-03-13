@@ -7,15 +7,6 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-<!--   <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><%# link_to 'Home', '/' %></li>
-        <li><%# render 'devise/menu/registration_items' %></li>
-        <li class="active"><%# render 'devise/menu/login_items' %></li>
-      </ol>
-    </div>
-  </nav> -->
     <%= render 'layouts/nav' %>
     <%= render 'layouts/flash' %>
     <%= yield %>
