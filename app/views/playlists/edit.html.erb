@@ -4,6 +4,16 @@
 	<%= f.text_field :name %>
 	<%= f.submit 'Change Name' %>
 <% end %>
+<form action='/playlists/<%= @playlist.id %>'  method="POST">
+	<input type="hidden" name="_method" value="PUT">
+	<% if @playlist.share %>
+		Status: Public / 
+		<button name='playlist[share]' value=false>Stop Sharing</button>
+	<% else %>
+		Status: Private /
+		<button name='playlist[share]' value=true>Share</button>
+	<% end %>
+</form>
 
 <%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
 
