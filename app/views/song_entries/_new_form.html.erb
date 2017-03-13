@@ -2,9 +2,11 @@
 	"No song available" 
 <% else %>
 	<form action="/playlists/<%= @playlist.id %>/song_entries/create" method= "POST">
-		<% @new_musics.each do |song| %>
-			<input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %><br/>
-		<% end %>
+		<ul class='songList'>
+			<% @new_musics.each do |song| %>
+				<li><input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %></li>
+			<% end %>
+		</ul>
 		<input type="submit" value="Add to Playlist">
 	</form>
 <% end %>

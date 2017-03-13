@@ -15,7 +15,7 @@
 <button id='previous'>Previous</button>
 <button id='next'>Next</button><br/><br/>
 
-<ul>
+<ul class='songList'>
 	<% @playlist.musics.each_with_index do |song, idx| %>
 		<li class=<%="musicSource"%>><%= idx + 1 %>) <%= link_to song.title, music_path(song) %></li>
 	<% end %>

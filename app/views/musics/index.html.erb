@@ -1,7 +1,7 @@
 <h1> Local Music Server Homepage </h1>
 
 <p>Musics in storage folder</p>
-<ul id='available-song'>
+<ul class='songList'>
 	<% @musics.each do |music| %>
 		<li><%= link_to music.title, music_path(music)  %></li>
 	<% end %>
