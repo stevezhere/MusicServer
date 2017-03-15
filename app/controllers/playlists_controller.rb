@@ -40,7 +40,7 @@ class PlaylistsController < ApplicationController
 	def update
 		@playlist = Playlist.find(params[:id])
 		if @playlist.update(playlist_params)
-			redirect_to edit_playlist_path(@playlist), flash: {notice: "Changes Saved"}
+			redirect_to :back, flash: {notice: "Changes Saved"}
 		else
 			redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
 		end
