@@ -15,11 +15,35 @@
  */
  @import "bootstrap";
 
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .highlight {
 	background-color: yellow;
 	font-weight: bold;
 }
 
 .navbar-brand {
-	margin-top: -10%;
+	position: relative;
+	top: -10px;
 }
+
+.playerDiv {
+	/*background-image: ;*/
+/*	display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden*/
+}
+/*position relative << relative to itself
+	margin auto << center 
+	*/
+/*.playerDiv img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}*/
+/*position absolute  << nearest ancestor*/
