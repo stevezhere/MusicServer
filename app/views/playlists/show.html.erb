@@ -7,10 +7,11 @@
 	<%= "0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
 	<%= "1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
 </h2>
-
-<audio id='audioPlayer' controls>
-	<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
-</audio><br>
+<div class='container playerDiv'>
+	<audio id='audioPlayer' controls>
+		<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
+	</audio><br>
+</div>
 
 <button id='previous'>Previous</button>
 <button id='next'>Next</button><br/><br/>
