@@ -37,7 +37,7 @@ function main(){
 			audio.pause();
 			audio.load();
 			audio.play();
-		title = $('li a')[index].text;
+		title = $('.songList li a')[index].text;
 		$('h2').text((index+1) + ') ' + title);
 	})
 
@@ -49,7 +49,7 @@ function main(){
 			audio.pause();
 			audio.load();
 			audio.play();
-		title = $('li a')[index].text;
+		title = $('.songList li a')[index].text;
 		$('h2').text((index+1) + ') ' + title);
 	})	
 
@@ -62,7 +62,7 @@ function main(){
 			audio.pause();
 			audio.load();
 			audio.play();
-		title = $('li a')[index].text;
+		title = $('.songList li a')[index].text;
 		$('h2').text((index+1) + ') ' + title);
 	})	
 
