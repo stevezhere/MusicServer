@@ -68,15 +68,13 @@ function main(){
 
 	$('.musicSource').on('click', function(){
 		event.preventDefault();
-		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
-		index = srcArr.indexOf(currentSong);
-		var $this = $(this)
-		index = parseInt($this.html().match(/^\d+/)[0]) - 1
+		var $songLi = $(this)
+		index = parseInt($songLi.attr('class').match(/\d+/)[0])
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
 			audio.pause();
 			audio.load();
 			audio.play();
-		title = $this.find('a').html();
+		title = $songLi.find('a').html();
 		$('h2').text('(' + (index+1) + ') ' + title);
 	})
 
