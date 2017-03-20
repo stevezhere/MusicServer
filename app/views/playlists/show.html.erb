@@ -20,8 +20,8 @@
 
 <div class='container playlistContainer'>
 	<ol class='songList'>
-		<% @playlist.musics.each_with_index do |song| %>
-			<li class=<%="musicSource"%>><%= link_to song.title, music_path(song) %></li>
+		<% @playlist.musics.each_with_index do |song, idx| %>
+			<li class="musicSource <%= idx %>"><%= link_to song.title, music_path(song) %></li>
 		<% end %>
 		<% if @playlist.musics.empty? %>
 			<li> "No Songs" </li>
