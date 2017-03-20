@@ -3,11 +3,13 @@
 	<%= render 'edit_description' %>
 </p><br/>
 
-<h2>
-	<%= "0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
-	<%= "1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
-</h2>
 <div class='container playerDiv'>
+	<div class=titleContainer>
+		<h2 class=songTitle>
+			<%= "0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
+			<%= "1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
+		</h2>
+	</div>
 	<audio id='audioPlayer' controls>
 		<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
 	</audio><br>
