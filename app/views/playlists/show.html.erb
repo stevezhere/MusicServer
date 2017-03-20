@@ -6,8 +6,8 @@
 <div class='container playerDiv'>
 	<div class=titleContainer>
 		<h2 class=songTitle>
-			<%= "0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
-			<%= "1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
+			<%= "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
+			<%= "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
 		</h2>
 	</div>
 	<audio id='audioPlayer' controls>
@@ -18,14 +18,16 @@
 </div>
 <br/>
 
-<ul class='songList'>
-	<% @playlist.musics.each_with_index do |song, idx| %>
-		<li class=<%="musicSource"%>><%= idx + 1 %>) <%= link_to song.title, music_path(song) %></li>
-	<% end %>
-	<% if @playlist.musics.empty? %>
-		<li> "No Songs" </li>
-	<% end %>
-</ul>
+<div class='container playlistContainer'>
+	<ol class='songList'>
+		<% @playlist.musics.each_with_index do |song| %>
+			<li class=<%="musicSource"%>><%= link_to song.title, music_path(song) %></li>
+		<% end %>
+		<% if @playlist.musics.empty? %>
+			<li> "No Songs" </li>
+		<% end %>
+	</ol>
+</div>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
