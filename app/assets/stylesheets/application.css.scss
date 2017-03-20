@@ -54,6 +54,18 @@ h1 {
 	margin auto << center 
 */
 
+#previous {
+	position: relative;
+	left: 33%;
+	margin-top: 15%;
+}
+
+#next {
+	position: relative;
+	left: 62%;
+	margin-top: 15%;
+}
+
 audio {
   position: absolute;
   left: 37.6%;
