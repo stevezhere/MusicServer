@@ -21,7 +21,7 @@ function main(){
 	var $audio = $('#audioPlayer');
 	var audio = $audio.get(0);
 	var srcArr = [];
-		document.querySelectorAll('ul li.musicSource a').forEach(
+		document.querySelectorAll('.songList li.musicSource a').forEach(
 			aTags => 
 				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
 		);
@@ -38,7 +38,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2').text((index+1) + ') ' + title);
+		$('h2').text('(' + (index+1) + ') ' + title);
 	})
 
 	$('#next').on('click', function(){
@@ -50,7 +50,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2').text((index+1) + ') ' + title);
+		$('h2').text('(' + (index+1) + ') ' + title);
 	})	
 
 	$('#previous').on('click', function(){
@@ -63,7 +63,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2').text((index+1) + ') ' + title);
+		$('h2').text('(' + (index+1) + ') ' + title);
 	})	
 
 	$('.musicSource').on('click', function(){
@@ -77,7 +77,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $this.find('a').html();
-		$('h2').text((index+1) + ') ' + title);
+		$('h2').text('(' + (index+1) + ') ' + title);
 	})
 
 	$('#search').on('keyup', function(){
