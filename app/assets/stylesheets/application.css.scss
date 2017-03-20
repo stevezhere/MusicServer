@@ -19,7 +19,10 @@
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-  /*background-color: black*/
+}
+
+body{
+  background: url('oldMusicSheet.jpg');
 }
 
 .highlight {
@@ -38,30 +41,30 @@
   background-size: cover;
 	min-height: 500px;
   /*background-color: black;*/
-	  /*overflow: auto;*/
+	/*overflow: auto;*/
 	/*display: flex;*/
-/*  justify-content: center;
+	/* justify-content: center;
   align-items: center;*/
 }
 /*position relative << relative to itself
 	margin auto << center 
-	*/
+*/
 
 audio {
-    position: absolute;
-    left: 37.6%;
-    top: 77%;
+  position: absolute;
+  left: 37.6%;
+  top: 77%;
 }
-audio:hover
-{
--webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
--moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
--webkit-transform: scale(1.05);
--moz-transform: scale(1.05);
-transform: scale(1.05);
--webkit-transition:all 0.5s linear;
--moz-transition:all 0.5s linear;
--o-transition:all 0.5s linear;
-transition:all 0.5s linear;
+
+audio:hover {
+	-webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+	-moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	transform: scale(1.05);
+	-webkit-transition:all 0.5s linear;
+	-moz-transition:all 0.5s linear;
+	-o-transition:all 0.5s linear;
+	transition:all 0.5s linear;
 }
