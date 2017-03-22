@@ -1,4 +1,4 @@
-<h1><%= link_to @playlist.name, edit_playlist_path(@playlist), style: "font-size:49px;font-weight:bold;"%></h1>
+<h1><%= link_to @playlist.name, edit_playlist_path(@playlist), style: "font-size:40px;font-weight:bold;"%></h1>
 <br/>
 <br/>
 <p>
@@ -20,7 +20,7 @@
 </div>
 <br/>
 
-<div class='playlistContainer'>
+<!-- <div class='playlistContainer'> -->
 	<ol class='songList'>
 		<% @playlist.musics.each_with_index do |song, idx| %>
 			<li class="musicSource <%= idx %>">(<%= idx + 1%>) <%= link_to song.title, music_path(song) %></li>
@@ -29,7 +29,7 @@
 			<li> "No Songs" </li>
 		<% end %>
 	</ol>
-</div>
+<!-- </div> -->
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
