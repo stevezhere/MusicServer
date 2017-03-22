@@ -21,7 +21,7 @@
 <div class='container playlistContainer'>
 	<ol class='songList'>
 		<% @playlist.musics.each_with_index do |song, idx| %>
-			<li class="musicSource <%= idx %>"><%= link_to song.title, music_path(song) %></li>
+			<li class="musicSource <%= idx %>">(<%= idx + 1%>) <%= link_to song.title, music_path(song) %></li>
 		<% end %>
 		<% if @playlist.musics.empty? %>
 			<li> "No Songs" </li>
