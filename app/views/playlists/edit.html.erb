@@ -1,5 +1,6 @@
 <h1> Edit: <%= @playlist.name %> </h1>
-
+<br/>
+<br/>
 <%= form_for @playlist, method: :put do |f| %>
 	<%= f.text_field :name %>
 	<%= f.submit 'Change Name' %>
