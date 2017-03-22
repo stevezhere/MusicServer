@@ -31,7 +31,7 @@ h1 {
 }
 
 ul {
-	/*list-style-image: */
+	list-style-image: url('musicNote.gif');
 }
 
 .highlight {
@@ -56,9 +56,6 @@ ul {
 	/* justify-content: center;
   align-items: center;*/
 }
-/*position relative << relative to itself
-	margin auto << center 
-*/
 
 #previous {
 	position: relative;
@@ -143,5 +140,8 @@ audio:hover, #previous:hover, #next:hover{
 }
 
 .playlistContainer {
-	
+	background: url('scrapbook.png') no-repeat center;
+	background-size: contain;
+	min-height: 500px;
+	text-align: left;
 }
