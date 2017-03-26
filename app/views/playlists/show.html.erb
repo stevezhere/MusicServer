@@ -1,0 +1,43 @@
+<h1><%= link_to @playlist.name, edit_playlist_path(@playlist), style: "font-size:40px;font-weight:bold;"%></h1>
+<br/>
+<br/>
+<p>
+	<%= render 'edit_description' %>
+</p><br/>
+
+<div class='container playerDiv'>
+	<div class=titleContainer>
+		<h2 class=songTitle>
+			<%= "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
+			<%= "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
+		</h2>
+	</div>
+	<audio id='audioPlayer' controls>
+		<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
+	</audio><br>
+	<button id='previous'><%= image_tag('rewind.png', size: '15') %></button>
+	<button id='next'><%= image_tag('fast-forward.png', size: '15') %></button>
+</div>
+<br/>
+
+<!-- <div class='playlistContainer'> -->
+	<ol class='songList'>
+		<% @playlist.musics.each_with_index do |song, idx| %>
+			<li class="musicSource <%= idx %>">(<%= idx + 1%>) <%= link_to song.title, music_path(song) %></li>
+		<% end %>
+		<% if @playlist.musics.empty? %>
+			<li> "No Songs" </li>
+		<% end %>
+	</ol>
+<!-- </div> -->
+
+<footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
+  <div class="container">
+    <ul class="nav nav-pills">
+			 <li role="presentation"><%= link_to "Public Playlist", playlists_path %></li>
+			 <% if current_user %>
+			 	<li role="presentation"><%= link_to "My Playlist", user_path(current_user) %></li>
+			 <% end %>
+		</ul>
+  </div>
+</footer>

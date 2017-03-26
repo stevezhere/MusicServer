@@ -13,4 +13,85 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
 //= require_tree .
+
+
+function main(){
+	var $audio = $('#audioPlayer');
+	var audio = $audio.get(0);
+	var srcArr = [];
+		document.querySelectorAll('.songList li.musicSource a').forEach(
+			aTags => 
+				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
+		);
+	var currentSong;
+	var index = 0;
+	var title;
+
+	$audio.on('ended', function(){
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
+		index = (index + 1) % srcArr.length;
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $('.songList li a')[index].text;
+		$('h2').text('(' + (index+1) + ') ' + title);
+	})
+
+	$('#next').on('click', function(){
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
+		index = (index + 1) % srcArr.length;
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $('.songList li a')[index].text;
+		$('h2').text('(' + (index+1) + ') ' + title);
+	})	
+
+	$('#previous').on('click', function(){
+		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		index = srcArr.indexOf(currentSong);
+		index = (index - 1) % srcArr.length
+		if (index < 0){ index = 2 }
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $('.songList li a')[index].text;
+		$('h2').text('(' + (index+1) + ') ' + title);
+	})	
+
+	$('.musicSource').on('click', function(){
+		event.preventDefault();
+		var $songLi = $(this)
+		index = parseInt($songLi.attr('class').match(/\d+/)[0])
+		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = $songLi.find('a').html();
+		$('h2').text('(' + (index+1) + ') ' + title);
+	})
+
+	$('#search').on('keyup', function(){
+		var $form = $(this);
+		var search = $form.find("input[name='music[title]']").val().toLowerCase();
+		$('.songList').find('.highlight').removeClass('highlight');
+		document.querySelectorAll('.songList li').forEach((liTag) => {
+			if ($(liTag).text().toLowerCase().includes(search)){
+				liTag.classList.add('highlight');
+			}
+		});
+	})
+
+	$('#search').on('focusout', function(){
+		$('.songList').find('.highlight').removeClass('highlight');
+	})
+}
+
+$(document).ready(main);

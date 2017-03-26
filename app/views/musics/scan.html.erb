@@ -1,0 +1,9 @@
+<h1>Desktop SCAN RESULT</h1>
+
+<ul>
+	<% @files.each do |file| %>
+		<li><strong><%= file.basename %>:</strong> <%= link_to file, musics_path('music' => {:title => file.basename}), method: :post%></li>
+	<% end %>
+</ul>
+
+<%= link_to 'Back', new_music_path %>
