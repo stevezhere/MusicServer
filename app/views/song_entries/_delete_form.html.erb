@@ -1,0 +1,13 @@
+<% if @musics.empty? %>
+	"Playlist is Empty" 
+<% else %>
+	<form action="/playlists/<%= @playlist.id %>/song_entries/destroy" method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<ul class='songList'>
+			<% @musics.each do |song| %>
+				<li><input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %></li>
+			<% end %>
+		</ul>
+		<input type="submit" value="Remove from Playlist">
+	</form>
+<% end %>

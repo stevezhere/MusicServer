@@ -1,0 +1,22 @@
+<h1>WELCOME TO <%= @user.email %>'s Profile</h1>
+<br/>
+<br/>
+<h2>Playlist:</h2>
+<ul>
+	<% @user.playlists.each do |playlist| %>
+		<li><%= link_to playlist.name, playlist_path(playlist) %></li>
+	<% end %>
+</ul>
+<br/>
+
+<%= render '/playlists/new' %>
+
+<footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
+  <div class="container">
+		 <ul class="nav nav-pills">
+			 <li role="presentation"><%= link_to "All Songs", musics_path %></li>
+			 <li role="presentation"><%= link_to "Public Playlist", playlists_path %></li>
+			 <li role="presentation"><%= link_to "Back", :back %></li>
+		</ul> 
+  </div>
+</footer>

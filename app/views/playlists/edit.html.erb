@@ -1,0 +1,36 @@
+<h1> Edit: <%= @playlist.name %> </h1>
+<br/>
+<br/>
+<%= form_for @playlist, method: :put do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit 'Change Name' %>
+<% end %>
+<form action='/playlists/<%= @playlist.id %>'  method="POST">
+	<input type="hidden" name="_method" value="PUT">
+	<% if @playlist.share %>
+		Status: Public / 
+		<button name='playlist[share]' value=false>Stop Sharing</button>
+	<% else %>
+		Status: Private /
+		<button name='playlist[share]' value=true>Share</button>
+	<% end %>
+</form>
+
+<%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
+
+<h2> Current Songs </h2>
+<%= render '/song_entries/delete_form' %>
+
+<br/>
+<br/>
+
+<h2> Available Songs </h2>
+<%= render '/song_entries/new_form' %>
+
+<footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
+  <div class="container">
+    <ul class="nav nav-pills">
+			 <li role="presentation"><%= link_to 'Back to playlist', playlist_path(@playlist) %></li>
+		</ul>
+  </div>
+</footer>
