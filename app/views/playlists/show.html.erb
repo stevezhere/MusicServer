@@ -5,20 +5,47 @@
 	<%= render 'edit_description' %>
 </p><br/>
 
-<div class='container playerDiv'>
+<!-- <div class='container playerDiv'>
 	<div class=titleContainer>
 		<h2 class=songTitle>
-			<%= "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
-			<%= "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
+			<%# "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
+			<%# "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
 		</h2>
 	</div>
 	<audio id='audioPlayer' controls>
-		<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
+		<%# render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
 	</audio><br>
-	<button id='previous'><%= image_tag('rewind.png', size: '15') %></button>
-	<button id='next'><%= image_tag('fast-forward.png', size: '15') %></button>
+	<button id='previous'><%# image_tag('rewind.png', size: '15') %></button>
+	<button id='next'><%# image_tag('fast-forward.png', size: '15') %></button>
+</div>
+<br/> -->
+<div class='playerDiv'>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3 titleContainer">
+			<h2 class=songTitle>
+				<%= "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
+				<%= "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
+			</h2>
+		</div> <!-- TitleContainer -->
+	</div> <!-- TitleContainer Row -->
+	<div class="row">
+		<audio id='audioPlayer' controls>
+			<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
+		</audio>
+	</div>
 </div>
 <br/>
+
+<div class="container" style="background-color:green">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1 class="visible-xs">Smartphone Screen</h1>
+			<h1 class="visible-sm">Tablet Screen</h1>
+			<h1 class="visible-md">Low Resolution Screen</h1>
+			<h1 class="visible-lg">High Resolution Screen</h1>
+		</div>						
+	</div>			
+</div>
 
 <!-- <div class='playlistContainer'> -->
 	<ol class='songList'>
