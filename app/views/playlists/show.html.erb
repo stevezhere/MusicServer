@@ -5,20 +5,6 @@
 	<%= render 'edit_description' %>
 </p><br/>
 
-<!-- <div class='container playerDiv'>
-	<div class=titleContainer>
-		<h2 class=songTitle>
-			<%# "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
-			<%# "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
-		</h2>
-	</div>
-	<audio id='audioPlayer' controls>
-		<%# render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
-	</audio><br>
-	<button id='previous'><%# image_tag('rewind.png', size: '15') %></button>
-	<button id='next'><%# image_tag('fast-forward.png', size: '15') %></button>
-</div>
-<br/> -->
 <div class='container playerDiv'>
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3 titleContainer">
@@ -26,23 +12,23 @@
 				<%= "(0) EMPTY PLAYLIST" if @playlist.musics.empty? %>
 				<%= "(1) #{@playlist.musics.first.title}" unless @playlist.musics.empty? %>
 			</h2>
-		</div> <!-- TitleContainer -->
+		</div> <!-- TitleContainerDiv -->
 	</div> <!-- TitleContainer Row -->
-	<div class="row trackButtons">
+	<div class="row trackButtonsRow">
 		<div class="col-xs-1 col-xs-offset-4">
 				<button id='previous'><%= image_tag('rewind.png', size: '15') %></button>
-		</div> <!-- PreviousButton -->
+		</div> <!-- PreviousButtonDiv -->
 		<div class="col-xs-1 col-xs-offset-2">
 			<button id='next'><%= image_tag('fast-forward.png', size: '15') %></button>
-		</div> <!-- NextButton -->			
-	</div> <!-- TrackButton Row -->
-	<div class="row">
-
-		<audio id='audioPlayer' controls>
-			<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
-		</audio>
-		
-	</div>
+		</div> <!-- NextButtonDiv -->			
+	</div> <!-- TrackButtonRow -->
+	<div class="row audioRow">
+		<div class="col-xs-1 col-xs-offset-3">
+			<audio id='audioPlayer' controls>
+				<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
+			</audio>
+		</div> <!-- AudioDiv -->
+	</div>	<!-- AudioRow -->
 </div> <!-- PlayerDiv -->
 <br/>
 
