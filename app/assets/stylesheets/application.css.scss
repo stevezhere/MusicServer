@@ -31,39 +31,29 @@ body {
   background: url('background.jpg');
 	margin: 3%;
 }
-
 h1 {
 	text-align: center;
 	font-size: 40px;
 	font-weight: bold;
 }
 
-
-.songList {
-	list-style-image: url('musicNote.gif');
-}
-
 .highlight {
 	background-color: yellow;
 	font-weight: bold;
 }
-
 .navbar-brand {
 	position: relative;
 	top: -10px;
 }
-
+.songList {
+	list-style-image: url('musicNote.gif');
+}
 .playerDiv {
 	position: relative;
 	background: url('radioplayer.jpg') no-repeat center;
   background-size: contain;
 	min-height: 300px;
 	/*box-shadow: 10px 10px 50px black;*/
-  /*background-color: black;*/
-	/*overflow: auto;*/
-	/*display: flex;*/
-	/* justify-content: center;
-  align-items: center;*/
 }
 
 /* Extra Small devices (550px and below) */
@@ -81,7 +71,26 @@ h1 {
 		margin-left: -110px;
 	}
 }
+
 /*549px to 767px is default*/
+.audioRow {
+	margin-top: 20px;
+}
+.trackButtonsRow {
+	margin-top: 60px;
+}
+#previous, #next {
+	display: block;
+	margin: auto;
+}
+#remove-song{
+	position: absolute;
+	left: 65%;
+  top: 77%;
+}
+audio {
+	display: block;
+}
 
 /* Small devices (768px and up) */
 @media (min-width: $screen-sm-min){
@@ -142,29 +151,6 @@ h1 {
 	.audioRow{
 		margin-left: 125px;
 	}
-}
-
-.audioRow {
-	margin-top: 20px;
-}
-
-.trackButtonsRow {
-	margin-top: 60px;
-}
-
-#previous, #next {
-	display: block;
-	margin: auto;
-}
-
-#remove-song{
-	position: absolute;
-	left: 65%;
-  top: 77%;
-}
-
-audio {
-	display: block;
 }
 
 audio:hover, #previous:hover, #next:hover{
