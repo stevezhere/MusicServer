@@ -82,14 +82,14 @@ h1 {
 #previous, #next {
 	display: block;
 	margin: auto;
+	opacity: 0.9;
 }
 #remove-song{
-	position: absolute;
-	left: 65%;
-  top: 77%;
+	opacity: 0.85;
 }
 audio {
 	display: block;
+	opacity: 0.9;
 }
 
 /* Small devices (768px and up) */
