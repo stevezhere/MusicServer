@@ -71,14 +71,17 @@ h1 {
 	.titleContainer {
 		margin-top: 85px !important;
 	}
-	.trackButtons {
+	.trackButtonsRow {
 		margin-top: 30px !important;
 	}
 	#previous {
 		margin-left: -20px !important;
 	}
+	.audioRow {
+		margin-left: -110px;
+	}
 }
-/*521px to 767px is default*/
+/*549px to 767px is default*/
 
 /* Small devices (768px and up) */
 @media (min-width: $screen-sm-min){
@@ -93,7 +96,7 @@ h1 {
 		font-size: 30px !important;
 		line-height: 50px !important;
 	}
-	.trackButtons {
+	.trackButtonsRow {
 		margin-top: 85px !important;
 	}
 	#previous {
@@ -102,6 +105,10 @@ h1 {
 	#next {
 		margin-right: -25px !important;
 	}
+	.audioRow{
+		margin-top: 45px !important;
+		margin-left: 20px;
+	}
 }
 
 /* Medium devices (992px and up) */
@@ -109,7 +116,7 @@ h1 {
 	.titleContainer {
 		margin-top: 100px !important;
 	}
-	.trackButtons {
+	.trackButtonsRow {
 		margin-top: 110px !important;
 	}
 	#previous {
@@ -117,6 +124,10 @@ h1 {
 	}
 	#next {
 		margin-right: -10px !important;
+	}
+	.audioRow{
+		margin-top: 55px !important;
+		margin-left: 60px;
 	}
 }
 
@@ -128,9 +139,16 @@ h1 {
 	#next {
 		margin-right: 25px !important;
 	}
+	.audioRow{
+		margin-left: 125px;
+	}
 }
 
-.trackButtons {
+.audioRow {
+	margin-top: 20px;
+}
+
+.trackButtonsRow {
 	margin-top: 60px;
 }
 
@@ -146,9 +164,7 @@ h1 {
 }
 
 audio {
-  position: absolute;
-  left: 37.6%;
-  top: 77%;
+	display: block;
 }
 
 audio:hover, #previous:hover, #next:hover{
