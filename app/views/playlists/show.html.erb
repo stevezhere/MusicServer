@@ -19,7 +19,7 @@
 	<button id='next'><%# image_tag('fast-forward.png', size: '15') %></button>
 </div>
 <br/> -->
-<div class='playerDiv'>
+<div class='container playerDiv'>
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3 titleContainer">
 			<h2 class=songTitle>
@@ -37,7 +37,7 @@
 		</div> <!-- NextButton -->			
 	</div> <!-- TrackButton Row -->
 	<div class="row">
-		
+
 		<audio id='audioPlayer' controls>
 			<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
 		</audio>
