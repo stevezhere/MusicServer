@@ -46,7 +46,9 @@ h1 {
 	top: -10px;
 }
 .songList {
+	columns: 2;
 	list-style-image: url('musicNote.gif');
+	list-style-position: inside;
 }
 .playerDiv {
 	position: relative;
