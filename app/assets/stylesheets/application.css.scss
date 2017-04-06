@@ -66,8 +66,8 @@ h1 {
   align-items: center;*/
 }
 
-/* Extra Small devices (525px and below) */
-@media screen and (max-width: 525px) {
+/* Extra Small devices (550px and below) */
+@media screen and (max-width: 550px) {
 	.titleContainer {
 		margin-top: 85px !important;
 	}
@@ -97,10 +97,10 @@ h1 {
 		margin-top: 85px !important;
 	}
 	#previous {
-		margin-left: -18px !important;
+		margin-left: -25px !important;
 	}
 	#next {
-		margin-right: -18px !important;
+		margin-right: -25px !important;
 	}
 }
 
