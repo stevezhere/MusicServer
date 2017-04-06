@@ -3,8 +3,8 @@
 <br/>
 <p>
 	<%= render 'edit_description' %>
-</p><br/>
-
+</p>
+<br/>
 <div class='container playerDiv'>
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3 titleContainer">
@@ -31,18 +31,6 @@
 	</div>	<!-- AudioRow -->
 </div> <!-- PlayerDiv -->
 <br/>
-
-<div class="container" style="background-color:green">
-	<div class="row">
-		<div class="col-xs-12">
-			<h1 class="visible-xs">Smartphone Screen</h1>
-			<h1 class="visible-sm">Tablet Screen</h1>
-			<h1 class="visible-md">Low Resolution Screen</h1>
-			<h1 class="visible-lg">High Resolution Screen</h1>
-		</div>						
-	</div>			
-</div>
-
 <!-- <div class='playlistContainer'> -->
 	<ol class='songList'>
 		<% @playlist.musics.each_with_index do |song, idx| %>
@@ -53,7 +41,6 @@
 		<% end %>
 	</ol>
 <!-- </div> -->
-
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
     <ul class="nav nav-pills">
