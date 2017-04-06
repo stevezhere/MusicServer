@@ -28,12 +28,22 @@
 			</h2>
 		</div> <!-- TitleContainer -->
 	</div> <!-- TitleContainer Row -->
+	<div class="row trackButtons">
+		<div class="col-xs-1 col-xs-offset-4">
+				<button id='previous'><%= image_tag('rewind.png', size: '15') %></button>
+		</div> <!-- PreviousButton -->
+		<div class="col-xs-1 col-xs-offset-2">
+			<button id='next'><%= image_tag('fast-forward.png', size: '15') %></button>
+		</div> <!-- NextButton -->			
+	</div> <!-- TrackButton Row -->
 	<div class="row">
+		
 		<audio id='audioPlayer' controls>
 			<%= render '/musics/stream', music: @playlist.musics.first unless @playlist.musics.empty?%>
 		</audio>
+		
 	</div>
-</div>
+</div> <!-- PlayerDiv -->
 <br/>
 
 <div class="container" style="background-color:green">
