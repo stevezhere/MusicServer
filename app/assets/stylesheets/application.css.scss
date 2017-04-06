@@ -66,13 +66,19 @@ h1 {
   align-items: center;*/
 }
 
-/* Extra Small devices (520px to 767px) */
-@media screen and (max-width: 520px) {
+/* Extra Small devices (525px and below) */
+@media screen and (max-width: 525px) {
 	.titleContainer {
 		margin-top: 85px !important;
 	}
+	.trackButtons {
+		margin-top: 30px !important;
+	}
+	#previous {
+		margin-left: -20px !important;
+	}
 }
-/*Everything in between is default*/
+/*521px to 767px is default*/
 
 /* Small devices (768px and up) */
 @media (min-width: $screen-sm-min){
@@ -87,6 +93,15 @@ h1 {
 		font-size: 30px !important;
 		line-height: 50px !important;
 	}
+	.trackButtons {
+		margin-top: 85px !important;
+	}
+	#previous {
+		margin-left: -18px !important;
+	}
+	#next {
+		margin-right: -18px !important;
+	}
 }
 
 /* Medium devices (992px and up) */
@@ -94,26 +109,34 @@ h1 {
 	.titleContainer {
 		margin-top: 100px !important;
 	}
+	.trackButtons {
+		margin-top: 110px !important;
+	}
+	#previous {
+		margin-left: -10px !important;
+	}
+	#next {
+		margin-right: -10px !important;
+	}
 }
 
 /* Large devices (1200px and up) */
-/*@media (min-width: $screen-lg-min) {
-	.titleContainer {
-
-		margin-top: 100px !important;
+@media (min-width: $screen-lg-min) {
+	#previous {
+		margin-left: 25px !important;
 	}
-}*/
-
-#previous {
-	position: relative;
-	left: 33%;
-	margin-top: 15%;
+	#next {
+		margin-right: 25px !important;
+	}
 }
 
-#next {
-	position: relative;
-	left: 62%;
-	margin-top: 15%;
+.trackButtons {
+	margin-top: 60px;
+}
+
+#previous, #next {
+	display: block;
+	margin: auto;
 }
 
 #remove-song{
