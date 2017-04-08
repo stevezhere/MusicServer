@@ -124,6 +124,9 @@ audio {
 
 /* Medium devices (992px and up) */
 @media (min-width: $screen-md-min){
+	body{
+		background-size: cover;
+	}
 	.titleContainer {
 		margin-top: 100px !important;
 	}
