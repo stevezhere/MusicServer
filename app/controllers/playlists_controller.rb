@@ -3,9 +3,9 @@ class PlaylistsController < ApplicationController
 	def index
 		@playlists = Playlist.all.where(share: true)
 	end
-	
-	def show 
-		@playlist = Playlist.find(params[:id])
+
+	def show
+		@playlist = Playlist.find(params[:id]) # repeating this a lot, same as the `def music`
 		@musics = @playlist.musics
 		if @playlist
 			render 'show'

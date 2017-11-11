@@ -9,3 +9,5 @@ class UsersController < ApplicationController
 		end
 	end
 end
+
+# whoa no sign up, registration?
