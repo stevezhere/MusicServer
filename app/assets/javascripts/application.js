@@ -18,16 +18,16 @@
 
 
 function main(){
-	var $audio = $('#audioPlayer');
-	var audio = $audio.get(0);
-	var srcArr = [];
+	const $audio = $('#audioPlayer');
+	const audio = $audio.get(0);
+	let srcArr = [];
 		document.querySelectorAll('.songList li.musicSource a').forEach(
 			aTags => 
 				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
 		);
-	var currentSong;
-	var index = 0;
-	var title;
+	let currentSong;
+	let index = 0;
+	let title;
 
 	$audio.on('ended', function(){
 		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
@@ -68,7 +68,7 @@ function main(){
 
 	$('.musicSource').on('click', function(){
 		event.preventDefault();
-		var $songLi = $(this)
+		let $songLi = $(this)
 		index = parseInt($songLi.attr('class').match(/\d+/)[0])
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
 			audio.pause();
@@ -79,8 +79,8 @@ function main(){
 	})
 
 	$('#search').on('keyup', function(){
-		var $form = $(this);
-		var search = $form.find("input[name='music[title]']").val().toLowerCase();
+		let $form = $(this);
+		let search = $form.find("input[name='music[title]']").val().toLowerCase();
 		$('.songList').find('.highlight').removeClass('highlight');
 		document.querySelectorAll('.songList li').forEach((liTag) => {
 			if ($(liTag).text().toLowerCase().includes(search)){
