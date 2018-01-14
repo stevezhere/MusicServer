@@ -23,7 +23,7 @@ gem 'devise'
 #fileupload
 gem "paperclip", "~> 5.0.0"
 #styling
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'bootstrap-sass', '~> 3.3.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -39,7 +39,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
-  gem 'pg', '~> 0.18'
 end
 
 group :development, :test do
