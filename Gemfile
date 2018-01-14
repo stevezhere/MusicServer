@@ -23,7 +23,7 @@ gem 'devise'
 #fileupload
 gem "paperclip", "~> 5.0.0"
 #styling
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
