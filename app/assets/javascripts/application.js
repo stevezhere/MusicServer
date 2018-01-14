@@ -29,6 +29,8 @@ function main(){
 	let index = 0;
 	let title;
 
+	$(".dropdown-toggle").dropdown();//makes sure navbar-default dropdown works
+
 	$audio.on('ended', function(){
 		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
