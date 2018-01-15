@@ -94,4 +94,8 @@ function main(){
 	})
 }
 
-$(document).ready(main);
+//listen for DOM ready (doesn't work with TL partial load)
+// $(document).ready(main); 
+
+//listen for turbolink load
+$( document ).on('turbolinks:load', function(){ main() });
