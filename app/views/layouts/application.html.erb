@@ -3,11 +3,13 @@
   <head>
     <title>MusicServer</title>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <%= csrf_meta_tags %>
+    <!-- webpacker JSpack -->
+    <%= javascript_pack_tag 'application' %>
     <!-- makes css respsonsive with mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cherry+Cream+Soda" />
   </head>
   <body>
