@@ -28,12 +28,16 @@ class PlaylistsController < ApplicationController
 	def create
 		name = playlist_params[:name]
 		@playlist = Playlist.new(name: name, description: 'Optional description', user_id: current_user.id, share: false)
-
 		if @playlist.valid?
-			@playlist.save
-			redirect_to user_path(current_user)
+			respond_to do |format|
+				format.html { redirect_to user_path(current_user) }
+				format.json { render json: @user.playlists }
+			end
 		else
-			redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages}
+			respond_to do |format|
+				format.html { redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages} }
+				format.json { render json: @playlist.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 

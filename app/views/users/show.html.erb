@@ -10,6 +10,7 @@
 		<% end %>
 	</ul>
 	<br/>
+	<%= render '/playlists/new' %>
 </noscript>
 <%= react_component('Playlists', { playlists: @user.playlists }) %>
 <hr>

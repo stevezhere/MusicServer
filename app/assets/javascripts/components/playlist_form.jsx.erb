@@ -1,0 +1,41 @@
+class PlaylistForm extends React.Component {
+	constructor() {
+		super();
+		this.state = this.getInitialState();
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	getInitialState() {
+		return { name: '' };
+	}
+
+	handleChange(e) {
+		this.setState({ name: e.target.value });
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		$.post({
+			url: '/playlists',
+			data: { playlist: this.state },
+			success: () => {
+				// this.props.handleNewPlaylist(data);
+				this.setState(this.getInitialState());
+			},
+			dataType: JSON
+		});
+	}
+
+	render() {
+		return(
+			<div>
+				<h1> hello world </h1>
+				<form onSubmit={this.handleSubmit}>
+					<input type='text' name='name' placeholder='Name'
+						value={this.state.name} onChange={this.handleChange}/>
+					<input type='submit' value='Add Playlist'/>
+				</form>
+			</div>
+		);
+	}
+}
