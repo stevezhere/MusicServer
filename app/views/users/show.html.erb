@@ -1,14 +1,18 @@
 <h1>WELCOME TO <%= @user.email %>'s Profile</h1>
 <br/>
 <br/>
-<h2>Playlist:</h2>
-<ul class='songList'>
-	<% @user.playlists.each do |playlist| %>
-		<li><%= link_to playlist.name, playlist_path(playlist) %></li>
-	<% end %>
-</ul>
-<br/>
 
+<noscript>
+	<h2>Playlist:</h2>
+	<ul class='songList'>
+		<% @user.playlists.each do |playlist| %>
+			<li><%= link_to playlist.name, playlist_path(playlist) %></li>
+		<% end %>
+	</ul>
+	<br/>
+</noscript>
+<%= react_component('Playlists', { playlists: @user.playlists }) %>
+<hr>
 <%= render '/playlists/new' %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
