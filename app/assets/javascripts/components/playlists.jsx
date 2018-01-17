@@ -18,6 +18,7 @@ class Playlists extends React.Component {
 					)}
 				</ul>
 				<br/>
+				<PlaylistForm />
 			</div>
 		);
 	}
