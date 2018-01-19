@@ -28,10 +28,10 @@ class PlaylistsController < ApplicationController
 	def create
 		name = playlist_params[:name]
 		@playlist = Playlist.new(name: name, description: 'Optional description', user_id: current_user.id, share: false)
-		if @playlist.valid?
+		if @playlist.save
 			respond_to do |format|
 				format.html { redirect_to user_path(current_user) }
-				format.json { render json: @user.playlists }
+				format.json { render json: @playlist }
 			end
 		else
 			respond_to do |format|

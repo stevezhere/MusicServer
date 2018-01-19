@@ -3,6 +3,7 @@ class PlaylistForm extends React.Component {
 		super();
 		this.state = this.getInitialState();
 		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	getInitialState() {
@@ -15,27 +16,22 @@ class PlaylistForm extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		$.post({
-			url: '/playlists',
-			data: { playlist: this.state },
-			success: () => {
-				// this.props.handleNewPlaylist(data);
+		$.post('/playlists',
+			{ playlist: this.state },
+			(data) => {
+				this.props.handleNewPlaylist(data);
 				this.setState(this.getInitialState());
-			},
-			dataType: JSON
-		});
+			}, 'JSON'
+		);
 	}
 
 	render() {
 		return(
-			<div>
-				<h1> hello world </h1>
-				<form onSubmit={this.handleSubmit}>
-					<input type='text' name='name' placeholder='Name'
-						value={this.state.name} onChange={this.handleChange}/>
-					<input type='submit' value='Add Playlist'/>
-				</form>
-			</div>
+			<form onSubmit={this.handleSubmit}>
+				<input type='text' name='name' placeholder='Name'
+					value={this.state.name} onChange={this.handleChange}/>
+				<input type='submit' value='Add Playlist'/>
+			</form>
 		);
 	}
 }

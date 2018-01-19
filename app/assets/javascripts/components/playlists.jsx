@@ -2,6 +2,13 @@ class Playlists extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { playlists: this.props.playlists };
+		this.addPlaylist = this.addPlaylist.bind(this);
+	}
+
+	addPlaylist(playlist) {
+		let playlists = this.state.playlists.slice();
+		playlists.push(playlist);
+		this.setState({ playlists: playlists });
 	}
 
 	render() {
@@ -18,7 +25,7 @@ class Playlists extends React.Component {
 					)}
 				</ul>
 				<br/>
-				<PlaylistForm />
+				<PlaylistForm handleNewPlaylist={this.addPlaylist}  />
 			</div>
 		);
 	}
