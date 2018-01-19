@@ -36,7 +36,7 @@ class PlaylistsController < ApplicationController
 		else
 			respond_to do |format|
 				format.html { redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages} }
-				format.json { render json: @playlist.errors, status: :unprocessable_entity }
+				format.json { render json: @playlist.errors, status: 422 }
 			end
 		end
 	end
