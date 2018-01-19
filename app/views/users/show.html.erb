@@ -12,9 +12,8 @@
 	<br/>
 	<%= render '/playlists/new' %>
 </noscript>
+
 <%= react_component('Playlists', { playlists: @user.playlists }) %>
-<hr>
-<%= render '/playlists/new' %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
