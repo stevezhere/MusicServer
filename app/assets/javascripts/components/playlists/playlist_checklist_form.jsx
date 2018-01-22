@@ -19,18 +19,19 @@ class PlaylistChecklistForm extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		let route = (this.props.method === 'DELETE') ? 'destroy' : 'create';
 		$.ajax({
-			method: 'DELETE',
-			url: `/playlists/${this.props.playlistId}/song_entries/destroy`,
+			method: this.props.method,
+			url: `/playlists/${this.props.playlistId}/song_entries/${route}`,
 			dataType: 'JSON',
 			data: {song_entry: this.state.songEntries},
 			success: (r) => {
-				this.DeleteSong(r.deleted);
+				this.DeleteSongEntry(r.data);
 			}
 		});
 	}
 
-	DeleteSong(r) {
+	DeleteSongEntry(r) {
 		let songs = this.state.songs.slice();
 		let songIds = songs.map( (song) => song.id );
 		Object.keys(this.state.songEntries).reverse().forEach(
@@ -43,6 +44,7 @@ class PlaylistChecklistForm extends React.Component {
 	}
 
 	playlistForm() {
+		let action = (this.props.method === 'DELETE') ? 'Remove from' : 'Add to';
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<ul className='songList'>
@@ -53,7 +55,7 @@ class PlaylistChecklistForm extends React.Component {
 						</li>
 					)}
 				</ul>
-				<input type="submit" value="Remove from Playlist"/>
+				<input type="submit" value={`${action} Playlist`}/>
 			</form>
 		);
 	}
@@ -62,7 +64,7 @@ class PlaylistChecklistForm extends React.Component {
 		if(this.state.songs.length > 0){
 			return this.playlistForm();
 		} else {
-			return <div> "Playlist is Empty" </div>
+			return <div> "No song available" </div>
 		}	
 	}
 }
