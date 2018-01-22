@@ -14,13 +14,21 @@ class SongEntriesController < ApplicationController
 
 	def destroy
 		if params[:song_entry]
+			removed_song = []
 			song_ids = params[:song_entry].keys.map{|song_id| song_id.to_i}
 			song_ids.each do |song|
 				entry = SongEntry.find_by(playlist_id: params[:playlist_id], music_id: song)
+				removed_song << entry if entry
 				entry.destroy if entry
 			end
 		end
-		redirect_to edit_playlist_path(params[:playlist_id])
+		respond_to do |format|
+			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
+			format.json {
+				return render json: { deleted: removed_song } if removed_song
+				return head 400
+			}
+		end
 	end
 
 	private

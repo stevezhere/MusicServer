@@ -27,6 +27,9 @@
 <h2> Available Songs </h2>
 <%= render '/song_entries/new_form' %>
 
+<hr>
+<%= react_component 'PlaylistChecklistForm', { songs: @musics, playlistId: @playlist.id, action: 'delete' } %>
+
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
     <ul class="nav nav-pills">
