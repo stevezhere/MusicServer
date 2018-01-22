@@ -7,12 +7,12 @@ class PlaylistChecklistForm extends React.Component {
 	}
 
 	handleChange(e) {
-		let songId = e.target.name
+		let songId = e.target.name;
 		let songEntries = Object.assign({}, this.state.songEntries);
 		if (songEntries[songId]){
-			delete songEntries[songId]
+			delete songEntries[songId];
 		} else {
-			songEntries[songId] = 'on'
+			songEntries[songId] = 'on';
 		}
 		this.setState({ songEntries: songEntries });
 	}
@@ -31,7 +31,15 @@ class PlaylistChecklistForm extends React.Component {
 	}
 
 	DeleteSong(r) {
-		debugger;
+		let songs = this.state.songs.slice();
+		let songIds = songs.map( (song) => song.id );
+		Object.keys(this.state.songEntries).reverse().forEach(
+			(entryId) => {
+				let idx = songIds.indexOf(parseInt(entryId));
+				songs.splice(idx, 1);
+			}
+		);
+		this.setState({ songs: songs, songEntries: {} });
 	}
 
 

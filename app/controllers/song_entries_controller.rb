@@ -18,7 +18,7 @@ class SongEntriesController < ApplicationController
 			song_ids = params[:song_entry].keys.map{|song_id| song_id.to_i}
 			song_ids.each do |song|
 				entry = SongEntry.find_by(playlist_id: params[:playlist_id], music_id: song)
-				removed_song << entry if entry
+				removed_song << entry.music if entry
 				entry.destroy if entry
 			end
 		end
