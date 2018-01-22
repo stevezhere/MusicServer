@@ -42,7 +42,6 @@ class PlaylistChecklistForm extends React.Component {
 		this.setState({ songs: songs, songEntries: {} });
 	}
 
-
 	playlistForm() {
 		return(
 			<form onSubmit={this.handleSubmit}>
@@ -60,25 +59,10 @@ class PlaylistChecklistForm extends React.Component {
 	}
 
 	render() {
+		if(this.state.songs.length > 0){
 			return this.playlistForm();
-		
+		} else {
+			return <div> "Playlist is Empty" </div>
+		}	
 	}
-
 }
-
-
-
-
-// <% if @musics.empty? %>
-// 	"Playlist is Empty" 
-// <% else %>
-// 	<form action="/playlists/<%= @playlist.id %>/song_entries/destroy" method="POST">
-// 		<input type="hidden" name="_method" value="DELETE">
-// 		<ul class='songList'>
-// 			<% @musics.each do |song| %>
-// 				<li><input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %></li>
-// 			<% end %>
-// 		</ul>
-// 		<input type="submit" value="Remove from Playlist">
-// 	</form>
-// <% end %>
