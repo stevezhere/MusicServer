@@ -30,3 +30,6 @@ class Playlists extends React.Component {
 		);
 	}
 }
+
+//in case fail to retrieve playlists
+Playlists.defaultProps = { playlists: [] };
