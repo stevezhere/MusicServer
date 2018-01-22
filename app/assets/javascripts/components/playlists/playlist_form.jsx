@@ -22,8 +22,8 @@ class PlaylistForm extends React.Component {
 				this.props.handleNewPlaylist(data);
 				this.setState(this.getInitialState());
 			}, 'JSON'
-		).fail( (response) => {
-	  		alert( response.responseJSON.name[0] );
+		).fail( (r) => {
+	  		alert( r.responseJSON.name[0] );
 	  		//#flash_component later
   	});
 	}
