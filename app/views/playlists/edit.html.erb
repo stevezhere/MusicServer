@@ -28,7 +28,8 @@
 <%= render '/song_entries/new_form' %>
 
 <hr>
-<%= react_component 'PlaylistChecklistForm', { songs: @musics, playlistId: @playlist.id, action: 'delete' } %>
+<%= react_component 'PlaylistChecklistForm', { songs: @musics, playlistId: @playlist.id, method: 'DELETE' } %>
+<%= react_component 'PlaylistChecklistForm', { songs: @new_musics, playlistId: @playlist.id, method: 'POST' } %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
