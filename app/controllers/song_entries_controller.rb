@@ -13,7 +13,7 @@ class SongEntriesController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
 			format.json {
-				add_songs ? (render json: { data: add_songs }) : (head 400)
+				add_songs ? (render json: { songs: add_songs }) : (head 400)
 			}
 		end
 	end
@@ -33,7 +33,7 @@ class SongEntriesController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
 			format.json {
-				remove_songs ? (render json: { data: remove_songs }) : (head 400)
+				remove_songs ? (render json: { songs: remove_songs }) : (head 400)
 			}
 		end
 	end

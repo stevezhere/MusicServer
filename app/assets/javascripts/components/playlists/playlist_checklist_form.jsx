@@ -26,12 +26,13 @@ class PlaylistChecklistForm extends React.Component {
 			dataType: 'JSON',
 			data: {song_entry: this.state.songEntries},
 			success: (r) => {
-				this.DeleteSongEntry(r.data);
+				this.DeleteSongEntry();
+				this.props.handleListUpdate(r.songs);
 			}
 		});
 	}
 
-	DeleteSongEntry(r) {
+	DeleteSongEntry() {
 		let songs = this.state.songs.slice();
 		let songIds = songs.map( (song) => song.id );
 		Object.keys(this.state.songEntries).reverse().forEach(
