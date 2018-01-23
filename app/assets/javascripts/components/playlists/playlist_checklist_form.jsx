@@ -1,7 +1,7 @@
 class PlaylistChecklistForm extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {songs: this.props.songs, songEntries: {}};
+	constructor() {
+		super();
+		this.state = {songEntries: {}};
 		this.handleSubmit = this.handleSubmit.bind(this);		
 		this.handleChange = this.handleChange.bind(this);		
 	}
@@ -26,22 +26,9 @@ class PlaylistChecklistForm extends React.Component {
 			dataType: 'JSON',
 			data: {song_entry: this.state.songEntries},
 			success: (r) => {
-				this.DeleteSongEntry();
-				this.props.handleListUpdate(r.songs);
+				this.props.handleListUpdate(r);
 			}
 		});
-	}
-
-	DeleteSongEntry() {
-		let songs = this.state.songs.slice();
-		let songIds = songs.map( (song) => song.id );
-		Object.keys(this.state.songEntries).reverse().forEach(
-			(entryId) => {
-				let idx = songIds.indexOf(parseInt(entryId));
-				songs.splice(idx, 1);
-			}
-		);
-		this.setState({ songs: songs, songEntries: {} });
 	}
 
 	playlistForm() {
@@ -49,7 +36,7 @@ class PlaylistChecklistForm extends React.Component {
 		return(
 			<form onSubmit={this.handleSubmit}>
 				<ul className='songList'>
-					{ this.state.songs.map( (song) =>
+					{ this.props.songs.map( (song) =>
 						<li key={song.id}>
 							<input type="checkbox" name={song.id} onChange={this.handleChange} />
 							{ song.title }
@@ -62,7 +49,7 @@ class PlaylistChecklistForm extends React.Component {
 	}
 
 	render() {
-		if(this.state.songs.length > 0){
+		if(this.props.songs.length > 0){
 			return this.playlistForm();
 		} else {
 			return <div> "No song available" </div>

@@ -7,13 +7,13 @@ class SongEntriesController < ApplicationController
 			song_ids = params[:song_entry].keys.map{|song_id| song_id.to_i}
 			song_ids.each do |song|
 				entry = SongEntry.new({playlist_id: params[:playlist_id], music_id: song})
-				add_songs << entry.music if entry.save
+				add_songs << entry.music.id if entry.save
 			end
 		end
 		respond_to do |format|
 			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
 			format.json {
-				add_songs ? (render json: { songs: add_songs }) : (head 400)
+				add_songs ? (render json: { newMusics: add_songs }) : (head 400)
 			}
 		end
 	end
@@ -25,7 +25,7 @@ class SongEntriesController < ApplicationController
 			song_ids.each do |song|
 				entry = SongEntry.find_by(playlist_id: params[:playlist_id], music_id: song)
 				if entry
-					remove_songs << entry.music
+					remove_songs << entry.music.id
 					entry.destroy
 				end
 			end
@@ -33,7 +33,7 @@ class SongEntriesController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
 			format.json {
-				remove_songs ? (render json: { songs: remove_songs }) : (head 400)
+				remove_songs ? (render json: { musics: remove_songs }) : (head 400)
 			}
 		end
 	end
