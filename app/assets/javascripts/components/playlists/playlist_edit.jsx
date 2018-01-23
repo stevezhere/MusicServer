@@ -5,15 +5,30 @@ class PlaylistEdit extends React.Component {
 			musics: this.props.musics,
 			newMusics: this.props.newMusics
 		}
-		this.addToPlaylist = this.addToPlaylist.bind(this);
-		this.removeFromPlaylist = this.removeFromPlaylist.bind(this);
+		this.UpdateList = this.UpdateList.bind(this);
 	}
 
-	addToPlaylist(songs) {
-
+	sortInsertList(list, insert) {
+		let insertId = insert.id;
+		list.forEach( (item) => item.id )
 	}
 
-	removeFromPlaylist(songs) {
+	UpdateList(songIds) {
+		let key1 = Object.keys(songIds)[0];
+		let songList1 = this.state[key1].slice();
+		let songListIds = songList1.map( (song) => song.id );
+		// let key2 = key1 === 'musics' ? 'newMusics' : 'musics';
+		// let songList2 = this.state[key2].slice();
+		let idx, remove_song, obj = {};
+		Object.values(songIds)[0].reverse().forEach( (songId) => {
+			idx = songListIds.indexOf(songId);
+			remove_song = songList1.splice(idx, 1);
+			// songList2.pop(remove_song);
+			// sortInsertList(songList2, remove_song);
+		});
+		obj[key1] = songList1;
+		// obj[key2] = songList2;
+		this.setState(obj);
 	}
 
 	render() {
@@ -24,7 +39,7 @@ class PlaylistEdit extends React.Component {
 					songs={this.state.musics}
 					playlistId={this.props.playlistId}
 					method='DELETE'
-					handleListUpdate={this.removeFromPlaylist}
+					handleListUpdate={this.UpdateList}
 				/>
 				<br/>
 				<br/>
@@ -33,7 +48,7 @@ class PlaylistEdit extends React.Component {
 					songs={this.state.newMusics}
 					playlistId={this.props.playlistId}
 					method='POST'
-					handleListUpdate={this.addToPlaylist}
+					handleListUpdate={this.UpdateList}
 				/>
 			</div>
 		)
