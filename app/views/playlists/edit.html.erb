@@ -1,10 +1,12 @@
 <h1> Edit: <%= @playlist.name %> </h1>
 <br/>
 <br/>
+
 <%= form_for @playlist, method: :put do |f| %>
 	<%= f.text_field :name %>
 	<%= f.submit 'Change Name' %>
 <% end %>
+
 <form action='/playlists/<%= @playlist.id %>'  method="POST">
 	<input type="hidden" name="_method" value="PUT">
 	<% if @playlist.share %>
@@ -18,18 +20,15 @@
 
 <%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
 
-<h2> Current Songs </h2>
+<h2> Current Playlist </h2>
 <%= render '/song_entries/form', { songs: @musics, method: 'destroy' } %>
-
 <br/>
 <br/>
-
 <h2> Available Songs </h2>
 <%= render '/song_entries/form', { songs: @new_musics, method: 'create' } %>
 
 <hr>
-<%= react_component 'PlaylistChecklistForm', { songs: @musics, playlistId: @playlist.id, method: 'DELETE' } %>
-<%= react_component 'PlaylistChecklistForm', { songs: @new_musics, playlistId: @playlist.id, method: 'POST' } %>
+<%= react_component 'PlaylistEdit', { musics: @musics, newMusics: @new_musics, playlistId: @playlist.id } %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">

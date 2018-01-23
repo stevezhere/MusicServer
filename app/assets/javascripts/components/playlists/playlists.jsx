@@ -25,7 +25,7 @@ class Playlists extends React.Component {
 					)}
 				</ul>
 				<br/>
-				<PlaylistForm handleNewPlaylist={this.addPlaylist}  />
+				<PlaylistForm handleNewPlaylist={this.addPlaylist} />
 			</div>
 		);
 	}
