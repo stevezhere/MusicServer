@@ -6,7 +6,7 @@ class PlaylistsController < ApplicationController
 	
 	def show 
 		@playlist = Playlist.find(params[:id])
-		@musics = @playlist.musics
+		@musics = @playlist.musics.ordered
 		if @playlist
 			render 'show'
 		else
@@ -16,7 +16,7 @@ class PlaylistsController < ApplicationController
 
 	def edit
 		@playlist = Playlist.find(params[:id])
-		@musics = @playlist.musics
+		@musics = @playlist.musics.ordered
 		@new_musics = Music.all_except(@musics).order(:title)
 		if @playlist
 			render 'edit'
