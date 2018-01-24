@@ -28,6 +28,7 @@ class PlaylistChecklistForm extends React.Component {
 			data: {song_entry: this.state },
 			success: (r) => {
 				this.props.handleListUpdate(r);
+				this.setState({ entry_ids: [] });
 			}
 		});
 	}
