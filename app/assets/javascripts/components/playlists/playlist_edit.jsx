@@ -8,6 +8,20 @@ class PlaylistEdit extends React.Component {
 		this.UpdateList = this.UpdateList.bind(this);
 	}
 
+	sortList(list) {
+		list.sort( (item1,item2) => {
+			let song1 = item1.title.toUpperCase();
+			let song2 = item2.title.toUpperCase();
+  		if (song1 < song2) {
+  			return -1;
+  		} else if (song1 > song2) {
+  			return 1;
+  		} else {
+  			return 0;
+  		}
+		});
+	}
+
 	UpdateList(songIds) {
 		let key1 = Object.keys(songIds)[0];
 		let songList1 = this.state[key1].slice();
@@ -23,6 +37,7 @@ class PlaylistEdit extends React.Component {
 		});
 		obj[key1] = songList1;
 		obj[key2] = songList2;
+		this.sortList(obj.newMusics);
 		this.setState(obj);
 	}
 
