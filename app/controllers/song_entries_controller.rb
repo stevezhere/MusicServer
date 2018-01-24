@@ -26,7 +26,7 @@ class SongEntriesController < ApplicationController
 				entry = SongEntry.find_by(playlist_id: params[:playlist_id], music_id: song)
 				if entry
 					remove_songs << entry.music.id
-					# entry.destroy
+					entry.destroy
 				end
 			end
 		end
