@@ -1,20 +1,21 @@
 class PlaylistChecklistForm extends React.Component {
 	constructor() {
 		super();
-		this.state = {songEntries: {}};
+		this.state = {entry_ids: []};
 		this.handleSubmit = this.handleSubmit.bind(this);		
 		this.handleChange = this.handleChange.bind(this);		
 	}
 
 	handleChange(e) {
-		let songId = e.target.name;
-		let songEntries = Object.assign({}, this.state.songEntries);
-		if (songEntries[songId]){
-			delete songEntries[songId];
+		let songId = e.target.value;
+		let entry_ids = this.state.entry_ids.slice();
+		if (entry_ids.includes(songId)){
+			let idx = entry_ids.indexOf(songId);
+			entry_ids.splice(idx, 1);
 		} else {
-			songEntries[songId] = 'on';
+			entry_ids.push(songId);
 		}
-		this.setState({ songEntries: songEntries });
+		this.setState({ entry_ids: entry_ids });
 	}
 
 	handleSubmit(e) {
@@ -24,7 +25,7 @@ class PlaylistChecklistForm extends React.Component {
 			method: this.props.method,
 			url: `/playlists/${this.props.playlistId}/song_entries/${route}`,
 			dataType: 'JSON',
-			data: {song_entry: this.state.songEntries},
+			data: {song_entry: this.state },
 			success: (r) => {
 				this.props.handleListUpdate(r);
 			}
@@ -38,7 +39,7 @@ class PlaylistChecklistForm extends React.Component {
 				<ul className='songList'>
 					{ this.props.songs.map( (song) =>
 						<li key={song.id}>
-							<input type="checkbox" name={song.id} onChange={this.handleChange} />
+							<input type="checkbox" value={song.id} onChange={this.handleChange} />
 							{ song.title }
 						</li>
 					)}

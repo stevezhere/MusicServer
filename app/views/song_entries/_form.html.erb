@@ -7,7 +7,7 @@
 		<% end %>
 		<ul class='songList'>
 			<% songs.each do |song| %>
-				<li><input type="checkbox" name=song_entry[<%= song.id %>]><%= song.title %></li>
+				<li><input type="checkbox" name=song_entry[entry_ids][] value=<%= song.id %>><%= song.title %></li>
 			<% end %>
 		</ul>
 		<input type="submit" value="<%= method == 'create' ? 'Add to' : 'Remove from' %> Playlist">
