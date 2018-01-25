@@ -52,7 +52,6 @@ class PlaylistEdit extends React.Component {
 					handleListUpdate={this.UpdateList}
 				/>
 				<br/>
-				<br/>
 				<h2> Available Songs </h2>
 				<PlaylistChecklistForm
 					songs={this.state.newMusics}
