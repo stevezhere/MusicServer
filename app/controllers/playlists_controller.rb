@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-	skip_before_action :verify_authenticity_token
+	skip_before_action :verify_authenticity_token, :only => [:create, :update]
 	def index
 		@playlists = Playlist.all.where(share: true)
 	end
