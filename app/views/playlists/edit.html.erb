@@ -1,16 +1,11 @@
-<h1> <%= @playlist.name %> </h1>
-<br/>
-<br/>
-
-<%= form_for @playlist, method: :put do |f| %>
-	<%= f.text_field :name %>
-	<%= f.submit 'Change Name' %>
-<% end %>
-
-
-<%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
-
 <noscript>
+	<h1> <%= @playlist.name %> </h1>
+	<br/>
+	<br/>
+	<%= form_for @playlist, method: :put do |f| %>
+		<%= f.text_field :name %>
+		<%= f.submit 'Change Name' %>
+	<% end %>
 	<form action='/playlists/<%= @playlist.id %>'  method="POST">
 		<input type="hidden" name="_method" value="PUT">
 		<% if @playlist.share %>
@@ -27,6 +22,10 @@
 	<h2> Available Songs </h2>
 	<%= render '/song_entries/form', { songs: @new_musics, method: 'create' } %>
 </noscript>
+
+<%= react_component 'PlaylistName', { playlist: @playlist } %>
+
+<%= link_to 'Delete Playlist', @playlist, method: :delete, data: {confirm: 'Are you sure?'} %>
 
 <%= react_component 'Playlist', { musics: @musics, newMusics: @new_musics, playlist: @playlist } %>
 
