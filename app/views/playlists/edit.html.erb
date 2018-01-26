@@ -1,4 +1,4 @@
-<h1> Edit: <%= @playlist.name %> </h1>
+<h1> <%= @playlist.name %> </h1>
 <br/>
 <br/>
 
@@ -28,7 +28,7 @@
 	<%= render '/song_entries/form', { songs: @new_musics, method: 'create' } %>
 </noscript>
 
-<%= react_component 'PlaylistEdit', { musics: @musics, newMusics: @new_musics, playlist: @playlist } %>
+<%= react_component 'Playlist', { musics: @musics, newMusics: @new_musics, playlist: @playlist } %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
