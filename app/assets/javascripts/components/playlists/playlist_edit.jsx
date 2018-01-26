@@ -2,10 +2,12 @@ class PlaylistEdit extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			playlist: this.props.playlist,
 			musics: this.props.musics,
 			newMusics: this.props.newMusics
 		}
 		this.UpdateList = this.UpdateList.bind(this);
+		this.UpdateStatus = this.UpdateStatus.bind(this);
 	}
 
 	sortList(list) {
@@ -41,13 +43,18 @@ class PlaylistEdit extends React.Component {
 		this.setState(obj);
 	}
 
+	UpdateStatus(playlist){
+		this.setState({ playlist: playlist });
+	}
+
 	render() {
 		return(
 			<div>
+				<PlaylistStatusButton playlist={this.state.playlist} handleStatusUpdate={this.UpdateStatus} />
 				<h2> Current Playlist </h2>
 				<PlaylistChecklistForm
 					songs={this.state.musics}
-					playlistId={this.props.playlistId}
+					playlistId={this.state.playlist.id}
 					method='DELETE'
 					handleListUpdate={this.UpdateList}
 				/>
@@ -55,7 +62,7 @@ class PlaylistEdit extends React.Component {
 				<h2> Available Songs </h2>
 				<PlaylistChecklistForm
 					songs={this.state.newMusics}
-					playlistId={this.props.playlistId}
+					playlistId={this.state.playlist.id}
 					method='POST'
 					handleListUpdate={this.UpdateList}
 				/>
