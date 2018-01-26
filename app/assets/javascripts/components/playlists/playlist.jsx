@@ -1,4 +1,4 @@
-class PlaylistEdit extends React.Component {
+class Playlist extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -71,4 +71,4 @@ class PlaylistEdit extends React.Component {
 	}
 }
 
-PlaylistEdit.defaultProps = { musics: [], newMusics: [] };
+Playlist.defaultProps = { musics: [], newMusics: [] };
