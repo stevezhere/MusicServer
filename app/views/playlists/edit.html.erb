@@ -28,7 +28,7 @@
 	<%= render '/song_entries/form', { songs: @new_musics, method: 'create' } %>
 </noscript>
 
-<%= react_component 'PlaylistEdit', { musics: @musics, newMusics: @new_musics, playlistId: @playlist.id } %>
+<%= react_component 'PlaylistEdit', { musics: @musics, newMusics: @new_musics, playlist: @playlist } %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
