@@ -70,7 +70,7 @@ class Playlist extends React.Component {
 					handleListUpdate={this.UpdateList}
 				/>
 			</div>
-		)
+		);
 	}
 }
 

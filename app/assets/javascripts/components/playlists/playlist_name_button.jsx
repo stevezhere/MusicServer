@@ -59,7 +59,7 @@ class PlaylistNameButton extends React.Component {
 				<br/>
 				<input type='submit' value='Save/Cancel'></input>
 			</form>
-		)
+		);
 	}
 
 	render() {
