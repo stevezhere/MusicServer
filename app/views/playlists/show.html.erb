@@ -1,9 +1,10 @@
 <h1><%= link_to @playlist.name, edit_playlist_path(@playlist), style: "font-size:40px;font-weight:bold;"%></h1>
 <br/>
 <br/>
-<p>
-	<%= render 'edit_description' %>
-</p>
+<center>
+	<noscript><%= render 'edit_description' %></noscript>
+	<%= react_component 'PlaylistDescription', { playlist: @playlist } %>
+</center>
 <br/>
 <div class='container playerDiv'>
 	<div class="row">

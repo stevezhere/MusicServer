@@ -54,7 +54,7 @@ class PlaylistChecklistForm extends React.Component {
 		if(this.props.songs.length > 0){
 			return this.playlistForm();
 		} else {
-			return <div> "No song available" </div>
+			return <div> "No song available" </div>;
 		}	
 	}
 }
