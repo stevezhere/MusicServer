@@ -50,6 +50,9 @@ class Playlist extends React.Component {
 	render() {
 		return(
 			<div>
+				<PlaylistNameButton playlist={this.state.playlist} handleStatusUpdate={this.UpdateStatus} />
+				<a data-confirm="Are you sure?" data-method="DELETE" href={`/playlists/${this.state.playlist.id}`} rel="nofollow">Delete Playlist</a>
+				<hr/>
 				<PlaylistStatusButton playlist={this.state.playlist} handleStatusUpdate={this.UpdateStatus} />
 				<h2> Current Playlist </h2>
 				<PlaylistChecklistForm

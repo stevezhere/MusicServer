@@ -1,4 +1,4 @@
-class PlaylistName extends React.Component {
+class PlaylistNameButton extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { toggle: false, name: this.props.playlist.name };
@@ -19,21 +19,19 @@ class PlaylistName extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		if (this.props.playlist.name === this.state.name) {
+		let currentName = this.state.name;
+		if (currentName.length === 0 || currentName === this.props.playlist.name) {
 			this.handleToggle();
+			this.setState({name: this.props.playlist.name})
 		} else {
 			$.ajax({
 				method: 'PUT',
 				url: `/playlists/${this.props.playlist.id}`,
 				dataType: 'JSON',
 				data: { playlist: {name: this.state.name} },
-				success: () => {
+				success: (r) => {
 					this.handleToggle();
-					console.log('success');
-				},
-				error: () => {
-					this.handleToggle();
-					console.log('failed');
+					this.props.handleStatusUpdate(r);
 				}
 			});
 		}
@@ -53,11 +51,13 @@ class PlaylistName extends React.Component {
 	PlaylistForm() {
 		return(
 			<form onSubmit={this.handleSubmit}>
-				<input type='text' 
+				<h1><input type='text' 
 					value={this.state.name}
 					onChange={this.handleChange}>
-				</input>
-				<input type='submit' value='Change Name'></input>
+				</input></h1>
+				<br/>
+				<br/>
+				<input type='submit' value='Save/Cancel'></input>
 			</form>
 		)
 	}

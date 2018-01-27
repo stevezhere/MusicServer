@@ -20,11 +20,11 @@ class PlaylistStatusButton extends React.Component {
 	statusButton() {
 		let status, action;
 		this.props.playlist.share ? 
-			(status = 'Public', action =  'Stop Sharing')  : 
-			(status = 'Private', action = 'Share');
+			(status = 'Public / ', action =  'Stop Sharing')  : 
+			(status = 'Private / ', action = 'Share');
 		return(
 			<div>
-				Status: { status } /
+				<b>Status: </b> { status }
 				<button onClick={this.handleClick} 
 					value={!this.props.playlist.share}>
 					{action}
