@@ -1,12 +1,12 @@
 class PlaylistsController < ApplicationController
-	skip_before_action :verify_authenticity_token
+	skip_before_action :verify_authenticity_token, :only => [:create, :update]
 	def index
-		@playlists = Playlist.all.where(share: true)
+		@playlists = Playlist.all.where(share: true).order(:name)
 	end
 	
 	def show 
 		@playlist = Playlist.find(params[:id])
-		@musics = @playlist.musics
+		@musics = @playlist.musics.ordered
 		if @playlist
 			render 'show'
 		else
@@ -16,7 +16,7 @@ class PlaylistsController < ApplicationController
 
 	def edit
 		@playlist = Playlist.find(params[:id])
-		@musics = @playlist.musics
+		@musics = @playlist.musics.ordered
 		@new_musics = Music.all_except(@musics).order(:title)
 		if @playlist
 			render 'edit'
@@ -28,19 +28,28 @@ class PlaylistsController < ApplicationController
 	def create
 		name = playlist_params[:name]
 		@playlist = Playlist.new(name: name, description: 'Optional description', user_id: current_user.id, share: false)
-
-		if @playlist.valid?
-			@playlist.save
-			redirect_to user_path(current_user)
+		if @playlist.save
+			respond_to do |format|
+				format.html { redirect_to user_path(current_user) }
+				format.json { render json: @playlist }
+			end
 		else
-			redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages}
+			respond_to do |format|
+				format.html { redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages} }
+				format.json { render json: @playlist.errors, status: 422 }
+			end
 		end
 	end
 
 	def update
 		@playlist = Playlist.find(params[:id])
 		if @playlist.update(playlist_params)
-			redirect_to :back, flash: {notice: "Changes Saved"}
+			respond_to do |format|
+				format.html { 
+					redirect_back(fallback_location: edit_playlist_path(params[:id]), flash: {notice: "Changes Saved"}) 
+				}
+				format.json { render json: @playlist } 
+			end
 		else
 			redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
 		end

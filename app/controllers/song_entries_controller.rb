@@ -1,30 +1,44 @@
 class SongEntriesController < ApplicationController
-	skip_before_action :verify_authenticity_token
-
+	skip_before_action :verify_authenticity_token, :only => [:create, :destroy]
 	def create
-		if params[:song_entry]
-			song_ids = params[:song_entry].keys.map{|song_id| song_id.to_i}
+		if song_entry_params[:entry_ids]
+			add_songs = []
+			song_ids = song_entry_params[:entry_ids].map{|song_id| song_id.to_i}
 			song_ids.each do |song|
 				entry = SongEntry.new({playlist_id: params[:playlist_id], music_id: song})
-				entry.save if entry.valid?
+				add_songs << entry.music.id if entry.save
 			end
 		end
-		redirect_to edit_playlist_path(params[:playlist_id])
+		respond_to do |format|
+			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
+			format.json {
+				add_songs ? (render json: { newMusics: add_songs }) : (head 400)
+			}
+		end
 	end
 
 	def destroy
-		if params[:song_entry]
-			song_ids = params[:song_entry].keys.map{|song_id| song_id.to_i}
+		if song_entry_params[:entry_ids]
+			remove_songs = []
+			song_ids = song_entry_params[:entry_ids].map{|song_id| song_id.to_i}
 			song_ids.each do |song|
 				entry = SongEntry.find_by(playlist_id: params[:playlist_id], music_id: song)
-				entry.destroy if entry
+				if entry
+					remove_songs << entry.music.id
+					entry.destroy
+				end
 			end
 		end
-		redirect_to edit_playlist_path(params[:playlist_id])
+		respond_to do |format|
+			format.html { redirect_to edit_playlist_path(params[:playlist_id]) }
+			format.json {
+				remove_songs ? (render json: { musics: remove_songs }) : (head 400)
+			}
+		end
 	end
 
 	private
-	def song_params
-		params.require(:song_entry).permit(:song_entry)
+	def song_entry_params
+		params.require(:song_entry).permit(entry_ids: [])
 	end
 end
