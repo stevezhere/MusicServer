@@ -21,7 +21,7 @@ gem 'pry-rails', :group => :development
 #Built-in user login 
 gem 'devise'
 #Fileupload
-gem "paperclip", "~> 5.1.0"
+gem "paperclip", "~> 5.2.1"
 #Styling
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 #React
