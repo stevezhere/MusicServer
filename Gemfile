@@ -18,12 +18,14 @@ gem 'pry-rails', :group => :development
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-#built in user login 
+#Built-in user login 
 gem 'devise'
-#fileupload
-gem "paperclip", "~> 5.0.0"
-#styling
+#Fileupload
+gem "paperclip", "~> 5.1.0"
+#Styling
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+#React
+gem 'react-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

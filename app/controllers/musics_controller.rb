@@ -1,6 +1,5 @@
 class MusicsController < ApplicationController
 	# require "base64"
-   
   def index
     @musics = Music.all.order(:title)
   end
@@ -20,8 +19,7 @@ class MusicsController < ApplicationController
 
   def create
     @music = Music.new(music_params)
-    if @music.valid?
-      @music.save
+    if @music.save
       if @music.find_path_validation
         redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
       else
