@@ -8,12 +8,17 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def guest_user
+  def guest_user(with_retry = true)
   	User.find(
   		session[:guest_user_id].nil? ? 
   			session[:guest_user_id] = create_guest_user.id : 
   			session[:guest_user_id]
   	)
+
+  	# if session[:guest_user_id] invalid
+  	rescue ActiveRecord::RecordNotFound
+    	session[:guest_user_id] = nil
+    	guest_user if with_retry
   end
 
   def create_guest_user
