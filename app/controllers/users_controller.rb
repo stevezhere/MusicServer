@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 			@playlist = Playlist.new
 			render 'show'
 		else
-			redirect_to root_path, flash: { alert: 'Unauthorized access' }
+			redirect_to '/', flash: { alert: 'Unauthorized access' }
 		end
 	end
 end

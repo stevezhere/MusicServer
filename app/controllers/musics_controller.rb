@@ -5,8 +5,7 @@ class MusicsController < ApplicationController
   end
 
   def show
-    @music = Music.find(params[:id])
-    if @music
+    if @music = Music.find_by_id(params[:id])
       render 'show'
     else
       redirect_to '/', :flash => { :notice => "Song Cannot be found"}
@@ -31,8 +30,7 @@ class MusicsController < ApplicationController
   end
 
   def destroy
-    music = Music.find(params[:id])
-    if music
+    if music = Music.find_by_id(params[:id])
       music.destroy
       redirect_to '/', :flash => { :notice => "#{music.title} Successfully Removed"}
     else
@@ -52,8 +50,7 @@ class MusicsController < ApplicationController
   end
 
   def stream
-    music = Music.find(params[:id])
-    if music
+    if music = Music.find_by_id(params[:id])
       send_file music.path
     end
   end
