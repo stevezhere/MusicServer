@@ -5,9 +5,8 @@ class PlaylistsController < ApplicationController
 	end
 	
 	def show 
-		@playlist = Playlist.find(params[:id])
-		@musics = @playlist.musics.ordered
-		if @playlist
+		if @playlist = Playlist.find_by_id(params[:id])
+			@musics = @playlist.musics.ordered
 			render 'show'
 		else
 			redirect_to user_path(current_user), flash: {notice: 'Playlist Undefined'}
@@ -15,10 +14,9 @@ class PlaylistsController < ApplicationController
 	end
 
 	def edit
-		@playlist = Playlist.find(params[:id])
-		@musics = @playlist.musics.ordered
-		@new_musics = Music.all_except(@musics).order(:title)
-		if @playlist
+		if @playlist = Playlist.find_by_id(params[:id])
+			@musics = @playlist.musics.ordered
+			@new_musics = Music.all_except(@musics).order(:title)
 			render 'edit'
 		else
 			redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
@@ -42,22 +40,24 @@ class PlaylistsController < ApplicationController
 	end
 
 	def update
-		@playlist = Playlist.find(params[:id])
-		if @playlist.update(playlist_params)
-			respond_to do |format|
-				format.html { 
-					redirect_back(fallback_location: edit_playlist_path(params[:id]), flash: {notice: "Changes Saved"}) 
-				}
-				format.json { render json: @playlist } 
+		if @playlist = Playlist.find_by_id(params[:id])
+			if @playlist.update(playlist_params)
+				respond_to do |format|
+					format.html { 
+						redirect_back(fallback_location: edit_playlist_path(params[:id]), flash: {notice: "Changes Saved"}) 
+					}
+					format.json { render json: @playlist } 
+				end
+			else
+				redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
 			end
 		else
-			redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
+			redirect_to user_path(current_user)
 		end
 	end
 
 	def destroy
-		playlist = Playlist.find(params[:id])
-		if playlist
+		if playlist = Playlist.find_by_id(params[:id])
 			playlist.destroy
 			redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
 		else

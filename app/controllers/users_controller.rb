@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
 	def show
-		@user = User.find(params[:id])
-		@playlists = @user.playlists.order(:created_at)
-		@playlist = Playlist.new
-		if @user
+		if @user = User.find_by_id(params[:id])
+			@playlists = @user.playlists.order(:created_at)
+			@playlist = Playlist.new
 			render 'show'
 		else
-			redirect '/', flash: { alert: 'Unauthorized access' }
+			redirect_to '/', flash: { alert: 'Unauthorized access' }
 		end
 	end
 end
