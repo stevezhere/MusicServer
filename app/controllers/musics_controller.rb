@@ -5,8 +5,7 @@ class MusicsController < ApplicationController
   end
 
   def show
-    @music = Music.find(params[:id])
-    if @music
+    if @music = Music.find_by_id(params[:id])
       render 'show'
     else
       redirect_to '/', :flash => { :notice => "Song Cannot be found"}
@@ -19,20 +18,15 @@ class MusicsController < ApplicationController
 
   def create
     @music = Music.new(music_params)
-    if @music.save
-      if @music.find_path_validation
-        redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
-      else
-        redirect_to new_music_path, :flash => { :alert => "#{@music.title} was not found"}
-      end      
+    if @music.save && @music.find_path_validation
+      redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
     else
-      redirect_to new_music_path, :flash => { :alert => @music.errors.full_messages}
-    end
+      redirect_to new_music_path, :flash => { :alert => 'Song cannot be saved'}
+    end      
   end
 
   def destroy
-    music = Music.find(params[:id])
-    if music
+    if music = Music.find_by_id(params[:id])
       music.destroy
       redirect_to '/', :flash => { :notice => "#{music.title} Successfully Removed"}
     else
@@ -42,18 +36,15 @@ class MusicsController < ApplicationController
 
   def search
     title = music_params[:title]
-    @music = Music.find_by_title(title)
-
-    if @music
-      redirect_to @music, :flash => { :notice => "Song Found for convience make sure javascript is enabled"}
+    if @music = Music.find_by_title(title)
+      redirect_to @music, :flash => { :notice => "Song Found"}
     else
       redirect_to '/', :flash => { :alert => "Cannot find song, Check spelling"}
     end
   end
 
   def stream
-    music = Music.find(params[:id])
-    if music
+    if music = Music.find_by_id(params[:id])
       send_file music.path
     end
   end
