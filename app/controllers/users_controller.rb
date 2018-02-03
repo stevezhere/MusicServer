@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 	def show
-		byebug
 		@user = User.find_by_id(params[:id])
 		if @user
 			@playlists = @user.playlists.order(:created_at)
