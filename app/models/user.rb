@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def move_to(user)
   	self.playlists.update_all(user_id: user.id)
   end
+
+  def self.guest_cleanup
+  	User.where(guest: :true).destroy_all
+  end
 end

@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.save
       current_user.move_to(@user) if current_user && current_user.guest?
       sign_up("user", @user)
+      User.guest_cleanup
       redirect_to user_path(@user)
     else
       render :new
