@@ -32,7 +32,7 @@ class PlaylistForm extends React.Component {
 				this.setState(this.getInitialState());
 			}
 		}).fail( (r) => {
-	  		alert( r.responseJSON.name[0] );
+	  		alert( r.responseText );
   	});
 	}
 

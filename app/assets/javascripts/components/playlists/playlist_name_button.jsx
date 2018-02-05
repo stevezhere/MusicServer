@@ -39,7 +39,9 @@ class PlaylistNameButton extends React.Component {
 					this.handleToggle();
 					this.props.handleStatusUpdate(r);
 				}
-			});
+			}).fail( (r) => {
+	  		alert( r.responseText );
+  	});
 		}
 	}
 

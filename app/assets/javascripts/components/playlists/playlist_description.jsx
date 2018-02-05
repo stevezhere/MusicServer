@@ -30,7 +30,9 @@ class PlaylistDescription extends React.Component {
 			},
 			data: {playlist: this.state},
 			success: () => this.handleToggle()
-		});
+		}).fail( (r) => {
+	  		alert( r.responseText );
+  	});
 	}
 
 	descriptionForm() {
