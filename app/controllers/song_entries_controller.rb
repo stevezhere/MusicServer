@@ -1,4 +1,5 @@
 class SongEntriesController < ApplicationController
+	before_action :authenticate_user!, unless: -> { current_user.guest? }
 	def create
 		if song_entry_params[:entry_ids]
 			add_songs = []
