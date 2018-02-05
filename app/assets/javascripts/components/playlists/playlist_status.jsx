@@ -20,7 +20,9 @@ class PlaylistStatusButton extends React.Component {
 			success: (r) => {
 				this.props.handleStatusUpdate(r);
 			}
-		});
+		}).fail( (r) => {
+	  		alert( r.responseText );
+  	});
 	}
 
 	statusButton() {
