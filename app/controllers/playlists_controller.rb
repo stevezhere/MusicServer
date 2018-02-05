@@ -1,6 +1,5 @@
 class PlaylistsController < ApplicationController
 	before_action :authenticate_user!, only: [:show, :edit, :create, :update, :destroy], unless: -> { current_user.guest? }
-	skip_before_action :verify_authenticity_token, :only => [:create, :update]
 	def index
 		@playlists = Playlist.all.where(share: true).order(:name)
 	end
