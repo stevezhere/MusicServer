@@ -1,5 +1,5 @@
-<% if current_user.guest %>
-	<%= link_to 'Login/New User', new_user_session_path %>
-<% else %>
+<% if user_signed_in? && !current_user.guest %>
 	<%= link_to 'Logout/New Guest', destroy_user_session_path, :method => 'delete' %>
+<% else %>
+	<%= link_to 'Login/New User', new_user_session_path %>
 <% end %>
