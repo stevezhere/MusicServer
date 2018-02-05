@@ -18,12 +18,17 @@ class PlaylistDescription extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		let description = this.state.description;
 		$.ajax({
 			method: 'PUT',
 			url: `/playlists/${this.props.playlist.id}`,
 			dataType: 'JSON',
-			data: {playlist: {description: description}},
+			beforeSend: (xhr) => {
+				xhr.setRequestHeader(
+					'X-CSRF-Token', 
+					$('meta[name="csrf-token"]').attr('content')
+				)
+			},
+			data: {playlist: this.state},
 			success: () => this.handleToggle()
 		});
 	}
