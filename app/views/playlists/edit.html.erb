@@ -12,6 +12,7 @@
 	<hr/>
 	<form action='/playlists/<%= @playlist.id %>'  method="POST">
 		<input type="hidden" name="_method" value="PUT">
+		<input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
 		<% if @playlist.share %>
 			<b>Status: </b> Public / 
 			<button name='playlist[share]' value=false>Stop Sharing</button>
