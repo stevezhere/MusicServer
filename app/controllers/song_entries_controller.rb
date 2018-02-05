@@ -1,5 +1,4 @@
 class SongEntriesController < ApplicationController
-	skip_before_action :verify_authenticity_token, :only => [:create, :destroy]
 	def create
 		if song_entry_params[:entry_ids]
 			add_songs = []
