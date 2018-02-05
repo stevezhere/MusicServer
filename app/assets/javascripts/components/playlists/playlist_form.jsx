@@ -16,15 +16,23 @@ class PlaylistForm extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		$.post('/playlists',
-			{ playlist: this.state },
-			(data) => {
-				this.props.handleNewPlaylist(data);
+		$.ajax({
+			method: 'POST',
+			url: '/playlists',
+			dataType: 'JSON',
+			beforeSend: (xhr) => {
+				xhr.setRequestHeader(
+					'X-CSRF-Token', 
+					$('meta[name="csrf-token"]').attr('content')
+				)
+			},
+			data: { playlist: this.state },
+			success: (r) => {
+				this.props.handleNewPlaylist(r);
 				this.setState(this.getInitialState());
-			}, 'JSON'
-		).fail( (r) => {
+			}
+		}).fail( (r) => {
 	  		alert( r.responseJSON.name[0] );
-	  		//#flash_component later
   	});
 	}
 

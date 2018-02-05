@@ -10,6 +10,12 @@ class PlaylistStatusButton extends React.Component {
 			method: 'PUT',
 			url: `/playlists/${this.props.playlist.id}`,
 			dataType: 'JSON',
+			beforeSend: (xhr) => {
+				xhr.setRequestHeader(
+					'X-CSRF-Token', 
+					$('meta[name="csrf-token"]').attr('content')
+				)
+			},
 			data: {playlist: {share:  e.target.value}},
 			success: (r) => {
 				this.props.handleStatusUpdate(r);
