@@ -1,4 +1,5 @@
 class PlaylistsController < ApplicationController
+	before_action :authenticate_user!, only: [:show, :edit, :create, :update, :destroy], unless: -> { current_user.guest? }
 	skip_before_action :verify_authenticity_token, :only => [:create, :update]
 	def index
 		@playlists = Playlist.all.where(share: true).order(:name)
@@ -6,10 +7,14 @@ class PlaylistsController < ApplicationController
 	
 	def show 
 		if @playlist = Playlist.find_by_id(params[:id])
-			@musics = @playlist.musics.ordered
-			render 'show'
+			if @playlist.share || @playlist.user == current_user
+				@musics = @playlist.musics.ordered
+				render 'show'
+			else
+				redirect_to user_path(current_user), flash: {notice: 'Unauthorized access'}
+			end
 		else
-			redirect_to user_path(current_user), flash: {notice: 'Playlist Undefined'}
+			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
 		end
 	end
 
