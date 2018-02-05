@@ -36,8 +36,6 @@ class PlaylistChecklistForm extends React.Component {
 				this.props.handleListUpdate(r);
 				this.setState({ entry_ids: [] });
 			}
-  	}).fail( (r) => {
-	  		alert( r.responseText );
   	});
 	}
 
