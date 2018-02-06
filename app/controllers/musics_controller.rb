@@ -1,4 +1,5 @@
 class MusicsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
 	# require "base64"
   def index
     @musics = Music.all.order(:title)

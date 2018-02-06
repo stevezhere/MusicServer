@@ -1,25 +1,33 @@
 class PlaylistsController < ApplicationController
-	skip_before_action :verify_authenticity_token, :only => [:create, :update]
+	before_action :authenticate_user!, only: [:show, :edit, :create, :update, :destroy], unless: -> { current_user.guest? }
 	def index
 		@playlists = Playlist.all.where(share: true).order(:name)
 	end
 	
 	def show 
 		if @playlist = Playlist.find_by_id(params[:id])
-			@musics = @playlist.musics.ordered
-			render 'show'
+			if @playlist.share || @playlist.user == current_user
+				@musics = @playlist.musics.ordered
+				render 'show'
+			else
+				redirect_to user_path(current_user), flash: {alert: 'Unauthorized access'}
+			end
 		else
-			redirect_to user_path(current_user), flash: {notice: 'Playlist Undefined'}
+			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
 		end
 	end
 
 	def edit
 		if @playlist = Playlist.find_by_id(params[:id])
-			@musics = @playlist.musics.ordered
-			@new_musics = Music.all_except(@musics).order(:title)
-			render 'edit'
+			if @playlist.user == current_user
+				@musics = @playlist.musics.ordered
+				@new_musics = Music.all_except(@musics).order(:title)
+				render 'edit'
+			else
+				redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
+			end
 		else
-			redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
+			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
 		end
 	end
 
@@ -34,34 +42,48 @@ class PlaylistsController < ApplicationController
 		else
 			respond_to do |format|
 				format.html { redirect_to user_path(current_user), :flash => { :alert => @playlist.errors.full_messages} }
-				format.json { render json: @playlist.errors, status: 422 }
+				format.json { render json: @playlist.errors.full_messages, status: 422 }
 			end
 		end
 	end
 
 	def update
-		if @playlist = Playlist.find_by_id(params[:id])
-			if @playlist.update(playlist_params)
+		if @playlist = Playlist.find_by_id(params[:id]) 
+			if @playlist.user == current_user && @playlist.update(playlist_params)
 				respond_to do |format|
 					format.html { 
-						redirect_back(fallback_location: edit_playlist_path(params[:id]), flash: {notice: "Changes Saved"}) 
+						redirect_back(fallback_location: edit_playlist_path(@playlist), flash: {notice: "Changes Saved"}) 
 					}
 					format.json { render json: @playlist } 
 				end
 			else
-				redirect_to user_path(current_user), flash: {alert: @playlist.errors.full_messages}
+				respond_to do |format|
+					format.html { 
+						redirect_back(fallback_location: playlist_path(@playlist), flash: {alert: @playlist.errors.full_messages})
+					}
+					format.json { render json: @playlist.errors.full_messages, status: 422 }
+				end
 			end
 		else
-			redirect_to user_path(current_user)
+			respond_to do |format|
+				format.html { 
+					redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'} 
+				}
+				format.json { render json: 'Playlist Not Found', status: 404 } 
+			end
 		end
 	end
 
 	def destroy
-		if playlist = Playlist.find_by_id(params[:id])
-			playlist.destroy
-			redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
+		if playlist = Playlist.find_by_id(params[:id]) 
+			if playlist.user == current_user
+				playlist.destroy
+				redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
+			else
+				redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
+			end
 		else
-			redirect_to user_path(current_user), :flash => { :alert => "Unknown error occured"}
+			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
 		end
 	end
 
