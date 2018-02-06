@@ -28,12 +28,20 @@ class PlaylistNameButton extends React.Component {
 				method: 'PUT',
 				url: `/playlists/${this.props.playlist.id}`,
 				dataType: 'JSON',
-				data: { playlist: {name: this.state.name} },
+				beforeSend: (xhr) => {
+					xhr.setRequestHeader(
+						'X-CSRF-Token', 
+						$('meta[name="csrf-token"]').attr('content')
+					)
+				},
+				data: { playlist: this.state },
 				success: (r) => {
 					this.handleToggle();
 					this.props.handleStatusUpdate(r);
 				}
-			});
+			}).fail( (r) => {
+	  		alert( r.responseText );
+  	});
 		}
 	}
 

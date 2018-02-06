@@ -5,6 +5,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- For Authentication Token -->
     <%= csrf_meta_tags %>
     <!-- makes css respsonsive with mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +13,8 @@
   </head>
   <body>
     <%= render 'layouts/nav' %>
+    <%= render 'layouts/flash' %>
     <div class='container'>
-      <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
   </body>

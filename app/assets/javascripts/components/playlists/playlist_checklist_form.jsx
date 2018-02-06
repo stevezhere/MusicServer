@@ -25,12 +25,18 @@ class PlaylistChecklistForm extends React.Component {
 			method: this.props.method,
 			url: `/playlists/${this.props.playlistId}/song_entries/${route}`,
 			dataType: 'JSON',
+			beforeSend: (xhr) => {
+				xhr.setRequestHeader(
+					'X-CSRF-Token', 
+					$('meta[name="csrf-token"]').attr('content')
+				)
+			},
 			data: {song_entry: this.state },
 			success: (r) => {
 				this.props.handleListUpdate(r);
 				this.setState({ entry_ids: [] });
 			}
-		});
+  	});
 	}
 
 	playlistForm() {

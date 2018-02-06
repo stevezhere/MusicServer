@@ -1,5 +1,5 @@
-<% if current_user.guest %>
-	<%= link_to('Register/Save', new_user_registration_path) %>
-<% else %>
+<% if !current_user.guest %>
 	<%= link_to('Edit User', edit_user_registration_path) %>
+<% else %>
+	<%= link_to('Register/Save', new_user_registration_path) %>
 <% end %>
