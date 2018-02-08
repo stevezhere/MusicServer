@@ -1,6 +1,8 @@
 <h1> Local Music Server Homepage </h1>
 <br/>
 <br/>
+<noscript><%= link_to "Add Songs", new_music_path, class: "btn btn-default" %></noscript>
+<%= react_component 'MusicForm' %>
 <h2>Musics in storage folder</h2>
 <ul class='songList'>
 	<% @musics.each do |music| %>
@@ -11,7 +13,6 @@
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
   	<ul class="nav nav-pills">
-			 <li role="presentation"><%= link_to "Add Songs", new_music_path %></li>
 			 <li role="presentation"><%= link_to "Back", :back %></li>
 		</ul>    
   </div>
