@@ -1,14 +1,14 @@
 class PlaylistForm extends React.Component {
 	constructor() {
 		super();
-		this.state = { name: '', toggle: false }
+		this.state = this.getInitialState();
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleToggle = this.handleToggle.bind(this);
 	}
 
 	getInitialState() {
-		return { name: '' };
+		return { name: '', toggle: false };
 	}
 
 	handleToggle(){
@@ -36,7 +36,6 @@ class PlaylistForm extends React.Component {
 				success: (r) => {
 					this.props.handleNewPlaylist(r);
 					this.setState(this.getInitialState());
-					this.handleToggle();
 				}
 			}).fail( (r) => {
 		  		alert( r.responseText );
