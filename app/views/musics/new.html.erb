@@ -1,10 +1,10 @@
 <h1> Add New Songs </h1>
 <br/>
 <br/>
-<%= form_for @music do |f| %>
+<%= form_for @music, :html => { :title => "Only Users may Add Music" } do |f| %>
 	<%= f.text_field :title, placeholder: 'Song Title' %><br/>
 	<%= f.file_field :audio %><br/><br/>
-	<%= f.submit "Store Music" %>
+	<%= f.submit "Store Music", class: "isDisabled-#{isSessionGuest?}" %>
 <% end %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
