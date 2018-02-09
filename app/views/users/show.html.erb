@@ -10,7 +10,7 @@ Email: <%= @user.email %>
 		<% end %>
 	</ul>
 	<br/>
-	<%= render '/playlists/new' %>
+		<%= render '/playlists/new' if @playlist %>
 </noscript>
 
-<%= react_component('Playlists', { playlists: @playlists }) %>
+<%= react_component('Playlists', { playlists: @playlists, formAccess: !@playlist.nil? }) %>

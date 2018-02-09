@@ -11,6 +11,12 @@ class Playlists extends React.Component {
 		this.setState({ playlists: playlists });
 	}
 
+	formAccess() {
+		if(this.props.formAccess) {
+			return <PlaylistForm handleNewPlaylist={this.addPlaylist}/>;
+		}
+	}
+
 	render() {
 		return(
 			<div>
@@ -25,11 +31,11 @@ class Playlists extends React.Component {
 					)}
 				</ul>
 				<br/>
-				<PlaylistForm handleNewPlaylist={this.addPlaylist} />
+				{ this.formAccess() }
 			</div>
 		);
 	}
 }
 
 //in case fail to retrieve playlists
-Playlists.defaultProps = { playlists: [] };
+Playlists.defaultProps = { playlists: [], formAccess: false };
