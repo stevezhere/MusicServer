@@ -1,4 +1,8 @@
-<h1><%= link_to @playlist.name, edit_playlist_path(@playlist), style: "font-size:40px;font-weight:bold;"%></h1>
+<% if current_user == @playlist.user %>
+	<h1><%= link_to @playlist.name, edit_playlist_path(@playlist), style: "font-size:40px;font-weight:bold;"%></h1>
+<% else %>
+	<h1><%= @playlist.name %></h1>
+<% end %>
 <br/><br/>
 <center>
 	<noscript><%= render 'edit_description' %></noscript>
