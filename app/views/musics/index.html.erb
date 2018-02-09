@@ -1,14 +1,16 @@
-<h1> Local Music Server Homepage </h1>
-<br/>
-<br/>
-<noscript><%= link_to "Add Songs", new_music_path, class: "btn btn-default" %></noscript>
-<%= react_component 'MusicForm' %>
-<h2>Musics in storage folder</h2>
-<ul class='songList'>
-	<% @musics.each do |music| %>
-		<li><%= link_to music.title, music_path(music)  %></li>
-	<% end %>
-</ul>
+<noscript>
+	<h1> Local Music Server Homepage </h1>
+	<br/><br/>
+	<%= link_to "Add Songs", new_music_path, class: "btn btn-default" %>
+	<h2>Musics in storage folder</h2>
+	<ul class='songList'>
+		<% @musics.each do |music| %>
+			<li><%= link_to music.title, music_path(music)  %></li>
+		<% end %>
+	</ul>
+</noscript>
+
+<%= react_component 'Musics', { musics: @musics } %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
