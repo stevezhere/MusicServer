@@ -23,12 +23,11 @@
 		</div> <!-- AudioDiv -->
 	</div>	<!-- AudioRow -->
 	<div class="row">
-		<div class="col-xs-10 col-xs-offset-2">
-			<%= link_to(image_tag("trash-bin.png", size: "20"), music_path(@music), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-default", id: "remove-song") %>
+		<div class="col-xs-10 col-xs-offset-2" title="Only Users may Delete Music">
+			<%= link_to(image_tag("trash-bin.png", size: "20"), music_path(@music), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-default isDisabled-#{isSessionGuest?}", id: "remove-song") %>
 		</div> <!-- TrashDiv -->
 	</div> <!-- TrashRow -->
 </div> <!-- PlayerDiv -->
-<p class="warn"> Only Users may Delete Music </p>
 <br/>
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
