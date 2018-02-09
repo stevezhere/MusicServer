@@ -29,6 +29,4 @@
 </noscript>
 
 <%= react_component 'Playlist', { musics: @musics, newMusics: @new_musics, playlist: @playlist } %>
-<center>
-	<%= link_to 'Back to playlist', playlist_path(@playlist) %>
-</center>	
+<center><%= link_to 'Back to playlist', playlist_path(@playlist) %></center>	
