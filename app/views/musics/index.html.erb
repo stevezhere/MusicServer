@@ -10,7 +10,7 @@
 	</ul>
 </noscript>
 
-<%= react_component 'Musics', { musics: @musics } %>
+<%= react_component 'Musics', { musics: @musics, guest: isSessionGuest? } %>
 
 <footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
   <div class="container">
