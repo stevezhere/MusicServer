@@ -30,8 +30,8 @@ class MusicForm extends React.Component {
 			},
 			data: data,
 			success: (r) => {
+				this.props.handleNewMusic(r);
 				this.handleToggle();
-				console.log(r);
 			}
 		}).fail( (r) => {
 			alert( r.responseText );
@@ -57,7 +57,6 @@ class MusicForm extends React.Component {
 					<input type="submit" value="Store Music"/>
 					<button onClick={this.handleToggle}>Cancel</button>
 				</form>
-				<p className="warn"> Only Users may Add Music </p>
 			</div>
 		);
 	}
