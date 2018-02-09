@@ -38,11 +38,12 @@
 <br/>
 <!-- <div class='playlistContainer'> -->
 	<ol class='songList'>
-		<% @musics.each_with_index do |song, idx| %>
-			<li class="musicSource <%= idx %>">(<%= idx + 1%>) <%= link_to song.title, music_path(song) %></li>
-		<% end %>
 		<% if @musics.empty? %>
 			<li> "No Songs" </li>
+		<% else %>
+			<% @musics.each_with_index do |song, idx| %>
+				<li class="musicSource <%= idx %>">(<%= idx + 1%>) <%= link_to song.title, music_path(song) %></li>
+			<% end %>
 		<% end %>
 	</ol>
 <!-- </div> -->
