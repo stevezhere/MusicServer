@@ -29,11 +29,6 @@
 </noscript>
 
 <%= react_component 'Playlist', { musics: @musics, newMusics: @new_musics, playlist: @playlist } %>
-
-<footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
-  <div class="container">
-    <ul class="nav nav-pills">
-			 <li role="presentation"><%= link_to 'Back to playlist', playlist_path(@playlist) %></li>
-		</ul>
-  </div>
-</footer>
+<center>
+	<%= link_to 'Back to playlist', playlist_path(@playlist) %>
+</center>	
