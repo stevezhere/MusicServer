@@ -9,7 +9,7 @@
 	<%= react_component 'PlaylistDescription', { playlist: @playlist } %>
 </center>
 <br/>
-<b>Created By: <%= @playlist.user.username %></b	>
+<b>Created By: <%= link_to @playlist.user.username, user_path(@playlist.user) %></b>
 <div class='container playerDiv'>
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3 titleContainer">
