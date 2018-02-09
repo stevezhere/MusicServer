@@ -20,9 +20,15 @@ class MusicsController < ApplicationController
   def create
     @music = Music.new(music_params)
     if @music.save && @music.find_path_validation
-      redirect_to @music, :flash => { :notice => "#{@music.title} Successfully Stored"}
+      respond_to do |format|
+        format.html { redirect_to @music, :flash => {:notice => "#{@music.title} Successfully Stored"} }
+        format.json { render json: @music }
+      end
     else
-      redirect_to new_music_path, :flash => { :alert => 'Song cannot be saved'}
+      respond_to do |format|
+        format.html { redirect_to new_music_path, :flash => { :alert => @music.errors.full_messages} }
+        format.json { render json: @music.errors.full_messages, status: 422 }
+      end
     end      
   end
 

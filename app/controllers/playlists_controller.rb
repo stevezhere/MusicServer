@@ -10,10 +10,10 @@ class PlaylistsController < ApplicationController
 				@musics = @playlist.musics.ordered
 				render 'show'
 			else
-				redirect_to user_path(current_user), flash: {alert: 'Unauthorized access'}
+				redirect_back(fallback_location: user_path(current_user), flash: {alert: 'Unauthorized access'}) 
 			end
 		else
-			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
+			redirect_back(fallback_location: user_path(current_user), flash: {notice: 'Playlist Not Found'}) 
 		end
 	end
 
@@ -24,10 +24,10 @@ class PlaylistsController < ApplicationController
 				@new_musics = Music.all_except(@musics).order(:title)
 				render 'edit'
 			else
-				redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
+				redirect_back(fallback_location: user_path(current_user), flash: {alert: 'Unauthorized access'}) 
 			end
 		else
-			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
+			redirect_back(fallback_location: user_path(current_user), flash: {notice: 'Playlist Not Found'}) 
 		end
 	end
 
@@ -67,7 +67,7 @@ class PlaylistsController < ApplicationController
 		else
 			respond_to do |format|
 				format.html { 
-					redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'} 
+					redirect_back(fallback_location: user_path(current_user), flash: {notice: 'Playlist Not Found'}) 
 				}
 				format.json { render json: 'Playlist Not Found', status: 404 } 
 			end
@@ -80,10 +80,10 @@ class PlaylistsController < ApplicationController
 				playlist.destroy
 				redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
 			else
-				redirect_to user_path(current_user), flash: {alert: 'Unauthorized Access'}
+				redirect_back(fallback_location: user_path(current_user), flash: {alert: 'Unauthorized access'}) 
 			end
 		else
-			redirect_to user_path(current_user), flash: {notice: 'Playlist Not Found'}
+			redirect_back(fallback_location: user_path(current_user), flash: {notice: 'Playlist Not Found'}) 
 		end
 	end
 
