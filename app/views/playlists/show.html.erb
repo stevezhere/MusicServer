@@ -46,13 +46,3 @@
 		<% end %>
 	</ol>
 <!-- </div> -->
-<footer class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
-  <div class="container">
-    <ul class="nav nav-pills">
-			 <li role="presentation"><%= link_to "Public Playlist", playlists_path %></li>
-			 <% if current_user %>
-			 	<li role="presentation"><%= link_to "My Playlist", user_path(current_user) %></li>
-			 <% end %>
-		</ul>
-  </div>
-</footer>
