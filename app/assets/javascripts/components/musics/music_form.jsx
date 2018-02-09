@@ -49,12 +49,13 @@ class MusicForm extends React.Component {
 
 	newForm() {
 		return(
-			<div>
+			<div title="Only Users may Add Music">
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" name="music[title]" 
 						placeholder='SongTitle'/>
 					<input type="file" name="music[audio]" id="music_audio"/>
-					<input type="submit" value="Store Music"/>
+					<input type="submit" value="Store Music" 
+						className={`isDisabled-${this.props.guest}`}/>
 					<button onClick={this.handleToggle}>Cancel</button>
 				</form>
 			</div>

@@ -1,7 +1,7 @@
 class Musics extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {musics: this.props.musics};
+		this.state = {musics: this.props.musics, guest: this.props.guest};
 		this.addMusic = this.addMusic.bind(this);
 	}
 
@@ -31,7 +31,7 @@ class Musics extends React.Component {
 			<div>
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
-				<MusicForm handleNewMusic={this.addMusic}/>
+				<MusicForm handleNewMusic={this.addMusic} guest={this.state.guest}/>
 				<h2>Musics in storage folder</h2>
 				<ul className='songList'>
 					{this.state.musics.map( (music) =>
@@ -47,4 +47,4 @@ class Musics extends React.Component {
 	}
 }
 
-Musics.defaultProps = { musics: [] };
+Musics.defaultProps = { musics: [], guest: true };
