@@ -35,7 +35,7 @@ class Musics extends React.Component {
 				<h2>Musics in storage folder</h2>
 				<ul className='songList'>
 					{this.state.musics.map( (music) =>
-						<li>
+						<li key={music.id}>
 							<a href={`/musics/${music.id}`}>
 								{music.title}
 							</a>
