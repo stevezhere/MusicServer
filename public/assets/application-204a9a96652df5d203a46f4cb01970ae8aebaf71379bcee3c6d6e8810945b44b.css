@@ -8897,11 +8897,6 @@ h1 {
   opacity: 0.9;
 }
 
-/* line 90, /home/stevezhere/Dropbox/sideProject/MusicServer/app/assets/stylesheets/application.css.scss */
-#remove-song {
-  opacity: 0.85;
-}
-
 /* line 93, /home/stevezhere/Dropbox/sideProject/MusicServer/app/assets/stylesheets/application.css.scss */
 audio {
   display: block;
