@@ -3,7 +3,7 @@ class SongEntriesController < ApplicationController
 	def create
 		if song_entry_params[:entry_ids]
 			add_songs = []
-			song_ids = song_entry_params[:entry_ids].map{|song_id| song_id.to_i}
+			song_ids = song_entry_params[:entry_ids].map(&:to_i)
 			song_ids.each do |song|
 				entry = SongEntry.new({playlist_id: params[:playlist_id], music_id: song})
 				add_songs << entry.music.id if entry.save
@@ -20,7 +20,7 @@ class SongEntriesController < ApplicationController
 	def destroy
 		if song_entry_params[:entry_ids]
 			remove_songs = []
-			song_ids = song_entry_params[:entry_ids].map{|song_id| song_id.to_i}
+			song_ids = song_entry_params[:entry_ids].map(&:to_i)
 			song_ids.each do |song|
 				entry = SongEntry.find_by(playlist_id: params[:playlist_id], music_id: song)
 				if entry
