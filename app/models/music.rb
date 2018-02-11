@@ -30,8 +30,8 @@ class Music < ActiveRecord::Base
 		end
 	end
 
-	def self.all_except(playlist)
-		song_id = playlist.map{|song| song.id}
+	def self.all_except(musics)
+		song_id = musics.map(&:id)
 		where.not(id: song_id)
 	end
 
