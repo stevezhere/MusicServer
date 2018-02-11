@@ -1,30 +1,3 @@
 <h1> Your Song Request ....</h1>
 <br/><br/>
-<div class='container playerDiv'>
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3 titleContainer">
-			<h2 class="songTitle"><%= @music.title %></h2>
-		</div> <!-- TitleContainerDiv -->
-	</div> <!-- TitleContainer Row -->
-	<div class="row trackButtonsRow">
-		<div class="col-xs-1 col-xs-offset-4">
-			<button id='previous' style="opacity: 0.5;" disabled><%= image_tag('rewind.png', size: '15') %></button>
-		</div> <!-- PreviousButtonDiv -->
-		<div class="col-xs-1 col-xs-offset-2">
-			<button id='next' style="opacity: 0.5;" disabled><%= image_tag('fast-forward.png', size: '15') %></button>
-		</div> <!-- NextButtonDiv -->			
-	</div> <!-- TrackButtonRow -->
-	<div class="row audioRow">
-		<div class="col-xs-4 col-xs-offset-3">
-			<audio id='audioPlayer' controls loop>
-				<%= render 'stream', music: @music %>
-			</audio>
-		</div> <!-- AudioDiv -->
-	</div>	<!-- AudioRow -->
-	<div class="row">
-		<div class="col-xs-10 col-xs-offset-2" title="Only Users may Delete Music">
-			<%= link_to(image_tag("trash-bin.png", size: "20"), music_path(@music), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-default isDisabled-#{isSessionGuest?}", id: "remove-song") %>
-		</div> <!-- TrashDiv -->
-	</div> <!-- TrashRow -->
-</div> <!-- PlayerDiv -->
-<br/>
+<%= render 'audioPlayer', {musics: @musics, disableButton: @musics.empty?} %>

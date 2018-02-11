@@ -5,7 +5,12 @@
 	<h2>Musics in storage folder</h2>
 	<ul class='songList'>
 		<% @musics.each do |music| %>
-			<li><%= link_to music.title, music_path(music)  %></li>
+			<li>
+				<%= link_to music.title, music_path(music)  %>
+				<%= form_for( music, method: :delete, html: {style: 'display:inline'} ) do |f| %>
+				  <%= image_submit_tag("trash-bin.png", size: "18", class: "isDisabled-#{isSessionGuest?}") %>
+				<% end %>
+			</li>
 		<% end %>
 	</ul>
 </noscript>

@@ -6,7 +6,7 @@ class MusicsController < ApplicationController
   end
 
   def show
-    if @music = Music.find_by_id(params[:id])
+    if @musics = Music.where(id: params[:id])
       render 'show'
     else
       redirect_to '/', :flash => { :notice => "Song Cannot be found"}
@@ -34,20 +34,24 @@ class MusicsController < ApplicationController
 
   def destroy
     if music = Music.find_by_id(params[:id])
-      music.destroy
-      redirect_to '/', :flash => { :notice => "#{music.title} Successfully Removed"}
+      remove_song = music.destroy
+      respond_to do |format|
+        format.html { redirect_to '/', :flash => { :notice => "#{music.title} Successfully Removed"} }
+        format.json { render json: remove_song}
+      end
     else
-      redirect_to '/', :flash => { :alert => "Unknown error occured"}
+      respond_to do |format|
+        format.html { redirect_to '/', :flash => { :alert => "Music Not Found"} }
+        format.json { render json: "Music Not Found", status: 422 }
+      end
+      
     end
   end
 
   def search
     title = music_params[:title]
-    if @music = Music.find_by_title(title)
-      redirect_to @music, :flash => { :notice => "Song Found"}
-    else
-      redirect_to '/', :flash => { :alert => "Cannot find song, Check spelling"}
-    end
+    @musics = Music.where("title ILIKE ?", "%#{title}%").order(:title)
+    render 'show'
   end
 
   def stream

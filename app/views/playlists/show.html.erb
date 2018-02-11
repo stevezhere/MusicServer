@@ -10,40 +10,4 @@
 </center>
 <br/>
 <b>Created By: <%= link_to @playlist.user.username, user_path(@playlist.user) %></b>
-<div class='container playerDiv'>
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-3 titleContainer">
-			<h2 class=songTitle>
-				<%= "(0) EMPTY PLAYLIST" if @musics.empty? %>
-				<%= "(1) #{@musics.first.title}" unless @musics.empty? %>
-			</h2>
-		</div> <!-- TitleContainerDiv -->
-	</div> <!-- TitleContainer Row -->
-	<div class="row trackButtonsRow">
-		<div class="col-xs-1 col-xs-offset-4">
-				<button id='previous'><%= image_tag('rewind.png', size: '15') %></button>
-		</div> <!-- PreviousButtonDiv -->
-		<div class="col-xs-1 col-xs-offset-2">
-			<button id='next'><%= image_tag('fast-forward.png', size: '15') %></button>
-		</div> <!-- NextButtonDiv -->			
-	</div> <!-- TrackButtonRow -->
-	<div class="row audioRow">
-		<div class="col-xs-1 col-xs-offset-3">
-			<audio id='audioPlayer' controls>
-				<%= render '/musics/stream', music: @musics.first unless @musics.empty?%>
-			</audio>
-		</div> <!-- AudioDiv -->
-	</div>	<!-- AudioRow -->
-</div> <!-- PlayerDiv -->
-<br/>
-<!-- <div class='playlistContainer'> -->
-	<ol class='songList'>
-		<% if @musics.empty? %>
-			<li> "No Songs" </li>
-		<% else %>
-			<% @musics.each_with_index do |song, idx| %>
-				<li class="musicSource <%= idx %>">(<%= idx + 1%>) <%= link_to song.title, music_path(song) %></li>
-			<% end %>
-		<% end %>
-	</ol>
-<!-- </div> -->
+<%= render '/musics/audioPlayer', {musics: @musics, disableButton: @musics.empty?} %>

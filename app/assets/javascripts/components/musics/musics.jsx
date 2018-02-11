@@ -1,8 +1,10 @@
 class Musics extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {musics: this.props.musics, guest: this.props.guest};
+		this.state = {musics: this.props.musics, toggle: false};
 		this.addMusic = this.addMusic.bind(this);
+		this.deleteMusic = this.deleteMusic.bind(this);
+		this.handleToggle = this.handleToggle.bind(this);
 	}
 
 	sortList(list) {
@@ -26,19 +28,44 @@ class Musics extends React.Component {
 		this.setState({musics: musics});
 	}
 
+	deleteMusic(music) {
+		let musics = this.state.musics.slice();
+		let idx = musics.indexOf(music);
+		musics.splice(idx, 1);
+		this.setState({musics: musics});
+	}
+
+	handleToggle() {
+		this.setState({toggle: !this.state.toggle});
+	}
+
+	trashButton() {
+		if(this.state.toggle) {
+			return( "Which song would you like to Remove?" );
+		} else { 
+			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;	
+		}
+	}
+
 	render() {
 		return(
 			<div>
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
-				<MusicForm handleNewMusic={this.addMusic} guest={this.state.guest}/>
+				<div title="Only Users may Add/Delete Music">
+					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
+					<button onClick={this.handleToggle}> 
+						{this.trashButton()}
+					</button>
+				</div>
 				<h2>Musics in storage folder</h2>
 				<ul className='songList'>
 					{this.state.musics.map( (music) =>
-						<li>
-							<a href={`/musics/${music.id}`}>
-								{music.title}
-							</a>
+						<li key={music.id}>
+							<MusicLink music={music} guest={this.props.guest} 
+								toggle={this.state.toggle}
+								handleDeleteMusic={this.deleteMusic} 
+								handleToggle={this.handleToggle} />
 						</li>
 					)}
 				</ul>
