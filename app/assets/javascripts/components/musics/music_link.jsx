@@ -19,14 +19,14 @@ class MusicLink extends React.Component {
 				},
 				success: () => {
 					this.props.handleDeleteMusic(this.props.music)
-					this.props.handleToggle();
+					this.props.handleDeleteToggle();
 				}
 			}).fail( (r) => {
 				alert( r.responseText );
-				this.props.handleToggle();
+				this.props.handleDeleteToggle();
 			});
 		} else {
-			this.props.handleToggle();
+			this.props.handleDeleteToggle();
 		}    
 	}
 
@@ -42,7 +42,7 @@ class MusicLink extends React.Component {
 		return(
 			<a className={`isDisabled-${this.props.guest}`}
 				onClick={this.handleDelete}>
-					<b>{this.props.music.title}</b>
+					{this.props.music.title}
 			</a>
 		);
 	}
