@@ -4,7 +4,7 @@ class Musics extends React.Component {
 		this.state = {musics: this.props.musics, toggle: false};
 		this.addMusic = this.addMusic.bind(this);
 		this.deleteMusic = this.deleteMusic.bind(this);
-		this.handleToggle = this.handleToggle.bind(this);
+		this.handleDeleteToggle = this.handleDeleteToggle.bind(this);
 	}
 
 	sortList(list) {
@@ -35,7 +35,7 @@ class Musics extends React.Component {
 		this.setState({musics: musics});
 	}
 
-	handleToggle() {
+	handleDeleteToggle() {
 		this.setState({toggle: !this.state.toggle});
 	}
 
@@ -56,7 +56,7 @@ class Musics extends React.Component {
 				<br/>
 				<div title="Only Users may Add/Delete Music">
 					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
-					<button onClick={this.handleToggle}> 
+					<button onClick={this.handleDeleteToggle}> 
 						{this.trashButton()}
 					</button>
 				</div>
@@ -67,7 +67,7 @@ class Musics extends React.Component {
 							<MusicLink music={music} guest={this.props.guest} 
 								toggle={this.state.toggle}
 								handleDeleteMusic={this.deleteMusic} 
-								handleToggle={this.handleToggle} />
+								handleDeleteToggle={this.handleDeleteToggle} />
 						</li>
 					)}
 				</ul>
