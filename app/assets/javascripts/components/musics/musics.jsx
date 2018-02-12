@@ -1,7 +1,7 @@
 class Musics extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {musics: this.props.musics, toggle: false};
+		this.state = {musics: this.props.musics, deleteToggle: false};
 		this.addMusic = this.addMusic.bind(this);
 		this.deleteMusic = this.deleteMusic.bind(this);
 		this.handleDeleteToggle = this.handleDeleteToggle.bind(this);
@@ -36,11 +36,11 @@ class Musics extends React.Component {
 	}
 
 	handleDeleteToggle() {
-		this.setState({toggle: !this.state.toggle});
+		this.setState({deleteToggle: !this.state.deleteToggle});
 	}
 
 	trashButton() {
-		if(this.state.toggle) {
+		if(this.state.deleteToggle) {
 			return( "Which song would you like to Remove?" );
 		} else { 
 			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;	
@@ -65,7 +65,7 @@ class Musics extends React.Component {
 					{this.state.musics.map( (music, idx) =>
 						<li className={`musicSource ${idx}`} key={music.id}>
 							<MusicLink music={music} guest={this.props.guest} 
-								toggle={this.state.toggle}
+								toggle={this.state.deleteToggle}
 								handleDeleteMusic={this.deleteMusic} 
 								handleDeleteToggle={this.handleDeleteToggle} />
 						</li>
