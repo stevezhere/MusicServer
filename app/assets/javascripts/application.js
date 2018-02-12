@@ -41,7 +41,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
 	})
 
 	$('#next').on('click', function(){
@@ -53,7 +53,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
 	})	
 
 	$('#previous').on('click', function(){
@@ -66,7 +66,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
 	})	
 
 	$('.musicSource').on('click', function(){
@@ -78,7 +78,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $songLi.find('a').html();
-		$('h2').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
 	})
 
 	$('#search').on('keyup', function(){
