@@ -10,4 +10,4 @@
 </center>
 <br/>
 <b>Created By: <%= link_to @playlist.user.username, user_path(@playlist.user) %></b>
-<%= render '/musics/audioPlayer', {musics: @musics, disableButton: @musics.empty?} %>
+<%= render '/musics/audioPlayer', {musics: @musics, musicEmpty: @musics.empty?} %>
