@@ -2,6 +2,7 @@ class MusicLink extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleDelete = this.handleDelete.bind(this);
+		this.handleListAdd = this.handleListAdd.bind(this);
 	}
 
 	handleDelete(e) {
@@ -30,9 +31,22 @@ class MusicLink extends React.Component {
 		}    
 	}
 
+	handleListAdd(e) {
+		e.preventDefault();
+		this.props.handlePlaylistAdd(this.props.music);
+	}
+
 	displayLink() {
 		return(
 			<a href={`/musics/${this.props.music.id}`}>
+					{this.props.music.title}
+			</a>
+		);
+	}
+
+	addToListLink() {
+		return(
+			<a onClick={this.handleListAdd}>
 					{this.props.music.title}
 			</a>
 		);
@@ -48,7 +62,9 @@ class MusicLink extends React.Component {
 	}
 
 	render() {
-		if(this.props.toggle) {
+		if(this.props.playlistToggle) {
+			return this.addToListLink();
+		} else if (this.props.deleteToggle) {
 			return this.destroyLink();
 		} else {
 			return this.displayLink();
