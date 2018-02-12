@@ -57,3 +57,4 @@ class AudioPlayer extends React.Component {
 	}
 }
 
+AudioPlayer.defaultProps = { musics: [], musicEmpty: true };
