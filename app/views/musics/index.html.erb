@@ -1,7 +1,7 @@
 <noscript>
 	<h1> Local Music Server Homepage </h1>
 	<br/><br/>
-	<%= link_to "Add Songs", new_music_path, class: "btn btn-default" %>
+	<%= render 'new' %>
 	<h2>Musics in storage folder</h2>
 	<ul class='songList'>
 		<% @musics.each do |music| %>
