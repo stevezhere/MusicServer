@@ -64,9 +64,17 @@ class Musics extends React.Component {
 
 	trashButton() {
 		if(this.state.deleteToggle) {
-			return( "Which song would you like to Remove?" );
+			return "Which song would you like to Remove?";
 		} else { 
 			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;	
+		}
+	}
+
+	playlistButton() {
+		if(this.state.playlistToggle) {
+			return <button onClick={this.handlePlaylistToggle}>Choose Song or Click to Cancel</button>
+		} else {
+			return <button onClick={this.handlePlaylistToggle}>Create/Edit Temp Playlist</button>
 		}
 	}
 
@@ -79,10 +87,10 @@ class Musics extends React.Component {
 	}
 
 	showPlaylist() {
-		debugger;
-		if(this.state.playlistToggle) {
+		if(this.state.tempPlaylist.length || this.state.playlistToggle) {
 			return(
 				<div>
+					<hr/>
 					<h2>Temp Playlist</h2>
 					<ol>
 						{this.state.tempPlaylist.map( (music) =>
@@ -102,9 +110,8 @@ class Musics extends React.Component {
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
 				<AudioPlayer musics={this.streamMusic()} musicEmpty={!this.state.musics.length}/>
-				{this.showPlaylist()}
 				<center>
-					<button onClick={this.handlePlaylistToggle}>Create Temp Playlist</button>
+					{this.playlistButton()}
 				</center>
 				<div title="Only Users may Add/Delete Music">
 					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
@@ -125,6 +132,7 @@ class Musics extends React.Component {
 						</li>
 					)}
 				</ul>
+				{this.showPlaylist()}
 			</div>
 		);
 	}
