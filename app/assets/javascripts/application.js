@@ -28,9 +28,7 @@ function main(){
 			aTags => 
 				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
 		);
-	let currentSong;
-	let index = 0;
-	let title;
+	let currentSong, title, index = 0;
 
 	$audio.on('ended', function(){
 		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
@@ -41,7 +39,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text(title);
 	})
 
 	$('#next').on('click', function(){
@@ -53,20 +51,19 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text(title);
 	})	
 
 	$('#previous').on('click', function(){
 		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
-		index = (index - 1) % srcArr.length
-		if (index < 0){ index = 2 }
+		index = index < 1 ? (srcArr.length - 1) : (index - 1)
 		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
 			audio.pause();
 			audio.load();
 			audio.play();
 		title = $('.songList li a')[index].text;
-		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text(title);
 	})	
 
 	$('.musicSource').on('click', function(){
@@ -78,7 +75,7 @@ function main(){
 			audio.load();
 			audio.play();
 		title = $songLi.find('a').html();
-		$('h2.songTitle').text('(' + (index+1) + ') ' + title);
+		$('h2.songTitle').text(title);
 	})
 
 	$('#search').on('keyup', function(){
