@@ -52,6 +52,8 @@ class Musics extends React.Component {
 			<div>
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
+				<AudioPlayer musics={this.state.musics} musicEmpty={!this.state.musics.length}/>
+				<br/>
 				<div title="Only Users may Add/Delete Music">
 					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
 					<button onClick={this.handleToggle}> 
@@ -60,8 +62,8 @@ class Musics extends React.Component {
 				</div>
 				<h2>Musics in storage folder</h2>
 				<ul className='songList'>
-					{this.state.musics.map( (music) =>
-						<li key={music.id}>
+					{this.state.musics.map( (music, idx) =>
+						<li className={`musicSource ${idx}`} key={music.id}>
 							<MusicLink music={music} guest={this.props.guest} 
 								toggle={this.state.toggle}
 								handleDeleteMusic={this.deleteMusic} 

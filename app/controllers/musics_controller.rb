@@ -3,6 +3,7 @@ class MusicsController < ApplicationController
 	# require "base64"
   def index
     @musics = Music.all.order(:title)
+    @music = Music.new()
   end
 
   def show
@@ -11,10 +12,6 @@ class MusicsController < ApplicationController
     else
       redirect_to '/', :flash => { :notice => "Song Cannot be found"}
     end
-  end
-
-  def new
-    @music = Music.new()
   end
 
   def create
