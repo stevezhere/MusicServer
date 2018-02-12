@@ -1,24 +1,24 @@
 <div class='container playerDiv'>
 	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3 titleContainer">
-			<h2 class=songTitle>
-				<%= "(0) EMPTY SONGList" if musics.empty? %>
-				<%= "(1) #{musics.first.title}" unless musics.empty? %>
+			<h2 class="songTitle">
+				<%= "(0) EMPTY SONGLIST" if musicEmpty %>
+				<%= "(1) #{musics.first.title}" unless musicEmpty %>
 			</h2>
 		</div> <!-- TitleContainerDiv -->
 	</div> <!-- TitleContainer Row -->
 	<div class="row trackButtonsRow">
 		<div class="col-xs-1 col-xs-offset-4">
-				<button id='previous' class="isDisabled-<%=disableButton%>"><%= image_tag('rewind.png', size: '15') %></button>
+				<button id='previous' class="isDisabled-<%=musicEmpty%>"><%= image_tag('rewind.png', size: '15') %></button>
 		</div> <!-- PreviousButtonDiv -->
 		<div class="col-xs-1 col-xs-offset-2">
-			<button id='next' class="isDisabled-<%=disableButton%>"><%= image_tag('fast-forward.png', size: '15') %></button>
+			<button id='next' class="isDisabled-<%=musicEmpty%>"><%= image_tag('fast-forward.png', size: '15') %></button>
 		</div> <!-- NextButtonDiv -->			
 	</div> <!-- TrackButtonRow -->
 	<div class="row audioRow">
 		<div class="col-xs-1 col-xs-offset-3">
 			<audio id='audioPlayer' controls>
-				<source src="<%= stream_musics_path(musics.first) unless musics.empty?%>">
+				<source src="<%= stream_musics_path(musics.first) unless musicEmpty%>">
 			</audio>
 		</div> <!-- AudioDiv -->
 	</div>	<!-- AudioRow -->
@@ -26,7 +26,7 @@
 <br/>
 <!-- <div class='playlistContainer'> -->
 	<ol class='songList'>
-		<% if musics.empty? %>
+		<% if musicEmpty %>
 			<li> "No Songs Available" </li>
 		<% else %>
 			<% musics.each_with_index do |song, idx| %>
