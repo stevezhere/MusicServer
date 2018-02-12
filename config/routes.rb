@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :musics, except: [:new, :edit, :update] do 
   	collection do
-  		# get :search
+  		get :search
       get '/:id/stream', to: 'musics#stream', as: 'stream'
   	end
   end
