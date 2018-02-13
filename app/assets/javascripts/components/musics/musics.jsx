@@ -66,7 +66,7 @@ class Musics extends React.Component {
 		if(this.state.deleteToggle) {
 			return "Which song would you like to Remove?";
 		} else { 
-			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;	
+			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;
 		}
 	}
 
@@ -96,7 +96,7 @@ class Musics extends React.Component {
 					<ol className='songList'>
 						{this.state.tempPlaylist.map( (music) =>
 							//li will need .musicSource after rendered
-							<li class={music.id} key={music.id}>
+							<li className={music.id} key={music.id}>
 								<a href={`/musics/${music.id}`}>
 									{music.title}
 								</a>
