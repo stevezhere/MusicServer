@@ -43,7 +43,7 @@ class PlaylistChecklistForm extends React.Component {
 		let action = (this.props.method === 'DELETE') ? 'Remove from' : 'Add to';
 		return(
 			<form onSubmit={this.handleSubmit}>
-				<ul className='songList'>
+				<ul className='searchableList'>
 					{ this.props.songs.map( (song) =>
 						<li key={song.id}>
 							<input type="checkbox" value={song.id} onChange={this.handleChange} />
