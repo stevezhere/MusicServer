@@ -30,7 +30,7 @@
 			<li> "No Songs Available" </li>
 		<% else %>
 			<% musics.each_with_index do |song, idx| %>
-				<li class="musicSource <%= idx %>">(<%= idx + 1 %>)<%= link_to song.title, music_path(song) %></li>
+				<li class="musicSource source-<%= song.id %>">(<%= idx + 1 %>)<%= link_to song.title, music_path(song) %></li>
 			<% end %>
 		<% end %>
 	</ol>
