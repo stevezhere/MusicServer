@@ -112,9 +112,8 @@ class Musics extends React.Component {
 				</div>
 				<h2>Musics in storage folder</h2>
 				<ul className={this.listClass()}>
-					{this.state.musics.map( (music, idx) =>
-						// li will need remove .musicSource
-						<li className={`musicSource ${idx}`} key={music.id}>
+					{this.state.musics.map( (music) =>
+						<li className={`musicSource source-${music.id}`} key={music.id}>
 							<MusicLink music={music} guest={this.props.guest} 
 								deleteToggle={this.state.deleteToggle}
 								handleDeleteMusic={this.deleteMusic} 

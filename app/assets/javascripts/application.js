@@ -23,61 +23,58 @@
 function main(){
 	const $audio = $('#audioPlayer');
 	const audio = $audio.get(0);
+	let currentSong, nextSong, title, index = 0;
+	let srcArr = [], srcText = {};
 	const cacheSongList =  () => {
+		srcArr = [], srcText = {};
 		document.querySelectorAll('.songList li.musicSource a').forEach(
-			aTags => 
-				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
+			(aTag) => {
+				srcId = aTag.getAttribute('href').match(/\d+$/)[0];
+				srcArr.push(srcId);
+				srcText[srcId] = aTag.text;
+			}
 		);
 	};
-	let currentSong, title, index = 0, srcArr = [];
+	const audioReload = (nextSong) => {
+		$audio.find('source').attr('src', `/musics/${nextSong}/stream`);
+			audio.pause();
+			audio.load();
+			audio.play();
+		title = srcText[nextSong];
+		$('h2.songTitle').text(title);
+	};
+	
 	cacheSongList();
 
 	$audio.on('ended', function(){
-		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
-		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
-			audio.pause();
-			audio.load();
-			audio.play();
-		title = $('.songList li a')[index].text;
-		$('h2.songTitle').text(title);
+		nextSong = srcArr[index];
+		audioReload(nextSong);
 	})
 
 	$('#next').on('click', function(){
-		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
-		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
-			audio.pause();
-			audio.load();
-			audio.play();
-		title = $('.songList li a')[index].text;
-		$('h2.songTitle').text(title);
+		nextSong = srcArr[index]
+		audioReload(nextSong);
 	})	
 
 	$('#previous').on('click', function(){
-		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
+		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = index < 1 ? (srcArr.length - 1) : (index - 1)
-		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
-			audio.pause();
-			audio.load();
-			audio.play();
-		title = $('.songList li a')[index].text;
-		$('h2.songTitle').text(title);
+		nextSong = srcArr[index]
+		audioReload(nextSong);
 	})	
 
 	$('.musicSource').on('click', function(){
 		event.preventDefault();
 		let $songLi = $(this)
-		index = parseInt($songLi.attr('class').match(/\d+/)[0])
-		$audio.find('source').attr('src', '/musics/'+srcArr[index]+'/stream');
-			audio.pause();
-			audio.load();
-			audio.play();
-		title = $songLi.find('a').html();
-		$('h2.songTitle').text(title);
+		nextSong = parseInt($songLi.attr('class').match(/source-(\d+)/)[1])
+		audioReload(nextSong);
 	})
 
 	$('#search').on('keyup', function(){
