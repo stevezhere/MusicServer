@@ -28,6 +28,14 @@ class Musics extends React.Component {
 		});
 	}
 
+	listClass() {
+		if(this.state.playlistToggle) {
+			return 'searchableList';
+		} else {
+			return 'songList searchableList';
+		}
+	}
+
 	addMusic(music) {
 		let musics = this.state.musics.slice();
 		musics.push(music);
@@ -79,41 +87,20 @@ class Musics extends React.Component {
 	}
 
 	//temp fix idea note => need to change className so jquery autoloads
-	streamMusic() {
-		if(this.state.playlistToggle) {
-			return this.state.tempPlaylist;
-		} else {
-			return this.state.musics;
-		}
-	}
-
-	showPlaylist() {
-		if(this.state.tempPlaylist.length || this.state.playlistToggle) {
-			return(
-				<div>
-					<hr/>
-					<h2>Temp Playlist</h2>
-					<ol className='songList searchableList'>
-						{this.state.tempPlaylist.map( (music, idx) =>
-							//li will need .musicSource after rendered
-							<li className={`musicSource ${idx}`} key={music.id}>
-								<a href={`/musics/${music.id}`}>
-									{music.title}
-								</a>
-							</li>	
-						)}
-					</ol>
-				</div>
-			)
-		}
-	}
+	// streamMusic() {
+	// 	if(this.state.playlistToggle) {
+	// 		return this.state.tempPlaylist;
+	// 	} else {
+	// 		return this.state.musics;
+	// 	}
+	// }
 
 	render() {
 		return(
 			<div>
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
-				<AudioPlayer musics={this.streamMusic()} musicEmpty={!this.state.musics.length}/>
+				<AudioPlayer musics={this.state.musics} musicEmpty={!this.state.musics.length}/>
 				<center>
 					{this.playlistButton()}
 				</center>
@@ -124,7 +111,7 @@ class Musics extends React.Component {
 					</button>
 				</div>
 				<h2>Musics in storage folder</h2>
-				<ul className='songList searchableList'>
+				<ul className={this.listClass()}>
 					{this.state.musics.map( (music, idx) =>
 						// li will need remove .musicSource
 						<li className={`musicSource ${idx}`} key={music.id}>
@@ -137,7 +124,7 @@ class Musics extends React.Component {
 						</li>
 					)}
 				</ul>
-				{this.showPlaylist()}
+				<TempPlaylist musics={this.state.tempPlaylist} playable={this.state.playlistToggle}/>
 			</div>
 		);
 	}
