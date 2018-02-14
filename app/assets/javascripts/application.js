@@ -35,7 +35,7 @@ function main(){
 			}
 		);
 	};
-	const audioReload = (nextSong) => {
+	const audioReload = () => {
 		$audio.find('source').attr('src', `/musics/${nextSong}/stream`);
 			audio.pause();
 			audio.load();
@@ -51,30 +51,30 @@ function main(){
 		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
 		nextSong = srcArr[index];
-		audioReload(nextSong);
+		audioReload();
 	})
 
 	$('#next').on('click', function(){
 		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
-		nextSong = srcArr[index]
-		audioReload(nextSong);
+		nextSong = srcArr[index];
+		audioReload();
 	})	
 
 	$('#previous').on('click', function(){
 		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
-		index = index < 1 ? (srcArr.length - 1) : (index - 1)
-		nextSong = srcArr[index]
-		audioReload(nextSong);
+		index = index < 1 ? (srcArr.length - 1) : (index - 1);
+		nextSong = srcArr[index];
+		audioReload();
 	})	
 
 	$('.musicSource').on('click', function(){
 		event.preventDefault();
-		let $songLi = $(this)
-		nextSong = parseInt($songLi.attr('class').match(/source-(\d+)/)[1])
-		audioReload(nextSong);
+		let $songLi = $(this);
+		nextSong = $songLi.attr('class').match(/source-(\d+)/)[1];
+		audioReload();
 	})
 
 	$('#search').on('keyup', function(){
