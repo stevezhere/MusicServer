@@ -158,7 +158,11 @@ audio {
 	}
 }
 
-audio:hover, #previous:hover, #next:hover, .isDisabled-false:hover{
+audio, #previous, #next, #cacheSong {
+	opacity: 0.8;
+}
+
+audio:hover, #previous:hover, #next:hover, #cacheSong:hover, .isDisabled-false:hover{
 	-webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
 	-moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
 	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
@@ -169,7 +173,7 @@ audio:hover, #previous:hover, #next:hover, .isDisabled-false:hover{
 	-moz-transition:all 0.5s linear;
 	-o-transition:all 0.5s linear;
 	transition:all 0.5s linear;
-	opacity: 0.8;
+	opacity: 0.9;
 }
 
 .titleContainer {

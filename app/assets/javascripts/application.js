@@ -77,6 +77,10 @@ function main(){
 		audioReload();
 	})
 
+	$('#cacheSong').on('click', function(){
+		cacheSongList();
+	})
+
 	$('#search').on('keyup', function(){
 		let $form = $(this);
 		let search = $form.find("input[name='music[title]']").val().toLowerCase();
