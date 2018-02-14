@@ -23,12 +23,14 @@
 function main(){
 	const $audio = $('#audioPlayer');
 	const audio = $audio.get(0);
-	let srcArr = [];
+	const cacheSongList =  () => {
 		document.querySelectorAll('.songList li.musicSource a').forEach(
 			aTags => 
 				srcArr.push(aTags.getAttribute('href').match(/\d+$/)[0])
 		);
-	let currentSong, title, index = 0;
+	};
+	let currentSong, title, index = 0, srcArr = [];
+	cacheSongList();
 
 	$audio.on('ended', function(){
 		currentSong = $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
@@ -81,8 +83,8 @@ function main(){
 	$('#search').on('keyup', function(){
 		let $form = $(this);
 		let search = $form.find("input[name='music[title]']").val().toLowerCase();
-		$('.songList').find('.highlight').removeClass('highlight');
-		document.querySelectorAll('.songList li').forEach((liTag) => {
+		$('.searchableList').find('.highlight').removeClass('highlight');
+		document.querySelectorAll('.searchableList li').forEach((liTag) => {
 			if ($(liTag).text().toLowerCase().includes(search)){
 				liTag.classList.add('highlight');
 			}
@@ -90,7 +92,7 @@ function main(){
 	})
 
 	$('#search').on('focusout', function(){
-		$('.songList').find('.highlight').removeClass('highlight');
+		$('.searchableList').find('.highlight').removeClass('highlight');
 	})
 }
 
