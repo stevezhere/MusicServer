@@ -8842,7 +8842,7 @@ h1 {
 }
 
 /* line 49, /home/stevezhere/Dropbox/sideProject/MusicServer/app/assets/stylesheets/application.css.scss */
-.songList {
+.searchableList {
   columns: 2;
   list-style-image: url("musicNote.gif");
   list-style-position: inside;
