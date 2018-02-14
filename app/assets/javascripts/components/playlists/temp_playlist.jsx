@@ -14,8 +14,8 @@ class TempPlaylist extends React.Component {
 					<hr/>
 					<h2>Temporary Playlist</h2>
 					<ol className={this.listClass()}>
-						{this.props.musics.map( (music, idx) =>
-							<li className={`musicSource ${idx}`} key={music.id}>
+						{this.props.musics.map( (music) =>
+							<li className={`musicSource source-${music.id}`} key={music.id}>
 								<a href={`/musics/${music.id}`}>
 									{music.title}
 								</a>
