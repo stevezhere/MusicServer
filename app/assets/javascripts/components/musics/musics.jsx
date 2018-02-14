@@ -80,7 +80,7 @@ class Musics extends React.Component {
 
 	//temp fix idea note => need to change className so jquery autoloads
 	streamMusic() {
-		if(this.playlistToggle) {
+		if(this.state.playlistToggle) {
 			return this.state.tempPlaylist;
 		} else {
 			return this.state.musics;
@@ -93,10 +93,10 @@ class Musics extends React.Component {
 				<div>
 					<hr/>
 					<h2>Temp Playlist</h2>
-					<ol className='songList'>
-						{this.state.tempPlaylist.map( (music) =>
+					<ol className='songList searchableList'>
+						{this.state.tempPlaylist.map( (music, idx) =>
 							//li will need .musicSource after rendered
-							<li className={music.id} key={music.id}>
+							<li className={`musicSource ${idx}`} key={music.id}>
 								<a href={`/musics/${music.id}`}>
 									{music.title}
 								</a>
