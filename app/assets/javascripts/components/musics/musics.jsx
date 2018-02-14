@@ -124,7 +124,7 @@ class Musics extends React.Component {
 					</button>
 				</div>
 				<h2>Musics in storage folder</h2>
-				<ul className='songList'>
+				<ul className='songList searchableList'>
 					{this.state.musics.map( (music, idx) =>
 						// li will need remove .musicSource
 						<li className={`musicSource ${idx}`} key={music.id}>
