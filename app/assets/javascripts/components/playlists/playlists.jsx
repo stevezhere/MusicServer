@@ -21,7 +21,7 @@ class Playlists extends React.Component {
 		return(
 			<div>
 				<h2>Playlist:</h2>
-				<ul className='songList'>
+				<ul className='searchableList'>
 					{ this.state.playlists.map( (playlist) => 
 						<li key={playlist.id}> 
 							<a href={`/playlists/${playlist.id}`}>

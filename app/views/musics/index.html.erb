@@ -3,7 +3,7 @@
 	<br/><br/>
 	<%= render 'new' %>
 	<h2>Musics in storage folder</h2>
-	<ul class='songList'>
+	<ul class='searchableList'>
 		<% @musics.each do |music| %>
 			<li>
 				<%= link_to music.title, music_path(music)  %>

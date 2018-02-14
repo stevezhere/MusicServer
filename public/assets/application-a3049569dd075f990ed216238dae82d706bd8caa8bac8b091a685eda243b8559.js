@@ -14633,8 +14633,8 @@ function main(){
 	$('#search').on('keyup', function(){
 		var $form = $(this);
 		var search = $form.find("input[name='music[title]']").val().toLowerCase();
-		$('.songList').find('.highlight').removeClass('highlight');
-		document.querySelectorAll('.songList li').forEach((liTag) => {
+		$('.searchableList').find('.highlight').removeClass('highlight');
+		document.querySelectorAll('.searchableList li').forEach((liTag) => {
 			if ($(liTag).text().toLowerCase().includes(search)){
 				liTag.classList.add('highlight');
 			}
@@ -14642,7 +14642,7 @@ function main(){
 	})
 
 	$('#search').on('focusout', function(){
-		$('.songList').find('.highlight').removeClass('highlight');
+		$('.searchableList').find('.highlight').removeClass('highlight');
 	})
 }
 
