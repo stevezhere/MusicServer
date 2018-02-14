@@ -3,13 +3,13 @@ class AudioPlayer extends React.Component {
 		if(this.props.musicEmpty) {
 			return "EMPTY SONGLIST";
 		} else {
-			return this.props.musics[0].title;
+			return this.props.music.title;
 		}
 	}
 
 	musicStream() {
 		if(!this.props.musicEmpty) {
-			return `/musics/${this.props.musics[0].id}/stream`;
+			return `/musics/${this.props.music.id}/stream`;
 		} else {
 			return "";
 		}

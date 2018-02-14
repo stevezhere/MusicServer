@@ -52,7 +52,7 @@ class Musics extends React.Component {
 			<div>
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
-				<AudioPlayer musics={this.state.musics} musicEmpty={!this.state.musics.length}/>
+				<AudioPlayer music={this.state.musics[0]} musicEmpty={!this.state.musics.length}/>
 				<br/>
 				<div title="Only Users may Add/Delete Music">
 					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
