@@ -46,11 +46,11 @@ class MusicLink extends React.Component {
 
 	addToListLink() {
 		return(
-		<span title="Choose song for Playlist">
-			<a onClick={this.handleListAdd}>
-					{this.props.music.title}
-			</a>
-		</span>
+			<span title="Choose song for Playlist">
+				<a onClick={this.handleListAdd}>
+						{this.props.music.title}
+				</a>
+			</span>
 		);
 	}
 
