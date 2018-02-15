@@ -10,6 +10,7 @@ class Musics extends React.Component {
 		this.addMusic = this.addMusic.bind(this);
 		this.deleteMusic = this.deleteMusic.bind(this);
 		this.addToPlaylist = this.addToPlaylist.bind(this);
+		this.removeFromPlaylist = this.removeFromPlaylist.bind(this);
 		this.handleDeleteToggle = this.handleDeleteToggle.bind(this);
 		this.handlePlaylistToggle = this.handlePlaylistToggle.bind(this);
 	}
@@ -26,14 +27,6 @@ class Musics extends React.Component {
   			return 0;
   		}
 		});
-	}
-
-	listClass() {
-		if(this.state.playlistToggle) {
-			return 'searchableList';
-		} else {
-			return 'songList searchableList';
-		}
 	}
 
 	addMusic(music) {
@@ -57,17 +50,35 @@ class Musics extends React.Component {
 		});
 	}
 
+	handlePlaylistToggle() {
+		this.setState({
+			playlistToggle: !this.state.playlistToggle,
+			deleteToggle: false
+		});
+	}
+
 	addToPlaylist(music) {
 		let tempPlaylist = this.state.tempPlaylist.slice();
 		tempPlaylist.push(music);
 		this.setState({tempPlaylist: tempPlaylist});
 	}
 
-	handlePlaylistToggle() {
-		this.setState({
-			playlistToggle: !this.state.playlistToggle,
-			deleteToggle: false
-		});
+	removeFromPlaylist(musicIdx) {
+		let tempPlaylist = this.state.tempPlaylist.slice();
+		tempPlaylist.splice(musicIdx, 1);
+		this.setState({tempPlaylist: tempPlaylist});
+	} 
+
+	activeClass() {
+		let activeClass = {};
+		if(this.state.playlistToggle) {
+			activeClass['songList'] = 'searchableList';
+			activeClass['activeList'] = '';
+		} else {
+			activeClass['songList'] = 'songList searchableList';
+			activeClass['activeList'] = 'activeList';
+		}
+		return activeClass;
 	}
 
 	trashButton() {
@@ -80,20 +91,11 @@ class Musics extends React.Component {
 
 	playlistButton() {
 		if(this.state.playlistToggle) {
-			return <button onClick={this.handlePlaylistToggle}>Choose Song or Click to Cancel</button>
+			return <button onClick={this.handlePlaylistToggle}>Queue: Musics in Storage</button>
 		} else {
-			return <button onClick={this.handlePlaylistToggle}>Create/Edit Temp Playlist</button>
+			return <button onClick={this.handlePlaylistToggle}>Queue: Temp Playlist</button>
 		}
 	}
-
-	//temp fix idea note => need to change className so jquery autoloads
-	// streamMusic() {
-	// 	if(this.state.playlistToggle) {
-	// 		return this.state.tempPlaylist;
-	// 	} else {
-	// 		return this.state.musics;
-	// 	}
-	// }
 
 	render() {
 		return(
@@ -110,8 +112,8 @@ class Musics extends React.Component {
 						{this.trashButton()}
 					</button>
 				</div>
-				<h2>Musics in storage folder</h2>
-				<ul className={this.listClass()}>
+				<h2 className={this.activeClass()['activeList']}>Musics in storage folder</h2>
+				<ul className={this.activeClass()['songList']}>
 					{this.state.musics.map( (music) =>
 						<li className={`musicSource source-${music.id}`} key={music.id}>
 							<MusicLink music={music} guest={this.props.guest} 
@@ -123,7 +125,9 @@ class Musics extends React.Component {
 						</li>
 					)}
 				</ul>
-				<TempPlaylist musics={this.state.tempPlaylist} playable={this.state.playlistToggle}/>
+				<TempPlaylist musics={this.state.tempPlaylist} 
+					playable={this.state.playlistToggle}
+					handlePlaylistRemove={this.removeFromPlaylist}/>
 			</div>
 		);
 	}
