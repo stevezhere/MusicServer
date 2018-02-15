@@ -1,10 +1,18 @@
 class Musics extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {musics: this.props.musics, toggle: false};
+		this.state = {
+			musics: this.props.musics, 
+			tempPlaylist: [], 
+			playlistToggle: false, 
+			deleteToggle: false
+		};
 		this.addMusic = this.addMusic.bind(this);
 		this.deleteMusic = this.deleteMusic.bind(this);
-		this.handleToggle = this.handleToggle.bind(this);
+		this.addToPlaylist = this.addToPlaylist.bind(this);
+		this.removeFromPlaylist = this.removeFromPlaylist.bind(this);
+		this.handleDeleteToggle = this.handleDeleteToggle.bind(this);
+		this.handlePlaylistToggle = this.handlePlaylistToggle.bind(this);
 	}
 
 	sortList(list) {
@@ -35,15 +43,61 @@ class Musics extends React.Component {
 		this.setState({musics: musics});
 	}
 
-	handleToggle() {
-		this.setState({toggle: !this.state.toggle});
+	handleDeleteToggle() {
+		this.setState({
+			deleteToggle: !this.state.deleteToggle, 
+			playlistToggle: false
+		});
+	}
+
+	handlePlaylistToggle() {
+		this.setState({
+			playlistToggle: !this.state.playlistToggle,
+			deleteToggle: false
+		});
+	}
+
+	addToPlaylist(music) {
+		let tempPlaylist = this.state.tempPlaylist.slice();
+		idx = tempPlaylist.indexOf(music)
+		if( idx > -1) {
+			tempPlaylist.splice(idx, 1);
+		}
+		tempPlaylist.push(music);
+		this.setState({tempPlaylist: tempPlaylist});
+	}
+
+	removeFromPlaylist(musicIdx) {
+		let tempPlaylist = this.state.tempPlaylist.slice();
+		tempPlaylist.splice(musicIdx, 1);
+		this.setState({tempPlaylist: tempPlaylist});
+	} 
+
+	activeClass() {
+		let activeClass = {};
+		if(this.state.playlistToggle) {
+			activeClass['songList'] = 'searchableList';
+			activeClass['activeList'] = '';
+		} else {
+			activeClass['songList'] = 'songList searchableList';
+			activeClass['activeList'] = 'activeList';
+		}
+		return activeClass;
 	}
 
 	trashButton() {
-		if(this.state.toggle) {
-			return( "Which song would you like to Remove?" );
+		if(this.state.deleteToggle) {
+			return "Which song would you like to Remove?";
 		} else { 
-			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;	
+			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;
+		}
+	}
+
+	playlistButton() {
+		if(this.state.playlistToggle) {
+			return <button onClick={this.handlePlaylistToggle}>Queue: Storage List</button>
+		} else {
+			return <button onClick={this.handlePlaylistToggle}>Queue: Temp Playlist</button>
 		}
 	}
 
@@ -53,24 +107,31 @@ class Musics extends React.Component {
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
 				<AudioPlayer music={this.state.musics[0]} musicEmpty={!this.state.musics.length}/>
-				<br/>
+				<center title="Toggle List">
+					{this.playlistButton()}
+				</center>
 				<div title="Only Users may Add/Delete Music">
 					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
-					<button onClick={this.handleToggle}> 
+					<button onClick={this.handleDeleteToggle}> 
 						{this.trashButton()}
 					</button>
 				</div>
-				<h2>Musics in storage folder</h2>
-				<ul className='songList searchableList'>
+				<h2 className={this.activeClass()['activeList']}>Musics in Storage</h2>
+				<ul className={this.activeClass()['songList']}>
 					{this.state.musics.map( (music) =>
 						<li className={`musicSource source-${music.id}`} key={music.id}>
 							<MusicLink music={music} guest={this.props.guest} 
-								toggle={this.state.toggle}
+								deleteToggle={this.state.deleteToggle}
 								handleDeleteMusic={this.deleteMusic} 
-								handleToggle={this.handleToggle} />
+								handleDeleteToggle={this.handleDeleteToggle}
+								playlistToggle={this.state.playlistToggle}
+								handlePlaylistAdd={this.addToPlaylist}/>
 						</li>
 					)}
 				</ul>
+				<TempPlaylist musics={this.state.tempPlaylist} 
+					playable={this.state.playlistToggle}
+					handlePlaylistRemove={this.removeFromPlaylist}/>
 			</div>
 		);
 	}
