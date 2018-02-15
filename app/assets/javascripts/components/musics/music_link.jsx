@@ -1,6 +1,6 @@
 class MusicLink extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleListAdd = this.handleListAdd.bind(this);
 	}
