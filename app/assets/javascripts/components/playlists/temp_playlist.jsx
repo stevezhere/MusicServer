@@ -54,12 +54,14 @@ class TempPlaylist extends React.Component {
 	}
 
 	showPlaylist() {
-		if(this.props.musics.length || this.props.playable) {
+		if(this.props.playable) {
 			return(
 				<div>
 					<hr/>
 					<h2 className={this.activeClass()['activeList']}>Temporary Playlist</h2>
-					<button title="Redirect Playlist Settings" onClick={this.savePlaylist}> 
+					<button className={`isDisabled-${!this.props.musics.length}`}
+						title="Redirect Playlist Settings" 
+						onClick={this.savePlaylist}> 
 						Save Playlist 
 					</button>
 					<ol className={this.activeClass()['songList']}>
