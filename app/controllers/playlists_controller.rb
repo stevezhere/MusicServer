@@ -79,12 +79,27 @@ class PlaylistsController < ApplicationController
 		if playlist 
 			if validate_ownership
 				playlist.destroy
-				redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
+				respond_to do |format|
+					format.html { 
+						redirect_to user_path(current_user), flash: {notice: "#{playlist.name} has been removed"}
+					}
+					format.json { render json: playlist} 
+				end
 			else
-				redirect_back(fallback_location: user_path(current_user), flash: {alert: 'Unauthorized access'}) 
+				respond_to do |format|
+					format.html { 
+						redirect_back(fallback_location: user_path(current_user), flash: {alert: 'Unauthorized access'}) 
+					}
+					format.json { render json: 'Unauthorized access', status: 404 } 
+				end
 			end
 		else
-			redirect_back(fallback_location: user_path(current_user), flash: {notice: 'Playlist Not Found'}) 
+			respond_to do |format|
+				format.html { 
+					redirect_back(fallback_location: user_path(current_user), flash: {notice: 'Playlist Not Found'})
+				}
+				format.json { render json: 'Playlist Not Found', status: 404 } 
+			end	 
 		end
 	end
 
