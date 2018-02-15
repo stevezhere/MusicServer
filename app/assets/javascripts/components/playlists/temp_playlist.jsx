@@ -29,7 +29,7 @@ class TempPlaylist extends React.Component {
 					<h2 className={this.activeClass()['activeList']}>Temporary Playlist</h2>
 					<ol className={this.activeClass()['songList']}>
 						{this.props.musics.map( (music, idx) =>
-							<li className={`musicSource source-${music.id}`} key={music.id}>
+							<li className={`musicSource source-${music.id}`} key={music.id} title='Remove Song'>
 								<a href={`/musics/${music.id}`} className={idx} onClick={this.handleRemoveSong}>
 									{music.title}
 								</a>
@@ -44,12 +44,12 @@ class TempPlaylist extends React.Component {
 					<center>
 							<h3> Create Temp Playlist </h3>
 								<li> Press <u>"Queue List"</u> </li>
-								<li> <u>"Choose Songs"</u> on Song List </li>
+								<li> <u>"Choose Songs"</u> on Storage List </li>
 								<li> <u>"Remove Songs"</u> on Temp List </li>
 							<li> Load to audio with <u>"Eject Button"</u> </li>
-							<h3> Back to SongList </h3>
-								<li> Click "Queue" again back to Song List </li>
-								<li> "Load Song" again </li>
+							<h3> Back to Storage List </h3>
+								<li> Click "Queue" again back to Storage </li>
+								<li> "Load" audio again </li>
 					</center>
 				</div>
 			);

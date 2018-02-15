@@ -91,7 +91,7 @@ class Musics extends React.Component {
 
 	playlistButton() {
 		if(this.state.playlistToggle) {
-			return <button onClick={this.handlePlaylistToggle}>Queue: Musics in Storage</button>
+			return <button onClick={this.handlePlaylistToggle}>Queue: Storage List</button>
 		} else {
 			return <button onClick={this.handlePlaylistToggle}>Queue: Temp Playlist</button>
 		}
@@ -103,7 +103,7 @@ class Musics extends React.Component {
 				<h1> Local Music Server Homepage </h1>
 				<br/><br/>
 				<AudioPlayer music={this.state.musics[0]} musicEmpty={!this.state.musics.length}/>
-				<center>
+				<center title="Toggle List">
 					{this.playlistButton()}
 				</center>
 				<div title="Only Users may Add/Delete Music">
@@ -112,7 +112,7 @@ class Musics extends React.Component {
 						{this.trashButton()}
 					</button>
 				</div>
-				<h2 className={this.activeClass()['activeList']}>Musics in storage folder</h2>
+				<h2 className={this.activeClass()['activeList']}>Musics in Storage</h2>
 				<ul className={this.activeClass()['songList']}>
 					{this.state.musics.map( (music) =>
 						<li className={`musicSource source-${music.id}`} key={music.id}>

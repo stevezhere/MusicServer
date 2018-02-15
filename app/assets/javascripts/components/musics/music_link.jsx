@@ -46,18 +46,22 @@ class MusicLink extends React.Component {
 
 	addToListLink() {
 		return(
+		<span title="Choose song for Playlist">
 			<a onClick={this.handleListAdd}>
 					{this.props.music.title}
 			</a>
+		</span>
 		);
 	}
 
 	destroyLink() {
 		return(
-			<a className={`isDisabled-${this.props.guest}`}
-				onClick={this.handleDelete}>
-					{this.props.music.title}
-			</a>
+			<span title="Login to delete songs">
+				<a className={`isDisabled-${this.props.guest}`}
+					onClick={this.handleDelete}>
+						{this.props.music.title}
+				</a>
+			</span>
 		);
 	}
 
