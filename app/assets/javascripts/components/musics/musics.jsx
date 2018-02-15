@@ -59,6 +59,10 @@ class Musics extends React.Component {
 
 	addToPlaylist(music) {
 		let tempPlaylist = this.state.tempPlaylist.slice();
+		idx = tempPlaylist.indexOf(music)
+		if( idx > -1) {
+			tempPlaylist.splice(idx, 1);
+		}
 		tempPlaylist.push(music);
 		this.setState({tempPlaylist: tempPlaylist});
 	}
