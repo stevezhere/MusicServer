@@ -6,7 +6,7 @@
 <br/><br/>
 <center>
 	<noscript><%= render 'edit_description' %></noscript>
-	<%= react_component 'PlaylistDescription', { playlist: @playlist } %>
+	<%= react_component 'PlaylistDescription', { playlist: @playlist, authenticate: @playlist.user == current_user } %>
 </center>
 <br/>
 <b>Created By: <%= link_to @playlist.user.username, user_path(@playlist.user) %></b>
