@@ -26,7 +26,7 @@ class Playlists extends React.Component {
 
 	trashButton() {
 		if(this.state.deleteToggle) {
-			return "Which playlist would you like to Remove?";
+			return "Choose Playlist to Remove";
 		} else { 
 			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;
 		}

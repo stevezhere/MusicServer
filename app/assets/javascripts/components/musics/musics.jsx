@@ -87,7 +87,7 @@ class Musics extends React.Component {
 
 	trashButton() {
 		if(this.state.deleteToggle) {
-			return "Which song would you like to Remove?";
+			return "Choose Song to Remove";
 		} else { 
 			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;
 		}
@@ -95,9 +95,9 @@ class Musics extends React.Component {
 
 	playlistButton() {
 		if(this.state.playlistToggle) {
-			return <button onClick={this.handlePlaylistToggle}>Queue: Storage List</button>
+			return <button onClick={this.handlePlaylistToggle}>Queue: Storage</button>
 		} else {
-			return <button onClick={this.handlePlaylistToggle}>Queue: Temp Playlist</button>
+			return <button onClick={this.handlePlaylistToggle}>Queue: Playlist</button>
 		}
 	}
 
