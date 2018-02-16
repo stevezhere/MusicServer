@@ -54,7 +54,7 @@ class TempPlaylist extends React.Component {
 	}
 
 	showPlaylist() {
-		if(this.props.playable) {
+		if(this.props.musics.length || this.props.playable) {
 			return(
 				<div>
 					<hr/>
