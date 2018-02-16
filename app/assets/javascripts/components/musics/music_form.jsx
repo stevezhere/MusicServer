@@ -42,7 +42,7 @@ class MusicForm extends React.Component {
 	formButton() {
 		return(
 			<button onClick={this.handleToggle}>
-				Add New Song 
+				Add Song 
 			</button>
 		);
 	}
