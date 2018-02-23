@@ -34,12 +34,12 @@ class AudioPlayer extends React.Component {
 				<div className="row trackButtonsRow">
 					<div className="col-xs-1 col-xs-offset-4" title='Next Song'>
 							<button id='previous' className={`isDisabled-${this.props.musicEmpty}`}>
-								<img src="/assets/rewind.png" alt="rewind" size="15" />
+								<img src="/assets/rewind.gif" alt="rewind" size="15" />
 							</button>
 					</div>
 					<div className="col-xs-1 col-xs-offset-2" title='Previous Song'>
 						<button id='next' className={`isDisabled-${this.props.musicEmpty}`}>
-							<img src="/assets/fast-forward.png" alt="forward" size="15"/>
+							<img src="/assets/fast-forward.gif" alt="forward" size="15"/>
 						</button>
 					</div>		
 				</div>
@@ -53,7 +53,7 @@ class AudioPlayer extends React.Component {
 				<div className="row">
 					<div className="col-xs-10 col-xs-offset-2" title="Load List">
 						<button id='cacheSong'> 
-							<img src="/assets/eject.png" alt="eject" size="8" />
+							<img src="/assets/eject.gif" alt="eject" size="8" />
 						</button>
 					</div>
 				</div>
