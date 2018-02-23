@@ -57,7 +57,7 @@ class MusicLink extends React.Component {
 	destroyLink() {
 		return(
 			<span title="Login to delete songs">
-				<a className={`isDisabled-${this.props.guest}`}
+				<a className={`buttonAccess-${this.props.userAccess}`}
 					onClick={this.handleDelete}>
 						{this.props.music.title}
 				</a>

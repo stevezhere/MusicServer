@@ -9,10 +9,10 @@
 	</div> <!-- TitleContainer Row -->
 	<div class="row trackButtonsRow">
 		<div class="col-xs-1 col-xs-offset-4">
-				<button id='previous' class="isDisabled-<%=musicEmpty%>"><%= image_tag('rewind.gif', size: '15') %></button>
+				<button id='previous' class="buttonAccess-<%=!musicEmpty%>"><%= image_tag('rewind.gif', size: '15') %></button>
 		</div> <!-- PreviousButtonDiv -->
 		<div class="col-xs-1 col-xs-offset-2">
-			<button id='next' class="isDisabled-<%=musicEmpty%>"><%= image_tag('fast-forward.gif', size: '15') %></button>
+			<button id='next' class="buttonAccess-<%=!musicEmpty%>"><%= image_tag('fast-forward.gif', size: '15') %></button>
 		</div> <!-- NextButtonDiv -->			
 	</div> <!-- TrackButtonRow -->
 	<div class="row audioRow">

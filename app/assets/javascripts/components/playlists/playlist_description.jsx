@@ -50,7 +50,7 @@ class PlaylistDescription extends React.Component {
 		return(
 			<div>
 				<p>{this.state.description}</p><br/>
-				<button className={`isDisabled-${!this.props.authenticate}`}
+				<button className={`buttonAccess-${this.props.authenticate}`}
 				onClick={this.handleToggle}>Edit Description</button>
 			</div>
 		);

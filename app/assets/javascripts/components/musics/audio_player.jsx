@@ -33,12 +33,12 @@ class AudioPlayer extends React.Component {
 				</div>
 				<div className="row trackButtonsRow">
 					<div className="col-xs-1 col-xs-offset-4" title='Next Song'>
-							<button id='previous' className={`isDisabled-${this.props.musicEmpty}`}>
+							<button id='previous' className={`buttonAccess-${!this.props.musicEmpty}`}>
 								<img src="/assets/rewind.gif" alt="rewind" size="15" />
 							</button>
 					</div>
 					<div className="col-xs-1 col-xs-offset-2" title='Previous Song'>
-						<button id='next' className={`isDisabled-${this.props.musicEmpty}`}>
+						<button id='next' className={`buttonAccess-${!this.props.musicEmpty}`}>
 							<img src="/assets/fast-forward.gif" alt="forward" size="15"/>
 						</button>
 					</div>		

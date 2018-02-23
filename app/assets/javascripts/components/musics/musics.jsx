@@ -111,7 +111,7 @@ class Musics extends React.Component {
 					{this.playlistButton()}
 				</center>
 				<div title="Only Users may Add/Delete Music">
-					<MusicForm handleNewMusic={this.addMusic} guest={this.props.guest}/>
+					<MusicForm handleNewMusic={this.addMusic} userAccess={this.props.userAccess}/>
 					<button onClick={this.handleDeleteToggle}> 
 						{this.trashButton()}
 					</button>
@@ -120,7 +120,7 @@ class Musics extends React.Component {
 				<ul className={this.activeClass()['songList']}>
 					{this.state.musics.map( (music) =>
 						<li className={`musicSource source-${music.id}`} key={music.id}>
-							<MusicLink music={music} guest={this.props.guest} 
+							<MusicLink music={music} userAccess={this.props.userAccess} 
 								deleteToggle={this.state.deleteToggle}
 								handleDeleteMusic={this.deleteMusic} 
 								handleDeleteToggle={this.handleDeleteToggle}
@@ -137,4 +137,4 @@ class Musics extends React.Component {
 	}
 }
 
-Musics.defaultProps = { musics: [], guest: true };
+Musics.defaultProps = { musics: [], userAccess: false };
