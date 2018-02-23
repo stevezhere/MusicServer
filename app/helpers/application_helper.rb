@@ -1,9 +1,5 @@
 module ApplicationHelper
-	def isSessionGuest?
-		if user_signed_in? && current_user.guest
-			true
-		else
-			false 
-		end
+	def userAccess?
+		user_signed_in? && !current_user.guest
 	end
 end

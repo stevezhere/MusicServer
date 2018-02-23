@@ -1,5 +1,5 @@
 <%= form_for @music, :html => { :title => "Only Users may Add Music" } do |f| %>
 	<%= f.text_field :title, placeholder: 'Song Title' %>
 	<%= f.file_field :audio %><br/>
-	<%= f.submit "Store Music", class: "isDisabled-#{isSessionGuest?}" %>
+	<%= f.submit "Store Music", class: "buttonAccess-#{userAccess?}" %>
 <% end %>

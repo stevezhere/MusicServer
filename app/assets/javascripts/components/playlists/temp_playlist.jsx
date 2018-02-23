@@ -59,7 +59,7 @@ class TempPlaylist extends React.Component {
 				<div>
 					<hr/>
 					<h2 className={this.activeClass()['activeList']}>Temporary Playlist</h2>
-					<button className={`isDisabled-${!this.props.musics.length}`}
+					<button className={`buttonAccess-${!!this.props.musics.length}`}
 						title="Redirect Playlist Settings" 
 						onClick={this.savePlaylist}> 
 						Save Playlist 

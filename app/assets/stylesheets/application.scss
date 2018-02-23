@@ -47,7 +47,7 @@ h1 {
 	background-color: yellow;
 	font-weight: bold;
 }
-.isDisabled-true {
+.buttonAccess-false {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -205,7 +205,7 @@ audio, #previous, #next, #cacheSong {
 	opacity: 0.8;
 }
 
-audio:hover, #previous:hover, #next:hover, #cacheSong:hover, .isDisabled-false:hover{
+audio:hover, #previous:hover, #next:hover, #cacheSong:hover, .buttonAccess-true:hover{
 	-webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
 	-moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
 	box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);

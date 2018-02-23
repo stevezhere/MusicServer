@@ -8,11 +8,11 @@
 			<li>
 				<%= link_to music.title, music_path(music)  %>
 				<%= form_for( music, method: :delete, html: {style: 'display:inline'} ) do |f| %>
-				  <%= image_submit_tag("trash-bin.gif", size: "18", class: "isDisabled-#{isSessionGuest?}") %>
+				  <%= image_submit_tag("trash-bin.gif", size: "18", class: "buttonAccess-#{userAccess?}") %>
 				<% end %>
 			</li>
 		<% end %>
 	</ul>
 </noscript>
 
-<%= react_component 'Musics', { musics: @musics, guest: isSessionGuest? } %>
+<%= react_component 'Musics', { musics: @musics, userAccess: userAccess? } %>
