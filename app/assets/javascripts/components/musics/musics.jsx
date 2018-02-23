@@ -89,7 +89,7 @@ class Musics extends React.Component {
 		if(this.state.deleteToggle) {
 			return "Choose Song to Remove";
 		} else { 
-			return <img src="/assets/trash-bin.png" alt="Trash Bin" size="18"/>;
+			return <img src="/assets/trash-bin.gif" alt="Trash Bin" size="18"/>;
 		}
 	}
 
