@@ -27,7 +27,7 @@
 }
 
 body {
-  background: url('background.jpg');
+  background: url(asset-path('background.jpg'));
 	margin: 5%;
 	padding-top: 36px;
 }
@@ -57,12 +57,12 @@ h1 {
 }
 .searchableList {
 	columns: 2;
-	list-style-image: url('musicNote.gif');
+	list-style-image: url(asset-path('musicNote.gif'));;
 	list-style-position: inside;
 }
 .playerDiv {
 	position: relative;
-	background: url('radioplayer.jpg') no-repeat center;
+	background: url(asset-path('radioplayer.jpg')) no-repeat center;
   background-size: contain;
 	min-height: 200px;
 	/*box-shadow: 10px 10px 50px black;*/
@@ -270,9 +270,9 @@ audio:hover, #previous:hover, #next:hover, #cacheSong:hover, .buttonAccess-true:
 	}
 }
 
-.playlistContainer {
-	background: url('scrapbook.png') no-repeat center;
+/*.playlistContainer {
+	background: url(asset-path('scrapbook.jpg')) no-repeat center;
 	background-size: contain;
 	min-height: 500px;
 	text-align: left;
-}
+}*/
