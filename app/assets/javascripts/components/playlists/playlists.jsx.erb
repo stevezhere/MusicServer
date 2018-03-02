@@ -28,7 +28,7 @@ class Playlists extends React.Component {
 		if(this.state.deleteToggle) {
 			return "Choose Playlist to Remove";
 		} else { 
-			return <img src="/assets/trash-bin.gif" alt="Trash Bin" size="18"/>;
+			return <img src={"<%= asset_path('trash-bin.gif') %>"} alt="Trash Bin" size="18"/>;
 		}
 	}
 
