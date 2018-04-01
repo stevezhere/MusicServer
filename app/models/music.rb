@@ -4,7 +4,7 @@ class Music < ActiveRecord::Base
 	scope :ordered, -> { includes(:song_entries).order('song_entries.created_at') }
 	validates :title, presence: true, uniqueness: true
 	# validate :title_exist_on_desktop
-	has_attached_file :audio
+	has_attached_file :audio, { :url => "/:class/:id_partition/:filename" }
 	validates_attachment_presence :audio
 	validates_attachment_content_type :audio, :content_type => [ 'audio/mp3','audio/mpeg']
 
@@ -17,16 +17,13 @@ class Music < ActiveRecord::Base
 	# end
 
 	def find_path_validation
-		root_storage_path = Rails.root.join 'public', 'system', 'musics', 'audios', '000', '000'
-		latest_path = root_storage_path.children.sort.last.join 'original'
-
+		root_storage_path = Rails.root.join 'public', 'musics', '000', '000'
+		latest_path = root_storage_path.children.sort.last
 		if Dir.entries(latest_path).last == self.audio_file_name
-			self.path = latest_path.join self.audio_file_name
-			self.save
-			return true
+			true
 		else
 			self.destroy
-			return false
+			false
 		end
 	end
 

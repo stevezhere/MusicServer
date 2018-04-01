@@ -53,7 +53,7 @@ class MusicsController < ApplicationController
 
   def stream
     if music = Music.find_by_id(params[:id])
-      send_file music.path
+      send_file music.audio.path
     end
   end
 
