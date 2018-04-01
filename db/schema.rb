@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20180202144044) do
 
   create_table "musics", force: :cascade do |t|
     t.string   "title",              null: false
-    t.string   "path"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "audio_file_name"
