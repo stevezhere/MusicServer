@@ -95,9 +95,9 @@ class Musics extends React.Component {
 
 	playlistButton() {
 		if(this.state.playlistToggle) {
-			return <button onClick={this.handlePlaylistToggle}>Queue: Storage</button>
+			return "Queue: Storage"
 		} else {
-			return <button onClick={this.handlePlaylistToggle}>Queue: Playlist</button>
+			return "Queue: Playlist"
 		}
 	}
 
@@ -108,7 +108,7 @@ class Musics extends React.Component {
 				<br/><br/>
 				<AudioPlayer music={this.state.musics[0]} musicEmpty={!this.state.musics.length}/>
 				<center title="Toggle List">
-					{this.playlistButton()}
+					<button onClick={this.handlePlaylistToggle}>{this.playlistButton()}</button>
 				</center>
 				<div title="Only Users may Add/Delete Music">
 					<MusicForm handleNewMusic={this.addMusic} userAccess={this.props.userAccess}/>
