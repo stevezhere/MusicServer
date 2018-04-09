@@ -26,14 +26,17 @@ function main(){
 	let currentSong, nextSong, title, index = 0;
 	let srcArr = [], srcText = {};
 	const cacheSongList =  () => {
-		srcArr = [];
-		document.querySelectorAll('.songList li.musicSource a').forEach(
-			(aTag) => {
-				srcId = aTag.getAttribute('href').match(/\d+$/)[0];
-				srcArr.push(srcId);
-				srcText[srcId] = srcText[srcId] || aTag.text;
-			}
-		);
+		let currentListSize = document.getElementsByClassName('songList')[0].childElementCount;
+		if( srcArr.length !== currentListSize || currentListSize === 0 ) {
+			srcArr = [];
+			document.querySelectorAll('.songList li.musicSource a').forEach(
+				(aTag) => {
+					srcId = aTag.getAttribute('href').match(/\d+$/)[0];
+					srcArr.push(srcId);
+					srcText[srcId] = srcText[srcId] || aTag.text;
+				}
+			);
+		}
 	};
 	const audioReload = () => {
 		$audio.find('source').attr('src', `/musics/${nextSong}/stream`);
