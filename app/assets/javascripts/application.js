@@ -26,12 +26,12 @@ function main(){
 	let currentSong, nextSong, title, index = 0;
 	let srcArr = [], srcText = {};
 	const cacheSongList =  () => {
-		srcArr = [], srcText = {};
+		srcArr = [];
 		document.querySelectorAll('.songList li.musicSource a').forEach(
 			(aTag) => {
 				srcId = aTag.getAttribute('href').match(/\d+$/)[0];
 				srcArr.push(srcId);
-				srcText[srcId] = aTag.text;
+				srcText[srcId] = srcText[srcId] || aTag.text;
 			}
 		);
 	};
@@ -43,10 +43,9 @@ function main(){
 		title = srcText[nextSong];
 		$('h2.songTitle').text(title);
 	};
-	
-	cacheSongList();
 
 	$audio.on('ended', function(){
+		cacheSongList();
 		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
@@ -55,6 +54,7 @@ function main(){
 	})
 
 	$('#next').on('click', function(){
+		cacheSongList();
 		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = (index + 1) % srcArr.length;
@@ -63,6 +63,7 @@ function main(){
 	})	
 
 	$('#previous').on('click', function(){
+		cacheSongList();
 		currentSong = nextSong || $audio.find('source').attr('src').match(/\/(\d+)\//)[1];
 		index = srcArr.indexOf(currentSong);
 		index = index < 1 ? (srcArr.length - 1) : (index - 1);
@@ -72,13 +73,10 @@ function main(){
 
 	$('.musicSource').on('click', function(){
 		event.preventDefault();
+		cacheSongList();
 		let $songLi = $(this);
 		nextSong = $songLi.attr('class').match(/source-(\d+)/)[1];
 		audioReload();
-	})
-
-	$('#cacheSong').on('click', function(){
-		cacheSongList();
 	})
 
 	$('#search').on('keyup', function(){
