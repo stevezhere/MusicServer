@@ -81,8 +81,8 @@ class TempPlaylist extends React.Component {
 					<center>
 							<h3> Create Temp Playlist </h3>
 								<li> Press <u>"Queue: TempList"</u> </li>
-								<li> Choose Songs from <u>"Storage List"</u> </li>
-								<li> Remove Songs from <u>"Temp List"</u> </li>
+								<li> Choose Songs from <u>"Storage"</u> </li>
+								<li> Remove Songs from <u>"TempList"</u> </li>
 					</center>
 				</div>
 			);

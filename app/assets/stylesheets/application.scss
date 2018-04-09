@@ -72,6 +72,7 @@ h1 {
 @media screen and (max-width: 550px) {
 	h1 {
 		font-size: 28px;
+		margin: 0px;
 	}
 	h2 {
 		font-size: 20px;
@@ -107,6 +108,9 @@ h1 {
 	}
 	.audioRow {
 		margin-left: -110px;
+	}
+	body {
+		padding-bottom: 35px;
 	}
 }
 
