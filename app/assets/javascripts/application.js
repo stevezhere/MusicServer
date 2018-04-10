@@ -74,7 +74,8 @@ function main(){
 		audioReload();
 	})	
 
-	$('.musicSource').on('click', function(){
+//BUG: delegation initiates even with react preventDefault 
+	$('.searchableList').on('click', 'li.musicSource', function(){
 		event.preventDefault();
 		cacheSongList();
 		let $songLi = $(this);
