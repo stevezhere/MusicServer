@@ -1,6 +1,6 @@
 # Mini-MusicServer
 
-[**DEMO**](http://mini-musicserver.herokuapp.com/)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](http://mini-musicserver.herokuapp.com/)
 
 
 ## Requirement
