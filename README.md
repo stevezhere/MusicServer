@@ -1,7 +1,6 @@
 # Mini-MusicServer
 
-[**DEMO**]
-(http://mini-musicserver.herokuapp.com/)
+[**DEMO**](http://mini-musicserver.herokuapp.com/)
 
 
 ## Requirement
@@ -37,9 +36,8 @@ Access with "Public IPv4: Port Number" i.e.
 
 > Remember to setup port forwarding for public server usage. Varies per service providers and modems. Somewhat like:  
 
->
-Modem local IP > Advance Setting > Port Forwarding > Create IPv4
->
+> Modem local IP > Advance Setting > Port Forwarding > Create IPv4
+
 * Local IP line: local IP and port to be launched
 * External IP line: 0.0.0.0 and same port as local IP
 
