@@ -34,12 +34,13 @@ Access with "Local [IP](https://www.whatismyip.com/) : Port Number" i.e. 192.168
 Access with "Public IPv4: Port Number" i.e.
 172.16.254.1:3000.
 
-> Remember to setup port forwarding for public server usage. Varies per service providers and modems. Somewhat like:  
-
-> Modem local IP > Advance Setting > Port Forwarding > Create IPv4
-
-* Local IP line: local IP and port to be launched
-* External IP line: 0.0.0.0 and same port as local IP
+> Remember to setup port forwarding for public server usage.  
+> Varies per service providers and modems. Somewhat like:  
+> 
+> Modem local IP > Advance Setting > Port Forwarding > Create IPv4  
+> 
+> * Local IP line: local IP and port to be launched  
+> * External IP line: 0.0.0.0 and same port as local IP  
 
 
 ## Deployment
