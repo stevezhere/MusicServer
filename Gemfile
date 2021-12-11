@@ -24,6 +24,10 @@ gem "paperclip", "~> 5.2.1"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 #React
 gem 'react-rails'
+#ruby
+source "https://rubygems.org"
+ruby "3.0.3"
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
