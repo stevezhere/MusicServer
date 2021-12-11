@@ -1,12 +1,11 @@
-require_relative 'boot'
+xrequire_relative 'boot'
 
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-# config/application.rb
-config.assets.initialize_on_precompile = false
+
 
 module MusicServer
   class Application < Rails::Application
