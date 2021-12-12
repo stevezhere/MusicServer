@@ -26,7 +26,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'react-rails'
 #ruby
 source "https://rubygems.org"
-ruby "3.0.3"
+ruby "2.5.0"
 
 
 # Use jquery as the JavaScript library
